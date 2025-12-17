@@ -1,0 +1,213 @@
+/* --- FOOTER SADELEŞMİŞ --- */
+.footer-section {
+    background-color: #002244; 
+    color: #ffffff;
+    padding-top: 70px;
+    padding-bottom: 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .footer-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    
+    /* GRID YAPISI */
+    display: grid;
+    /* Sol: 1.2 birim, Orta: 0.8 birim, Sağ: 1.5 birim (Adrese bol yer verdik) */
+    grid-template-columns: 1.2fr 0.8fr 1.5fr; 
+    gap: 50px;
+    
+    padding-bottom: 50px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  /* --- SÜTUNLAR --- */
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* 1. Logo Kısmı */
+  .footer-logo {
+    font-family: 'Georgia', serif;
+    font-size: 26px;
+    margin-bottom: 15px;
+    color: #fff;
+    white-space: nowrap;
+  }
+  
+  .gold-text {
+    color: #C5A059;
+  }
+  
+  .footer-desc {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #ccc;
+    margin-bottom: 20px;
+    max-width: 300px;
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .social-icon {
+    width: 38px;
+    height: 38px;
+    background-color: rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 15px;
+    transition: all 0.3s;
+  }
+  
+  .social-icon:hover {
+    background-color: #C5A059;
+  }
+  
+  /* 2. Linkler */
+  .footer-title {
+    font-size: 20px;
+    color: #C5A059;
+    margin-bottom: 20px;
+    font-weight: 700;
+    display: inline-block;
+    border-bottom: 2px solid #C5A059;
+    padding-bottom: 5px;
+    width: fit-content;
+  }
+  
+  .footer-links {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-links li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-links a {
+    text-decoration: none;
+    color: #d0d0d0;
+    font-size: 16px;
+    transition: 0.3s;
+  }
+  
+  .footer-links a:hover {
+    color: #C5A059;
+    padding-left: 5px;
+  }
+  
+  /* 3. Adres Alanı (YENİ VE TEMİZ) */
+  .single-contact-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .big-icon {
+    font-size: 30px; /* İkonu büyüttük */
+    color: #C5A059;
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+  
+  .address-text {
+    font-size: 18px; /* Yazı büyük ve rahat */
+    line-height: 1.6;
+    color: #e0e0e0;
+    margin: 0;
+  }
+  
+  /* Harita Linki */
+  .map-link {
+    color: #C5A059;
+    font-size: 15px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 45px; /* İkonun hizasından başlasın */
+    border: 1px solid #C5A059;
+    padding: 8px 15px;
+    border-radius: 20px;
+    display: inline-block;
+    width: fit-content;
+    transition: all 0.3s;
+  }
+  
+  .map-link:hover {
+    background-color: #C5A059;
+    color: #002244;
+  }
+  
+  /* Alt Çubuk */
+  .footer-bottom {
+    background-color: #00152a;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    padding: 25px 0;
+    color: #666;
+    font-size: 14px;
+    width: 100%;
+  }
+  .footer-bottom p {
+    margin: 0;
+    /* Koyu zemin üzerinde gözü yormayan "Metalik Gri" */
+    color: #8899a6; 
+    font-size: 14px;
+    letter-spacing: 0.5px; /* Harfleri çok hafif açtık, daha modern durur */
+    font-weight: 400;
+  }
+  
+  /* --- TABLET AYARI (1024px altı) --- */
+  @media (max-width: 1024px) {
+    .footer-container {
+      /* Tablette 2 sütun: 
+         Sol: Logo
+         Sağ: Linkler ve Adres alt alta veya yan yana 
+         Burada en temiz yöntem: Logo tam satır, altta Link ve Adres yan yana */
+      
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas: 
+         "logo logo" 
+         "links contact";
+      gap: 40px;
+    }
+    
+    .footer-col:nth-child(1) { grid-area: logo; text-align: center; align-items: center; }
+    .footer-col:nth-child(2) { grid-area: links; }
+    .footer-col:nth-child(3) { grid-area: contact; }
+  
+    .footer-desc {
+      max-width: 500px; /* Tablette genişlet */
+    }
+  }
+  
+  /* --- MOBİL AYARI (768px altı) --- */
+  @media (max-width: 768px) {
+    .footer-container {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      gap: 40px;
+    }
+    
+    .footer-col {
+      align-items: center;
+    }
+    
+    .single-contact-box {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .map-link {
+      margin-left: 0;
+    }
+  }

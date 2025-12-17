@@ -1,0 +1,204 @@
+/* --- REVIEWS (YORUMLAR) - TEMİZ BAŞLANGIÇ --- */
+
+/* 1. Bölüm Genel Ayarları */
+.reviews-section {
+    padding: 120px 0; /* Geniş üst-alt boşluk */
+    background-color: #ffffff; /* Bembeyaz zemin */
+  }
+  
+  .reviews-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* 2. Başlık Alanı */
+  .reviews-header {
+    text-align: center;
+    max-width: 800px;
+    margin-bottom: 70px;
+  }
+  
+  .sub-title {
+    color: #C5A059; /* Altın */
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    display: block;
+  }
+  
+  .main-title {
+    font-family: 'Georgia', serif;
+    font-size: 50px; /* Büyük Başlık */
+    color: #003366; /* Lacivert */
+    margin-bottom: 20px;
+  }
+  
+  /* Yıldız Rozeti */
+  .stars-badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .stars-badge svg {
+    color: #C5A059;
+    font-size: 24px;
+  }
+  
+  .stars-badge span {
+    font-size: 20px;
+    font-weight: 600;
+    color: #555;
+    margin-left: 5px;
+  }
+  
+  /* 3. Slider Ayarları */
+  .reviews-swiper {
+    width: 100%;
+    padding: 20px 20px 60px 20px !important; /* Gölgenin kesilmemesi için padding */
+  }
+  
+  /* 4. Kart Tasarımı (Sıfırdan) */
+  .review-card {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 15px;
+    padding: 40px 30px; /* Padding'i biraz dengeledik */
+    height: 450px; /* Yüksekliği biraz artırdık ki buton sığsın */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* İçeriği alt ve üste yay */
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  /* Kart Hover Efekti */
+  .review-card:hover {
+    background-color: #ffffff; /* Üzerine gelince beyaz olsun */
+    border-color: #C5A059; /* Kenarlık Altın Rengi olsun */
+    transform: translateY(-10px); /* Yukarı kalksın */
+    box-shadow: 0 20px 40px rgba(0, 51, 102, 0.1); /* Lacivert tonlu gölge */
+  }
+  
+  /* Tırnak İkonu */
+  .quote-icon {
+    font-size: 50px;
+    color: #C5A059; /* Altın rengi tırnak */
+    opacity: 0.3;
+    margin-bottom: 25px;
+  }
+  
+  /* Yorum Metni (BÜYÜK) */
+  .review-text {
+    font-family: 'Georgia', serif;
+    font-size: 20px; /* Biraz daha optimize ettik */
+    line-height: 1.5;
+    color: #333;
+    font-style: italic;
+    margin-bottom: 15px;
+    
+    /* Sihirli Kod: Metni 5 satırda keser ve ... koyar */
+    display: -webkit-box;
+    -webkit-line-clamp: 5; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Kart Alt Kısmı (İsim ve Tarih) */
+  .review-footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .reviewer-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #003366;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .review-date {
+    font-size: 15px;
+    color: #888;
+  }
+  
+  .review-stars {
+    color: #C5A059;
+    font-size: 16px;
+    display: flex;
+    gap: 3px;
+  }
+  
+  /* Pagination Noktaları */
+  .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background: #ccc;
+    opacity: 0.5;
+  }
+  
+  .swiper-pagination-bullet-active {
+    background: #003366 !important;
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  .read-more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #C5A059; /* Altın Rengi */
+    text-decoration: none;
+    transition: all 0.3s;
+    margin-top: auto; /* Yazının hemen altına yapışsın */
+  }
+  .read-more-link:hover {
+    color: #003366; /* Hoverda Lacivert */
+    transform: translateX(5px); /* Sağa doğru minik hareket */
+  }
+  .arrow-icon {
+    font-size: 14px;
+  }
+  
+  /* Kart Alt Kısmı */
+  .review-footer {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* 5. Responsive (Mobil) */
+  @media (max-width: 768px) {
+    .reviews-section {
+      padding: 80px 0;
+    }
+    
+    .main-title {
+      font-size: 36px;
+    }
+  
+    .review-card {
+      height: auto; /* Mobilde içerik kadar uzasın */
+      min-height: 350px;
+      padding: 30px 20px;
+    }
+  
+    .review-text {
+      font-size: 18px; /* Mobilde biraz küçültelim */
+    }
+  }
