@@ -1,24 +1,35 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// Sabit Bileşenler
 import Header from './components/Header/Header';
-import Hero from './components/Hero/Hero'; 
-import About from './components/About/About';
-import Services from './components/Services/Services';
-import Reviews from './components/Reviews/Reviews';
 import Footer from './components/Footer/Footer';
-import './App.css'; 
+
+// Sayfalar
+import Home from './pages/Home';
+import AboutPage from './pages/AboutPage';
+
+import './App.css';
 
 function App() {
   return (
-    <div className="App">
-    <Header />
-    <main>
-      <Hero />
-      <About /> 
-      <Services/>
-      <Reviews/>
-      <Footer/>
-    </main>
-  </div>
+    <Router>
+      <div className="App">
+        <Header /> {/* Header her sayfada sabit */}
+        
+        <main>
+          <Routes>
+            {/* "/" adresine gelince Home sayfasını göster */}
+            <Route path="/" element={<Home />} />
+            
+            {/* "/hakkimda" adresine gelince AboutPage sayfasını göster */}
+            <Route path="/hakkimda" element={<AboutPage />} />
+          </Routes>
+        </main>
+
+        <Footer /> {/* Footer her sayfada sabit */}
+      </div>
+    </Router>
   );
 }
 

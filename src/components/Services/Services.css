@@ -9,8 +9,14 @@
 }
 
 .services-container {
+  display: flex;
   flex-direction: column;
   align-items: center;
+  
+  /* Kartların kenarlara yapışmasını engelleyen sihirli kodlar: */
+  width: 90%;          /* Ekranın %90'ını kullan (mobilde kenar boşluğu kalır) */
+  max-width: 1200px;   /* Çok büyük ekranlarda içeriği sonsuza kadar yayma */
+  margin: 0 auto;      /* Kutuyu ekranın tam ortasına yerleştir */
 }
 
 /* --- BAŞLIK ALANI (ÇAKIŞMAYI ÖNLEMEK İÇİN ÖZEL SEÇİCİ) --- */
@@ -19,7 +25,7 @@
 .services-section .section-header {
   text-align: center;
   max-width: 800px;
-  margin-bottom: 60px;
+  margin: 0 auto 60px auto;
 }
 
 .services-section .sub-title {
@@ -49,9 +55,10 @@
 /* --- GRID YAPISI --- */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
-  gap: 30px;
-  width: 100%;
+  /* Kartlar minimum 300px olsun, sığmazsa alt satıra geçsin */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+  gap: 30px; /* Kartlar arası boşluk */
+  width: 100%; /* Container'ın içini tam doldur */
 }
 
 /* --- KART TASARIMI --- */

@@ -1,0 +1,352 @@
+/* --- MEVCUT HEADER VE GENEL STİLLER (AYNI) --- */
+.about-page {
+  padding-top: 130px; 
+  background-color: #f9f9f9;
+  padding-bottom: 80px;
+  min-height: 100vh;
+}
+
+.page-header {
+  background-color: #002244;
+  color: #fff;
+  padding: 40px 0;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.page-title {
+  font-family: 'Georgia', serif;
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.breadcrumb {
+  font-size: 14px;
+  color: #C5A059;
+  font-weight: 600;
+}
+
+/* --- VİTRİN BÖLÜMÜ (SLIDER + TEXT) --- */
+.bio-section {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+  margin-bottom: 60px;
+  background: #fff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+/* --- YENİ: SLIDER STİLLERİ --- */
+.bio-slider-container {
+  width: 100%;
+  max-width: 450px; /* Slider genişliği */
+  height: 550px; /* Slider yüksekliği */
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 10px 10px 0px #C5A059;
+  flex-shrink: 0;
+}
+
+.bio-slider-wrapper {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.bio-slide {
+  min-width: 100%;
+  height: 100%;
+}
+
+.bio-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Slider Butonları */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 34, 68, 0.6);
+  color: #fff;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  z-index: 2;
+}
+
+.slider-btn:hover {
+  background: #C5A059;
+}
+
+.slider-btn.prev { left: 10px; }
+.slider-btn.next { right: 10px; }
+
+/* Slider Noktaları */
+.slider-dots {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: #C5A059;
+  transform: scale(1.2);
+}
+
+/* --- BİO TEXT & CONTENT (ESKİSİYLE AYNI) --- */
+.bio-text { flex: 1; }
+.section-title { font-family: 'Georgia', serif; font-size: 32px; color: #002244; margin-bottom: 5px; }
+.section-subtitle { color: #C5A059; font-size: 18px; margin-bottom: 20px; font-weight: 700; text-transform: uppercase; }
+.intro-paragraph { font-size: 17px; line-height: 1.8; color: #444; margin-bottom: 25px; }
+
+.highlight-box {
+  background: linear-gradient(135deg, #002244 0%, #003366 100%);
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  border-left: 5px solid #C5A059;
+  display: flex; align-items: center; gap: 15px; margin-bottom: 30px;
+}
+.highlight-icon { font-size: 40px; color: #C5A059; flex-shrink: 0; }
+.highlight-box p { margin: 0; font-size: 16px; }
+.highlight-box strong { color: #C5A059; }
+
+.bio-stats { display: flex; gap: 20px; border-top: 1px solid #eee; padding-top: 25px; }
+.stat-box { text-align: center; flex: 1; }
+.stat-number { display: block; font-size: 28px; font-weight: 800; color: #002244; }
+.stat-label { font-size: 13px; color: #777; text-transform: uppercase; }
+
+/* DETAYLI İÇERİK BLOKLARI */
+.detailed-bio-wrapper { max-width: 1000px; margin: 0 auto 60px auto; }
+.content-block { margin-bottom: 30px; background: #fff; padding: 30px 40px; border-radius: 10px; box-shadow: 0 3px 15px rgba(0,0,0,0.03); border-top: 4px solid transparent; transition: all 0.3s; }
+.content-block:hover { transform: translateY(-5px); border-top-color: #C5A059; }
+.block-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+.block-icon { font-size: 24px; color: #C5A059; }
+.block-title { font-family: 'Georgia', serif; font-size: 22px; color: #002244; margin: 0; }
+.custom-list { list-style: none; padding: 0; margin-top: 15px; }
+.custom-list li { position: relative; padding-left: 25px; margin-bottom: 10px; color: #444; }
+.custom-list li::before { content: '✔'; position: absolute; left: 0; color: #C5A059; font-weight: bold; }
+.cultural-block { background-color: #fcfcfc; border: 1px solid #eee; }
+
+/* MOTTO */
+.motto-section { text-align: center; padding: 60px 20px; background-color: #002244; color: #fff; border-radius: 15px; margin-bottom: 80px; }
+.quote-icon-large { font-size: 40px; color: #C5A059; opacity: 0.3; margin-bottom: 20px; }
+.motto-text { font-family: 'Georgia', serif; font-size: 32px; font-style: italic; margin-bottom: 15px; }
+.motto-author { font-size: 18px; color: #C5A059; font-weight: 600; }
+
+/* --- YENİ: ACCORDION STİLLERİ --- */
+/* --- YAYINLAR VE GENEL BAŞLIK STİLLERİ --- */
+.publications-section {
+  max-width: 1000px;
+  margin: 0 auto 80px auto; /* Üstten alttan boşluk */
+  padding: 0 20px; /* Mobilde kenarlara yapışmasın */
+}
+
+.section-heading-center {
+  text-align: center;
+  font-family: 'Georgia', serif;
+  font-size: 36px;
+  color: #002244; /* Lacivert */
+  margin-bottom: 20px;
+  position: relative;
+  font-weight: 700;
+}
+
+/* Başlığın altına şık bir altın çizgi ekleyelim */
+.section-heading-center::after {
+  content: '';
+  display: block;
+  width: 70px;
+  height: 4px;
+  background-color: #C5A059; /* Altın */
+  margin: 15px auto 0; /* Ortala */
+  border-radius: 2px;
+}
+
+.section-desc-center {
+  text-align: center;
+  margin-bottom: 50px;
+  color: #666;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 17px;
+  line-height: 1.6;
+}
+.accordion-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Başlıklar arası boşluk */
+}
+
+.accordion-item {
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.accordion-item.active {
+  border-color: #C5A059;
+  box-shadow: 0 5px 15px rgba(197, 160, 89, 0.15);
+}
+
+/* Başlık (Tıklanabilir Alan) */
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  cursor: pointer;
+  background-color: #fcfcfc;
+  transition: background 0.3s;
+}
+
+.accordion-header:hover {
+  background-color: #f4f4f4;
+}
+
+.accordion-item.active .accordion-header {
+  background-color: #002244; /* Açıkken lacivert olsun */
+  color: #fff;
+}
+
+.accordion-header h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: inherit; /* Rengi parent'tan alsın */
+}
+
+.accordion-icon {
+  font-size: 16px;
+  color: #C5A059;
+}
+
+/* İçerik Alanı */
+.accordion-content {
+  max-height: 0; /* Kapalıyken yükseklik 0 */
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out, padding 0.5s;
+  background-color: #fff;
+}
+
+.accordion-item.active .accordion-content {
+  max-height: 1000px; /* Açıkken genişlesin (Yeterince büyük bir değer ver) */
+  /* Eğer içerik çok uzunsa scrollbar çıkması için: */
+  overflow-y: auto; 
+  padding: 25px;
+  border-top: 1px solid #eee;
+}
+
+/* Liste Stili */
+.publication-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.publication-list li {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 12px;
+  line-height: 1.6;
+  border-bottom: 1px solid #f9f9f9;
+  padding-bottom: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.publication-list li:last-child {
+  border-bottom: none;
+}
+
+.pub-number {
+  font-weight: 700;
+  color: #C5A059;
+  min-width: 25px; /* Hizalamak için */
+}
+
+/* --- BLOG KISMI İÇİN UFAK DÜZELTME --- */
+.section-desc-center {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #666;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- YENİ: BLOG KARTLARI --- */
+.blog-section-preview { max-width: 1200px; margin: 0 auto; }
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.blog-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: 0.3s;
+  border: 1px solid #eee;
+}
+
+.blog-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: #C5A059; }
+
+.blog-img-wrapper { position: relative; height: 200px; overflow: hidden; }
+.blog-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.blog-card:hover .blog-img-wrapper img { transform: scale(1.1); }
+
+.blog-date {
+  position: absolute; top: 15px; right: 15px;
+  background: #C5A059; color: #fff; padding: 5px 12px;
+  border-radius: 4px; font-size: 12px; font-weight: 700;
+}
+
+.blog-info { padding: 25px; }
+.blog-info h4 { font-size: 18px; color: #002244; margin-bottom: 10px; line-height: 1.4; }
+.blog-info p { font-size: 14px; color: #666; margin-bottom: 20px; line-height: 1.6; }
+
+.read-more-btn {
+  background: none; border: none; color: #C5A059;
+  font-weight: 700; cursor: pointer; padding: 0;
+  font-size: 14px; transition: 0.3s;
+}
+.read-more-btn:hover { color: #002244; letter-spacing: 1px; }
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  .bio-section { flex-direction: column; }
+  .bio-slider-container { width: 100%; max-width: 100%; height: 400px; margin-bottom: 30px; box-shadow: none; }
+  .pub-tab-btn { flex: 1; justify-content: center; }
+}

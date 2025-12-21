@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { FaGraduationCap, FaAward, FaStethoscope, FaUniversity } from 'react-icons/fa';
+import { FaGraduationCap, FaAward, FaStethoscope } from 'react-icons/fa';
 import './About.css';
+
+// Yeni yüklediğin resmi buraya çağırıyoruz
+import doctorHomeImg from '../../assets/images/anasayfa-bg.jpeg'; 
 
 const About = () => {
   const [activeTab, setActiveTab] = useState('egitim');
 
-  // Sekme İçerikleri (Burası normalde veritabanından gelebilir ama şimdilik statik yapıyoruz)
+  // Sekme İçerikleri
   const tabContent = {
     egitim: [
       { year: '1974', title: 'İstanbul Üniversitesi Tıp Fakültesi', desc: 'Tıp Doktoru Ünvanı (Derece ile Mezuniyet)' },
@@ -30,12 +33,12 @@ const About = () => {
     <section className="about-section" id="about">
       <div className="container about-container">
         
-        {/* SOL TARAF: FOTO VE HİKAYE */}
+        {/* SOL TARAF: FOTO VE TECRÜBE */}
         <div className="about-left">
           <div className="about-image-box">
-             {/* Buraya Hero'dakinden farklı, belki masada oturan bir resim koyabilirsin */}
+             {/* Yeni resim değişkenini buraya koyduk */}
              <img 
-               src="https://img.freepik.com/free-photo/doctor-offering-medical-advice_23-2147896173.jpg" 
+               src={doctorHomeImg} 
                alt="Prof. Dr. Faruk Erzengin" 
                className="about-img"
              />

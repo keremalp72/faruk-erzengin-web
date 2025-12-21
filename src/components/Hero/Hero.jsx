@@ -1,11 +1,25 @@
 import React from 'react';
-import { FaPlay } from 'react-icons/fa'; // Play ikonunu import ettik
+import heroBg from '../../assets/images/hero-bg.png'; // Doğru resim yolu
+import { FaPlay } from 'react-icons/fa';
 import './Hero.css';
 
 const Hero = () => {
   return (
-    <section className="hero-wrapper" id="home">
+    // BURAYI GÜNCELLE: style prop'u ile arka planı veriyoruz
+    <section 
+      className="hero-wrapper" 
+      id="home"
+      style={{ 
+        backgroundImage: `url(${heroBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
       
+      {/* Karartma efekti (Opsiyonel ama tavsiye edilir) */}
+      <div className="hero-overlay"></div>
+
       <div className="hero-container">
         <div className="hero-content">
           
@@ -23,13 +37,11 @@ const Hero = () => {
             insan odaklı yaklaşım ile sağlığınız güvenilir ellerde.
           </p>
 
-          {/* Ana Butonlar */}
           <div className="hero-buttons">
             <a href="#contact" className="btn-primary">Randevu Oluştur</a>
-            <a href="#about" className="btn-secondary">Özgeçmişi İncele</a>
+            <a href="/hakkimda" className="btn-secondary">Özgeçmişi İncele</a> {/* href düzeltildi */}
           </div>
 
-          {/* YENİ: Video Linki */}
           <div className="video-link-wrapper">
              <a 
                href="https://www.youtube.com/watch?v=gD-7bmIkBp0" 

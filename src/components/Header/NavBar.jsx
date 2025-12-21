@@ -1,39 +1,71 @@
-import React from 'react';
-import { FaBars } from 'react-icons/fa'; // Hamburger ikonu
-import './Header.css';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'; // Link'i import etmeyi unutma
+import { FaBars, FaTimes } from 'react-icons/fa';
+import './Header.css'; // Eğer dosya adın NavBar.css ise burayı ona göre düzelt
 
-const NavBar = ({ toggleMenu }) => {
+const Header = () => {
+  // --- EKSİK OLAN KISIM BURASIYDI ---
+  const [navOpen, setNavOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Scroll olayını dinle (Header rengi değişimi için)
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Menüyü aç/kapa fonksiyonu
+  const toggleNav = () => {
+    setNavOpen(!navOpen);
+  };
+
   return (
-    <nav className="navbar">
-      <div className="container">
+    <header className={`header ${scrolled ? 'scrolled' : ''}`}>
+      <div className="container header-container">
         
-        {/* Logo Bölümü */}
-        <a href="/" className="logo">
-          <span>Prof. Dr.</span> Faruk Erzengin
-        </a>
+        {/* Logo - Ana Sayfaya yönlendirir */}
+        <Link to="/" className="logo" onClick={() => setNavOpen(false)}>
+          Prof. Dr. <span className="gold-text">Faruk Erzengin</span>
+        </Link>
 
-        {/* Masaüstü Menüsü (Mobilde CSS ile gizlenecek) */}
-        <ul className="nav-menu">
-          <li><a href="#home" className="nav-link">Ana Sayfa</a></li>
-          <li><a href="#about" className="nav-link">Hakkımda</a></li>
-          <li><a href="#treatments" className="nav-link">Tedaviler</a></li>
-          <li><a href="#publications" className="nav-link">Yayınlar</a></li>
-          <li><a href="#reviews" className="nav-link">Yorumlar</a></li>
-        </ul>
-
-        {/* Aksiyon Butonu (Mobilde CSS ile gizlenecek) */}
-        <a href="#contact" className="btn-appointment">
-          Randevu Al
-        </a>
-
-        {/* Hamburger İkonu (Sadece Mobilde Görünür) */}
-        <div className="hamburger-icon" onClick={toggleMenu}>
-          <FaBars />
+        {/* Mobil Menü İkonu */}
+        <div className="menu-icon" onClick={toggleNav}>
+          {navOpen ? <FaTimes /> : <FaBars />}
         </div>
 
+        {/* Navigasyon Linkleri */}
+        <nav className={navOpen ? "nav-menu active" : "nav-menu"}>
+          <ul className="nav-links">
+            <li>
+              <Link to="/" onClick={() => setNavOpen(false)}>Ana Sayfa</Link>
+            </li>
+            <li>
+              {/* Burası yeni sayfaya gidiyor */}
+              <Link to="/hakkimda" onClick={() => setNavOpen(false)}>Hakkımda</Link>
+            </li>
+            <li>
+              <Link to="/" onClick={() => setNavOpen(false)}>Tedaviler</Link>
+            </li>
+            <li>
+              <Link to="/" onClick={() => setNavOpen(false)}>Yorumlar</Link>
+            </li>
+            <li>
+              <Link to="/" onClick={() => setNavOpen(false)}>İletişim</Link>
+            </li>
+          </ul>
+        </nav>
+
       </div>
-    </nav>
+    </header>
   );
 };
 
-export default NavBar;
+export default Header;
