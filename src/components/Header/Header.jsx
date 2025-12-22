@@ -57,13 +57,14 @@ const Header = () => {
             <ul className="nav-links">
               <li><Link to="/" onClick={() => setNavOpen(false)}>Ana Sayfa</Link></li>
               <li><Link to="/hakkimda" onClick={() => setNavOpen(false)}>Hakkımda</Link></li>
-              <li><Link to="/" onClick={() => setNavOpen(false)}>Tedaviler</Link></li>
-              <li><Link to="/" onClick={() => setNavOpen(false)}>Yayınlar</Link></li>
-              <li><Link to="/" onClick={() => setNavOpen(false)}>Yorumlar</Link></li>
+              <li><Link to="/tedaviler" onClick={() => setNavOpen(false)}>Tedaviler</Link></li>
+              <li><Link to="/basin" onClick={() => setNavOpen(false)}>Basın</Link></li>
+              <li><Link to="/yorumlar" onClick={() => setNavOpen(false)}>Yorumlar</Link></li>
+              
             </ul>
 
             {/* RANDEVU AL BUTONU (Menünün içinde, sağda) */}
-            <Link to="/" className="appointment-btn" onClick={() => setNavOpen(false)}>
+            <Link to="/iletisim" className="appointment-btn" onClick={() => setNavOpen(false)}>
               Randevu Al
             </Link>
           </nav>

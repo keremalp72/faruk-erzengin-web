@@ -193,3 +193,149 @@
     text-align: center;
   }
 }
+/* --- GENEL HEADER AYARLARI --- */
+.header-wrapper {
+  position: fixed;
+  top: 0; left: 0; width: 100%;
+  z-index: 1000;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* TOP BAR */
+.top-bar {
+  background-color: #002244; /* Lacivert */
+  color: #fff;
+  padding: 10px 0;
+  font-size: 13px;
+}
+
+.top-bar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-contact { display: flex; gap: 20px; }
+.contact-item { display: flex; align-items: center; gap: 8px; }
+.top-icon { color: #C5A059; } /* Altın ikonlar */
+
+.top-socials a {
+  color: #fff;
+  margin-left: 15px;
+  transition: 0.3s;
+}
+.top-socials a:hover { color: #C5A059; }
+
+/* MAIN HEADER */
+.main-header {
+  padding: 15px 0;
+  background: #fff;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* LOGO */
+.logo {
+  font-family: 'Georgia', serif;
+  font-size: 24px;
+  color: #002244;
+  text-decoration: none;
+  font-weight: 700;
+}
+.gold-text { color: #C5A059; }
+
+/* NAV MENU */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+  margin: 0; padding: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  font-size: 15px;
+  transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+  color: #C5A059;
+}
+
+/* --- İLETİŞİM / RANDEVU BUTONU (CTA) --- */
+.appointment-btn {
+  background-color: #002244;
+  color: #fff !important;
+  padding: 10px 25px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  border: 2px solid #002244;
+}
+
+.appointment-btn:hover {
+  background-color: #C5A059;
+  border-color: #C5A059;
+  color: #fff !important;
+  transform: translateY(-2px);
+}
+
+/* MOBİL İKON */
+.menu-icon {
+  display: none;
+  font-size: 24px;
+  color: #002244;
+  cursor: pointer;
+}
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  .top-bar { display: none; } /* Mobilde üst barı gizle */
+  
+  .menu-icon { display: block; }
+
+  .nav-menu {
+    position: absolute;
+    top: 100%; left: 0; width: 100%;
+    background: #fff;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transform: translateY(-20px);
+    opacity: 0; visibility: hidden;
+    transition: 0.3s;
+  }
+
+  .nav-menu.active {
+    transform: translateY(0);
+    opacity: 1; visibility: visible;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .appointment-btn {
+    width: 100%;
+    text-align: center;
+    display: block;
+  }
+}
