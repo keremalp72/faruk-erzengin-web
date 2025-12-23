@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
 // Sabit Bileşenler
 import Header from './components/Header/Header';
@@ -15,18 +15,59 @@ import ContactPage from './pages/ContactPage';
 
 import './App.css';
 
+// --- YARDIMCI BİLEŞEN: Sayfa Başlığını ve Scroll'u Yönetir ---
+// Bu bileşeni App'in içinde Router'ın altına koyacağız.
+const PageMeta = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    // 1. SAYFA BAŞLIĞINI AYARLA
+    const siteSuffix = " | Prof. Dr. Faruk Erzengin";
+    
+    switch (location.pathname) {
+      case '/':
+        document.title = "Prof. Dr. Faruk Erzengin | Kardiyolog ve İç Hastalıkları Uzmanı";
+        break;
+      case '/hakkimda':
+        document.title = "Hakkımda" + siteSuffix;
+        break;
+      case '/tedaviler':
+        document.title = "Tedaviler ve Uzmanlıklar" + siteSuffix;
+        break;
+      case '/basin':
+        document.title = "Basın ve Medya" + siteSuffix;
+        break;
+      case '/yorumlar':
+        document.title = "Hasta Yorumları" + siteSuffix;
+        break;
+      case '/iletisim':
+        document.title = "İletişim" + siteSuffix;
+        break;
+      default:
+        document.title = "Prof. Dr. Faruk Erzengin";
+    }
+
+    // 2. SAYFA DEĞİŞİNCE EN YUKARI KAYDIR
+    window.scrollTo(0, 0);
+
+  }, [location]); // Her URL değiştiğinde çalışır
+
+  return null; // Bu bileşen ekrana bir şey çizmez, sadece iş yapar.
+};
+
+
 function App() {
   return (
     <Router>
+      {/* PageMeta Router'ın içinde olmalı ki useLocation çalışsın */}
+      <PageMeta /> 
+
       <div className="App">
-        <Header /> {/* Header her sayfada sabit */}
+        <Header /> 
         
         <main>
           <Routes>
-            {/* "/" adresine gelince Home sayfasını göster */}
             <Route path="/" element={<Home />} />
-            
-            {/* "/hakkimda" adresine gelince AboutPage sayfasını göster */}
             <Route path="/hakkimda" element={<AboutPage />} />
             <Route path="/tedaviler" element={<ServicesPage />} />
             <Route path="/basin" element={<PressPage />} />
@@ -35,7 +76,7 @@ function App() {
           </Routes>
         </main>
 
-        <Footer /> {/* Footer her sayfada sabit */}
+        <Footer /> 
       </div>
     </Router>
   );

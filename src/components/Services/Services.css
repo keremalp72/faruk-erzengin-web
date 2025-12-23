@@ -1,132 +1,144 @@
-/* --- SERVICES BÖLÜMÜ (KOYU TEMA DÜZELTİLMİŞ) --- */
+/* --- SAYFA YAPISI --- */
+.services-page {
+  padding-top: 130px;
+  padding-bottom: 80px;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
 
-.services-section {
-  padding: 100px 0;
-  background-color: #003366; /* Koyu Lacivert Zemin */
-  position: relative;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 30px 30px;
+  /* YENİ ARKA PLAN: Medikal Buz Mavisi */
+  /* Dümdüz beyaz değil, gözü yormayan çok hafif bir mavi */
+  background-color: #F2F7FD; 
 }
 
+/* Container */
 .services-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  
-  /* Kartların kenarlara yapışmasını engelleyen sihirli kodlar: */
-  width: 90%;          /* Ekranın %90'ını kullan (mobilde kenar boşluğu kalır) */
-  max-width: 1200px;   /* Çok büyük ekranlarda içeriği sonsuza kadar yayma */
-  margin: 0 auto;      /* Kutuyu ekranın tam ortasına yerleştir */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-/* --- BAŞLIK ALANI (ÇAKIŞMAYI ÖNLEMEK İÇİN ÖZEL SEÇİCİ) --- */
-
-/* .services-section sınıfının içindeki başlıkları hedefliyoruz */
-.services-section .section-header {
+/* --- HEADER BÖLÜMÜ --- */
+.services-header-section {
   text-align: center;
-  max-width: 800px;
-  margin: 0 auto 60px auto;
+  padding: 60px 20px 80px;
 }
 
-.services-section .sub-title {
-  color: #C5A059; /* Altın */
-  font-size: 16px;
+.services-header-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.services-subtitle {
+  color: #C5A059;
   font-weight: 700;
   letter-spacing: 2px;
+  font-size: 13px;
   text-transform: uppercase;
-  margin-bottom: 10px;
   display: block;
+  margin-bottom: 15px;
 }
 
-/* ÖNEMLİ: Services içindeki başlığı zorla BEYAZ yapıyoruz */
-.services-section .main-title {
+.services-hero-title {
   font-family: 'Georgia', serif;
   font-size: 48px;
-  color: #ffffff !important; /* !important ile diğer renkleri eziyoruz */
+  color: #002244;
+  line-height: 1.2;
   margin-bottom: 20px;
 }
 
-.services-section .section-desc {
-  font-size: 20px;
-  color: #d0d0d0; /* Açık gri */
+.services-hero-desc {
+  font-size: 18px;
+  color: #557799; /* Açıklamayı da hafif mavimsi gri yaptık */
   line-height: 1.6;
 }
 
 /* --- GRID YAPISI --- */
 .services-grid {
   display: grid;
-  /* Kartlar minimum 300px olsun, sığmazsa alt satıra geçsin */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-  gap: 30px; /* Kartlar arası boşluk */
-  width: 100%; /* Container'ın içini tam doldur */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
 }
 
 /* --- KART TASARIMI --- */
-.service-card {
-  background: #ffffff;
+.service-card-item {
+  background: #ffffff; /* Kartlar BEYAZ kalarak mavi zeminden ayrılır */
   padding: 40px 30px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+  border-radius: 16px;
+  /* Kenarlık rengini zeminle uyumlu hafif mavi yaptık */
+  border: 1px solid #E1EAF5; 
+  /* Gölgeyi laciverte çalan yumuşak bir ton yaptık */
+  box-shadow: 0 10px 30px rgba(0, 34, 68, 0.04);
   transition: all 0.4s ease;
-  border-bottom: 4px solid transparent;
-  cursor: default;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  position: relative;
+  overflow: hidden;
 }
 
-.service-card:hover {
+.service-card-item:hover {
   transform: translateY(-10px);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.4); 
-  border-bottom-color: #C5A059;
+  /* Hover olduğunda gölge derinleşir */
+  box-shadow: 0 20px 50px rgba(0, 34, 68, 0.12);
+  border-color: #fff;
 }
 
 /* İkon Kutusu */
-.icon-box {
-  font-size: 40px;
-  color: #003366;
-  background-color: #eef2f6;
-  width: 80px;
-  height: 80px;
+.s-icon-box {
+  width: 70px; height: 70px;
+  background-color: #F0F6FF; /* İkon arkası da çok uçuk mavi */
+  color: #002244; /* İkon Lacivert */
   border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px;
   margin-bottom: 25px;
-  transition: all 0.4s;
+  transition: 0.4s;
 }
 
-.service-card:hover .icon-box {
-  background-color: #C5A059;
-  color: #ffffff;
+.service-card-item:hover .s-icon-box {
+  background-color: #002244; /* Hoverda Lacivert */
+  color: #C5A059; /* Hoverda İkon Altın */
+  transform: rotateY(360deg);
 }
 
-/* Kart İçindeki Yazılar (Bunlar beyaz kartta olduğu için koyu renk kalmalı) */
-.service-card .card-title {
-  font-size: 24px;
-  color: #003366;
-  margin-bottom: 15px;
+/* Başlık */
+.s-card-title {
+  font-size: 20px;
+  color: #002244;
   font-weight: 700;
+  margin-bottom: 15px;
+  font-family: 'Georgia', serif;
 }
 
-.service-card .card-desc {
-  font-size: 17px;
+/* Açıklama */
+.s-card-desc {
+  font-size: 15px;
   color: #666;
-  line-height: 1.6;
+  line-height: 1.7;
+  flex-grow: 1;
 }
 
-/* --- RESPONSIVE --- */
-@media (max-width: 768px) {
-  .services-section .main-title {
+/* Dekoratif Alt Çizgi */
+.s-card-line {
+  width: 0%;
+  height: 4px;
+  background-color: #C5A059;
+  margin-top: 25px;
+  transition: width 0.4s ease;
+  border-radius: 2px;
+}
+
+.service-card-item:hover .s-card-line {
+  width: 100%;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .services-hero-title {
     font-size: 36px;
   }
-
-  .services-grid {
-    grid-template-columns: 1fr; 
-  }
   
-  .service-card {
-    align-items: center;
-    text-align: center;
+  .services-grid {
+    grid-template-columns: 1fr;
   }
 }

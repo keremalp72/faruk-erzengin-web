@@ -1,69 +1,93 @@
 /* --- HERO GENEL YAPISI --- */
-.hero-wrapper {
+.hero-section {
   position: relative;
   width: 100%;
   height: 100vh; /* Tam ekran */
   min-height: 800px; /* Asla çok küçülmesin */
   display: flex;
   align-items: center;
-  padding-top: 100px; /* Header payı */
-  overflow: hidden; /* Taşan efektleri gizle */
+  overflow: hidden; /* Taşan efektleri (Zoom gibi) gizle */
 }
 
-/* Karartma Katmanı (Daha sinematik) */
+/* --- ARKA PLAN (Zoom Animasyonlu) --- */
+.hero-bg-wrapper {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -1;
+}
+
+.hero-bg-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+  /* Sinematik Yavaş Yaklaşma Efekti */
+  animation: slowZoom 20s infinite alternate; 
+}
+
+@keyframes slowZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
+}
+
+/* Karartma Katmanı (Senin kodundaki gradient) */
 .hero-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   /* Soldan sağa koyu lacivertten şeffafa geçiş */
-  background: linear-gradient(90deg, rgba(0, 34, 68, 0.95) 0%, rgba(0, 34, 68, 0.7) 60%, rgba(0, 34, 68, 0.4) 100%);
+  background: linear-gradient(90deg, rgba(0, 34, 68, 0.95) 0%, rgba(0, 34, 68, 0.7) 60%, rgba(0, 34, 68, 0.2) 100%);
   z-index: 1;
 }
 
+/* --- İÇERİK KONUMLANDIRMA --- */
 .hero-container {
-  width: 85%; /* Kenarlardan biraz daha içeride */
+  width: 85%;
   max-width: 1400px;
   margin: 0 auto;
   position: relative;
-  z-index: 2;
+  z-index: 2; /* Overlay'in üstünde */
+  padding: 0 20px;
 }
 
 .hero-content {
-  max-width: 800px; /* Yazı alanı genişletildi */
+  max-width: 900px; /* Genişlik arttırıldı */
   color: #ffffff;
 }
 
 /* --- ROZET (BADGE) --- */
+.hero-badge-wrapper { margin-bottom: 30px; }
+
 .hero-badge {
   display: inline-block;
-  background: rgba(197, 160, 89, 0.15); /* Çok hafif altın zemin */
+  background: rgba(197, 160, 89, 0.15);
   color: #C5A059;
-  padding: 10px 20px;
+  padding: 10px 25px;
   border-radius: 50px;
-  font-size: 16px; /* Büyütüldü */
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 30px;
   border: 1px solid rgba(197, 160, 89, 0.5);
-  backdrop-filter: blur(5px); /* Arkası buzlu cam gibi */
+  backdrop-filter: blur(5px);
+  
+  /* EKLENDİ: Harfler ayrıldığında boşlukların korunması için önemli */
+  white-space: pre-wrap; 
 }
 
 /* --- BAŞLIK (DEVASA & GÜÇLÜ) --- */
 .hero-title {
   font-family: 'Georgia', serif;
-  font-size: 80px; /* Çok daha büyük */
+  font-size: 80px; /* Senin istediğin büyük font */
   line-height: 1.1;
   margin-bottom: 30px;
   font-weight: 800;
-  text-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Yazıya derinlik katan gölge */
+  text-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Derinlik */
 }
 
 .title-prefix {
   display: block;
-  font-size: 40px; /* Ön ek de büyüdü */
+  font-size: 40px;
   font-weight: 400;
   color: #d0d0d0;
   margin-bottom: 10px;
@@ -71,66 +95,72 @@
   letter-spacing: 1px;
 }
 
+/* --- AÇIKLAMA --- */
 .hero-description {
-  font-size: 24px; /* Açıklama büyüdü */
+  font-size: 24px;
   line-height: 1.6;
   color: #f0f0f0;
   margin-bottom: 50px;
-  max-width: 700px;
+  max-width: 750px;
   font-weight: 400;
-  text-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Okunabilirliği artıran gölge */
+  text-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
-/* --- BUTONLAR (PREMIUM) --- */
+/* --- BUTONLAR --- */
 .hero-buttons {
   display: flex;
   gap: 25px;
   margin-bottom: 60px;
 }
 
-/* 1. Buton: Altın Gradient & Parlak */
+/* 1. Buton: Altın Gradient */
 .btn-primary {
-  background: linear-gradient(135deg, #C5A059 0%, #a68545 100%); /* Dümdüz renk değil, geçişli */
-  color: #ffffff;
-  padding: 18px 45px; /* Daha büyük buton */
-  border-radius: 8px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: all 0.4s ease;
-  font-size: 18px;
-  box-shadow: 0 10px 25px rgba(197, 160, 89, 0.4); /* Altın rengi gölge */
-  border: 1px solid rgba(255,255,255,0.2);
-}
-
-.btn-primary:hover {
-  transform: translateY(-5px); /* Yukarı kalkma */
-  box-shadow: 0 15px 35px rgba(197, 160, 89, 0.6); /* Gölge artar */
-  background: linear-gradient(135deg, #d4b06a 0%, #b89550 100%); /* Renk açılır */
-}
-
-/* 2. Buton: Glassmorphism (Cam Efekti) */
-.btn-secondary {
-  background: rgba(255, 255, 255, 0.05); /* Çok şeffaf beyaz */
-  backdrop-filter: blur(10px); /* Buzlu cam */
+  background: linear-gradient(135deg, #C5A059 0%, #a68545 100%);
   color: #ffffff;
   padding: 18px 45px;
   border-radius: 8px;
   font-weight: 700;
   text-decoration: none;
-  border: 2px solid rgba(255, 255, 255, 0.3); /* Kalın çerçeve */
   transition: all 0.4s ease;
   font-size: 18px;
+  box-shadow: 0 10px 25px rgba(197, 160, 89, 0.4);
+  border: 1px solid rgba(255,255,255,0.2);
+  display: flex; align-items: center; gap: 10px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(197, 160, 89, 0.6);
+  background: linear-gradient(135deg, #d4b06a 0%, #b89550 100%);
+  color: #fff;
+}
+
+/* 2. Buton: Glassmorphism */
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  color: #ffffff;
+  padding: 18px 45px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.4s ease;
+  font-size: 18px;
+  display: flex; align-items: center; gap: 10px;
 }
 
 .btn-secondary:hover {
   background-color: #ffffff;
-  color: #002244; /* Hoverda yazı lacivert olsun */
+  color: #002244;
   border-color: #ffffff;
   box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
   transform: translateY(-5px);
 }
 
-/* --- VİDEO ALANI (MODERN & GLOW) --- */
+.btn-arrow { font-size: 16px; }
+
+/* --- VİDEO LİNKİ (GLOW & PULSE) --- */
 .video-link-wrapper {
   margin-top: 20px;
 }
@@ -142,55 +172,28 @@
   text-decoration: none;
   color: #ffffff;
   transition: 0.3s;
-  group: hover; /* Hover grubu için */
-}
-
-/* Yazı Ayarları */
-.video-link span {
-  font-size: 20px; /* Yazı büyüdü */
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  border-bottom: 2px solid transparent; /* Alt çizgi için hazırlık */
-  transition: 0.3s;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.8); /* Arka plandan ayırmak için gölge */
-}
-
-.video-link:hover span {
-  color: #C5A059;
-  border-bottom-color: #C5A059; /* Hoverda altı çizilsin */
 }
 
 /* Play İkonu Dairesi */
 .play-icon-circle {
-  width: 70px; /* Büyüdü */
-  height: 70px;
+  width: 70px; height: 70px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
   border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid #C5A059; /* Altın Çerçeve */
+  display: flex; justify-content: center; align-items: center;
+  border: 2px solid #C5A059;
   transition: 0.4s;
   position: relative;
-  box-shadow: 0 0 20px rgba(197, 160, 89, 0.3); /* Hafif altın parlaması */
-  font-size: 24px; /* İkon büyüdü */
+  box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
+  font-size: 24px;
   color: #fff;
-}
-
-/* Hover Efekti: İkon */
-.video-link:hover .play-icon-circle {
-  background-color: #C5A059;
-  color: #002244;
-  box-shadow: 0 0 40px rgba(197, 160, 89, 0.8); /* Parlama artar */
-  transform: scale(1.1); /* Hafif büyür */
 }
 
 /* Animasyonlu Dalga (Pulse) */
 .play-icon-circle::before {
   content: '';
   position: absolute;
-  top: -5px; left: -5px; right: -5px; bottom: -5px; /* Çerçeveden biraz büyük */
+  top: -5px; left: -5px; right: -5px; bottom: -5px;
   border-radius: 50%;
   border: 2px solid rgba(197, 160, 89, 0.6);
   opacity: 0;
@@ -202,27 +205,42 @@
   100% { transform: scale(1.5); opacity: 0; }
 }
 
-/* --- MOBİL UYUMLULUK (Çok büyük fontlar mobilde taşmasın) --- */
-@media (max-width: 768px) {
-  .hero-wrapper {
-    padding-top: 120px;
-    height: auto;
+/* Hover Efektleri */
+.video-link:hover .play-icon-circle {
+  background-color: #C5A059;
+  color: #002244;
+  box-shadow: 0 0 40px rgba(197, 160, 89, 0.8);
+  transform: scale(1.1);
+}
+
+.video-link span {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+  transition: 0.3s;
+}
+
+.video-link:hover span {
+  color: #C5A059;
+}
+
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+  .hero-section {
     min-height: 100vh;
+    padding-top: 80px;
+    height: auto; /* Mobilde içerik taşarsa uzasın */
     padding-bottom: 50px;
   }
 
-  .hero-title {
-    font-size: 48px; /* Mobilde biraz küçültelim ama yine de büyük */
-  }
+  .hero-bg-wrapper { height: 100vh; position: fixed; } /* Mobilde bg sabit kalsın */
+
+  .hero-title { font-size: 48px; }
+  .title-prefix { font-size: 28px; }
+  .hero-description { font-size: 18px; }
   
-  .title-prefix {
-    font-size: 28px;
-  }
-
-  .hero-description {
-    font-size: 18px;
-  }
-
   .hero-buttons {
     flex-direction: column;
     gap: 15px;
@@ -231,17 +249,7 @@
 
   .btn-primary, .btn-secondary {
     width: 100%;
-    text-align: center;
+    justify-content: center;
     padding: 15px 30px;
-    box-sizing: border-box;
-  }
-  
-  .play-icon-circle {
-    width: 60px;
-    height: 60px;
-  }
-  
-  .video-link span {
-    font-size: 16px;
   }
 }

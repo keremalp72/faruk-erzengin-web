@@ -1,31 +1,34 @@
 import React, { useState } from 'react';
-import { FaGraduationCap, FaAward, FaStethoscope } from 'react-icons/fa';
+import { FaAward, FaFlask, FaUniversity } from 'react-icons/fa';
+import ScrollReveal from '../Animations/ScrollReveal'; // Animasyon bileşenini ekledik
 import './About.css';
 
-// Yeni yüklediğin resmi buraya çağırıyoruz
-import doctorHomeImg from '../../assets/images/anasayfa-bg.jpeg'; 
+// Resim importu
+import doctorProfileImg from '../../assets/images/anasayfa-bg.jpeg'; 
 
 const About = () => {
-  const [activeTab, setActiveTab] = useState('egitim');
+  const [activeTab, setActiveTab] = useState('kariyer');
 
-  // Sekme İçerikleri
+  // --- GÜNCEL VERİ SETİ ---
   const tabContent = {
-    egitim: [
-      { year: '1974', title: 'İstanbul Üniversitesi Tıp Fakültesi', desc: 'Tıp Doktoru Ünvanı (Derece ile Mezuniyet)' },
-      { year: '1982', title: 'St. James’s University Hospital (İngiltere)', desc: 'Kardiyoloji Araştırma Üyesi (Senior Registrar)' },
-      { year: '1987', title: 'Doçentlik Ünvanı', desc: 'İstanbul Tıp Fakültesi Kardiyoloji Anabilim Dalı' },
-      { year: '1995', title: 'Profesörlük Ünvanı', desc: 'İstanbul Üniversitesi Tıp Fakültesi' },
-      { year: '1998 - 2004', title: 'Dekanlık Görevi', desc: 'İstanbul Tıp Fakültesi Dekanı (İki Dönem Üst Üste)' },
+    kariyer: [
+      { year: '1972', title: 'Dönem Birinciliği', desc: 'İstanbul Üniversitesi Tıp Fakültesi (Mezuniyet)' },
+      { year: '1978', title: 'İç Hastalıkları Uzmanlığı', desc: 'İstanbul Tıp Fakültesi (Üstün Başarı)' },
+      { year: '1982', title: 'Senior Registrar (İngiltere)', desc: 'St. James’s University Hospital, Leeds - Kardiyoloji Departmanı' },
+      { year: '1987', title: 'Doçentlik', desc: 'İstanbul Tıp Fakültesi Kardiyoloji Anabilim Dalı' },
+      { year: '1995', title: 'Profesörlük', desc: 'İstanbul Üniversitesi Tıp Fakültesi' },
+      { year: '1998 - 2004', title: 'Dekanlık Görevi', desc: 'İstanbul Tıp Fakültesi Dekanı (İki Dönem Üst Üste Seçilerek)' },
+    ],
+    buluslar: [
+      { title: 'Erzengin Solüsyonu', desc: 'Diyabetik ayak yaralarında ampütasyonu (kesilmeyi) %99 önleyen ve damar sertliğini gerileten özel formülasyon.' },
+      { title: 'Adventisya Teorisi', desc: 'Aterosklerozun (damar sertliği) sadece damar içinden değil, dış tabakadan (Adventisya) başladığını kanıtlayan literatür değiştiren teori.' },
+      { title: 'Polypill Tedavisi', desc: 'Kalp damar hastalıklarında çoklu ilaç kullanımını tek potada eriten tedavi yaklaşımı.' },
     ],
     oduller: [
-      { year: 'Özel', title: 'Erich Frank Üstün Hizmet Madalyası', desc: 'Münih Üniversitesi Rektörlüğü tarafından verilmiştir.' },
-      { year: 'Hizmet', title: 'Üstün Hizmet Ödülü', desc: 'İstanbul Üniversitesi Rektörlüğü' },
-      { year: 'Bilim', title: '50+ Plaket ve Madalya', desc: 'Akademik ve idari başarılarından dolayı çeşitli kurumlardan.' },
-    ],
-    ilgi: [
-      { title: 'Ekokardiyografi', desc: 'Türkiye\'de Transözofajiyal Ekokardiografi Laboratuvarı kurucusu.' },
-      { title: 'Ateroskleroz (Damar Sertliği)', desc: 'Damar sertliğini gerileten özel tedavi yöntemleri.' },
-      { title: 'Hipertansiyon', desc: 'Dirençli tansiyon ve kalp yetersizliği tedavileri.' },
+      { year: '2025', title: 'Nobel Tıp Ödülü Adaylığı', desc: '32 kişilik uluslararası bilim kurulu ile yürütülen çalışmalar sonucu.' },
+      { year: 'Onur', title: 'Erich Frank Üstün Hizmet Madalyası', desc: 'Münih Üniversitesi Rektörlüğü tarafından.' },
+      { year: 'Hizmet', title: 'Üstün Hizmet Ödülü', desc: 'İstanbul Üniversitesi Rektörlüğü.' },
+      { year: 'Ünvan', title: 'FESC Ünvanı', desc: 'Fellow of the European Society of Cardiology.' },
     ]
   };
 
@@ -33,101 +36,124 @@ const About = () => {
     <section className="about-section" id="about">
       <div className="container about-container">
         
-        {/* SOL TARAF: FOTO VE TECRÜBE */}
+        {/* --- SOL TARAF: RESİM ALANI (STICKY) --- */}
         <div className="about-left">
-          <div className="about-image-box">
-             {/* Yeni resim değişkenini buraya koyduk */}
-             <img 
-               src={doctorHomeImg} 
-               alt="Prof. Dr. Faruk Erzengin" 
-               className="about-img"
-             />
-             <div className="exp-badge">
-               <span className="exp-number">40+</span>
-               <span className="exp-text">Yıllık<br/>Tecrübe</span>
-             </div>
-          </div>
+          {/* Animasyonu içeriğe uyguluyoruz, sticky bozulmasın diye */}
+          <ScrollReveal>
+            <div className="about-img-wrapper">
+              <img 
+                src={doctorProfileImg} 
+                alt="Prof. Dr. Faruk Erzengin" 
+                className="about-img"
+              />
+              
+              {/* Tecrübe Rozeti */}
+              <div className="experience-badge">
+                <span className="badge-year">45+</span>
+                <span className="badge-text">Yıllık<br/>Tecrübe</span>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
 
-        {/* SAĞ TARAF: BİYOGRAFİ VE SEKMELER */}
+        {/* --- SAĞ TARAF: İÇERİK --- */}
         <div className="about-right">
-          <h4 className="section-subtitle">HAKKIMDA</h4>
-          <h2 className="section-title">Prof. Dr. Faruk Erzengin</h2>
           
-          <p className="about-text">
-            Meslek hayatım boyunca binlerce hastanın kalbine dokunma şansı buldum. 
-            Tıp sadece bir bilim değil, aynı zamanda insanı anlama sanatıdır. 
-            İstanbul Tıp Fakültesi'nde (Çapa) geçen uzun yıllarımda hem öğrenci yetiştirdim 
-            hem de en zorlu vakalarda şifa dağıtmaya çalıştım.
-          </p>
+          {/* Başlık ve Metin Grubu (Hafif gecikmeli) */}
+          <ScrollReveal delay={0.2}>
+            <div className="about-header">
+              <span className="section-subtitle">KARDİYOLOJİ & İÇ HASTALIKLARI</span>
+              <h2 className="section-title">Bilimle Atan Bir Ömür: <br/>Prof. Dr. Faruk Erzengin</h2>
+              <p className="about-intro">
+                İstanbul Tıp Fakültesi'nden dönem birinciliği ile başlayan, İngiltere ve ABD'de dünyaca ünlü 
+                <strong> Prof. Dr. Michael DeBakey</strong> ile devam eden, binlerce hayatın kurtarıldığı yarım asırlık bir tıp yolculuğu.
+              </p>
+              <p className="about-text">
+                Sadece bir hekim değil, aynı zamanda <strong>"Erzengin Solüsyonu"</strong> ve <strong>"Adventisya Teorisi"</strong> gibi 
+                buluşlarıyla tıp literatürüne yön veren bir bilim insanı. İki dönem üst üste İstanbul Tıp Fakültesi Dekanlığı 
+                yaparak idari tecrübesini akademiyle birleştirdi. Bugün, diyabetik ayak yaralarından kalp yetmezliğine kadar 
+                en zorlu vakalarda "kesilme kararı verilen" uzuvları kurtarmaya ve kalpleri iyileştirmeye devam ediyor.
+              </p>
+            </div>
+          </ScrollReveal>
 
-          {/* SEKMELER (TABS) */}
-          <div className="tabs-header">
-            <button 
-              className={`tab-btn ${activeTab === 'egitim' ? 'active' : ''}`} 
-              onClick={() => setActiveTab('egitim')}
-            >
-              <FaGraduationCap /> Eğitim
-            </button>
-            <button 
-              className={`tab-btn ${activeTab === 'oduller' ? 'active' : ''}`} 
-              onClick={() => setActiveTab('oduller')}
-            >
-              <FaAward /> Ödüller
-            </button>
-            <button 
-              className={`tab-btn ${activeTab === 'ilgi' ? 'active' : ''}`} 
-              onClick={() => setActiveTab('ilgi')}
-            >
-              <FaStethoscope /> Uzmanlık
-            </button>
-          </div>
-
-          {/* SEKME İÇERİĞİ */}
-          <div className="tab-content">
-            
-            {activeTab === 'egitim' && (
-              <ul className="timeline-list">
-                {tabContent.egitim.map((item, index) => (
-                  <li key={index}>
-                    <span className="timeline-year">{item.year}</span>
-                    <div className="timeline-info">
-                      <h4>{item.title}</h4>
-                      <p>{item.desc}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            )}
-
-            {activeTab === 'oduller' && (
-              <ul className="timeline-list">
-                {tabContent.oduller.map((item, index) => (
-                  <li key={index}>
-                    <span className="timeline-year gold-bg"><FaAward/></span>
-                    <div className="timeline-info">
-                      <h4>{item.title}</h4>
-                      <p className="year-badge">{item.year}</p>
-                      <p>{item.desc}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            )}
-
-            {activeTab === 'ilgi' && (
-              <div className="interest-grid">
-                {tabContent.ilgi.map((item, index) => (
-                  <div key={index} className="interest-item">
-                    <FaStethoscope className="interest-icon"/>
-                    <h4>{item.title}</h4>
-                    <p>{item.desc}</p>
-                  </div>
-                ))}
+          {/* Sekmeler Grubu (Daha fazla gecikmeli) */}
+          <ScrollReveal delay={0.4}>
+            <div className="tabs-container">
+              {/* Navigasyon */}
+              <div className="tabs-nav">
+                <button 
+                  className={`tab-btn ${activeTab === 'kariyer' ? 'active' : ''}`} 
+                  onClick={() => setActiveTab('kariyer')}
+                >
+                  <FaUniversity /> Eğitim & Kariyer
+                </button>
+                <button 
+                  className={`tab-btn ${activeTab === 'buluslar' ? 'active' : ''}`} 
+                  onClick={() => setActiveTab('buluslar')}
+                >
+                  <FaFlask /> Buluşlar & Bilim
+                </button>
+                <button 
+                  className={`tab-btn ${activeTab === 'oduller' ? 'active' : ''}`} 
+                  onClick={() => setActiveTab('oduller')}
+                >
+                  <FaAward /> Ödüller
+                </button>
               </div>
-            )}
 
-          </div>
+              {/* İçerikler */}
+              <div className="tab-body">
+                
+                {/* KARİYER */}
+                {activeTab === 'kariyer' && (
+                  <div className="timeline-wrapper fade-in">
+                    {tabContent.kariyer.map((item, index) => (
+                      <div key={index} className="timeline-item">
+                        <div className="timeline-marker"></div>
+                        <div className="timeline-content">
+                          <span className="t-year">{item.year}</span>
+                          <h4>{item.title}</h4>
+                          <p>{item.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* BULUŞLAR */}
+                {activeTab === 'buluslar' && (
+                  <div className="inventions-grid fade-in">
+                    {tabContent.buluslar.map((item, index) => (
+                      <div key={index} className="invention-card">
+                        <div className="inv-icon"><FaFlask /></div>
+                        <div className="inv-info">
+                          <h4>{item.title}</h4>
+                          <p>{item.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* ÖDÜLLER */}
+                {activeTab === 'oduller' && (
+                  <div className="awards-list fade-in">
+                    {tabContent.oduller.map((item, index) => (
+                      <div key={index} className="award-item">
+                        <div className="award-year-box">{item.year}</div>
+                        <div className="award-details">
+                          <h4>{item.title}</h4>
+                          <p>{item.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+              </div>
+            </div>
+          </ScrollReveal>
 
         </div>
       </div>
