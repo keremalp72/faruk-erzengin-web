@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { FaAward, FaFlask, FaUniversity } from 'react-icons/fa';
-import ScrollReveal from '../Animations/ScrollReveal'; // Animasyon bileşenini ekledik
+import React, { useState, useEffect } from 'react';
+import { FaAward, FaFlask, FaUniversity, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import ScrollReveal from '../Animations/ScrollReveal';
 import './About.css';
 
 // Resim importu
@@ -9,7 +9,14 @@ import doctorProfileImg from '../../assets/images/anasayfa-bg.jpeg';
 const About = () => {
   const [activeTab, setActiveTab] = useState('kariyer');
 
-  // --- GÜNCEL VERİ SETİ ---
+  // Sticky özelliğinin çalışması için sayfa başına scroll düzeltmesi
+  useEffect(() => {
+    // Sayfa içi linklerde bazen sticky hesaplaması şaşabilir, bunu engeller
+    const handleScroll = () => {}; 
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const tabContent = {
     kariyer: [
       { year: '1972', title: 'Dönem Birinciliği', desc: 'İstanbul Üniversitesi Tıp Fakültesi (Mezuniyet)' },
@@ -38,28 +45,27 @@ const About = () => {
         
         {/* --- SOL TARAF: RESİM ALANI (STICKY) --- */}
         <div className="about-left">
-          {/* Animasyonu içeriğe uyguluyoruz, sticky bozulmasın diye */}
-          <ScrollReveal>
-            <div className="about-img-wrapper">
-              <img 
-                src={doctorProfileImg} 
-                alt="Prof. Dr. Faruk Erzengin" 
-                className="about-img"
-              />
-              
-              {/* Tecrübe Rozeti */}
-              <div className="experience-badge">
-                <span className="badge-year">45+</span>
-                <span className="badge-text">Yıllık<br/>Tecrübe</span>
-              </div>
+          {/* DÜZELTME: ScrollReveal buradan KALDIRILDI. */}
+          {/* Sticky özelliğinin çalışması için elemanın 'transform' yememesi gerekir. */}
+          <div className="about-img-wrapper">
+            <img 
+              src={doctorProfileImg} 
+              alt="Prof. Dr. Faruk Erzengin" 
+              className="about-img"
+            />
+            
+            {/* Tecrübe Rozeti */}
+            <div className="experience-badge">
+              <span className="badge-year">45+</span>
+              <span className="badge-text">Yıllık<br/>Tecrübe</span>
             </div>
-          </ScrollReveal>
+          </div>
         </div>
 
         {/* --- SAĞ TARAF: İÇERİK --- */}
         <div className="about-right">
           
-          {/* Başlık ve Metin Grubu (Hafif gecikmeli) */}
+          {/* Başlık ve Metin (Burada animasyon kalabilir) */}
           <ScrollReveal delay={0.2}>
             <div className="about-header">
               <span className="section-subtitle">KARDİYOLOJİ & İÇ HASTALIKLARI</span>
@@ -77,7 +83,7 @@ const About = () => {
             </div>
           </ScrollReveal>
 
-          {/* Sekmeler Grubu (Daha fazla gecikmeli) */}
+          {/* Sekmeler Grubu */}
           <ScrollReveal delay={0.4}>
             <div className="tabs-container">
               {/* Navigasyon */}

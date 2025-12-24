@@ -1,5 +1,6 @@
 import React from 'react';
-import { FaMapMarkerAlt, FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa'; // Kullanılmayan ikonları sildik
+import { Link } from 'react-router-dom'; // 1. Link bileşenini import ettik
+import { FaMapMarkerAlt, FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import './Footer.css';
 
 const Footer = () => {
@@ -23,18 +24,21 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* 2. SÜTUN: Linkler */}
+        {/* 2. SÜTUN: Linkler (GÜNCELLENDİ) */}
         <div className="footer-col">
           <h3 className="footer-title">Hızlı Erişim</h3>
           <ul className="footer-links">
-            <li><a href="#home">Ana Sayfa</a></li>
-            <li><a href="#about">Hakkımda</a></li>
-            <li><a href="#treatments">Tedaviler</a></li>
-            <li><a href="#reviews">Yorumlar</a></li>
+            {/* a etiketleri Link'e, href'ler to'ya dönüştürüldü */}
+            <li><Link to="/">Ana Sayfa</Link></li>
+            <li><Link to="/hakkimda">Hakkımda</Link></li>
+            <li><Link to="/tedaviler">Tedaviler</Link></li>
+            <li><Link to="/basin">Basın</Link></li>
+            <li><Link to="/yorumlar">Yorumlar</Link></li>
+            <li><Link to="/iletisim">İletişim</Link></li>
           </ul>
         </div>
 
-        {/* 3. SÜTUN: Sadece Adres (Artık çok ferah) */}
+        {/* 3. SÜTUN: Adres */}
         <div className="footer-col">
           <h3 className="footer-title">Adres</h3>
           <div className="single-contact-box">
@@ -44,16 +48,21 @@ const Footer = () => {
                No:11 Şişli / İstanbul
              </p>
           </div>
-          {/* Haritada Göster butonu ekleyerek boşluğu şık değerlendirelim */}
-          <a href="https://maps.google.com" target="_blank" rel="noreferrer" className="map-link">
-            Haritada Göster &rarr;
+          
+          <a 
+            href="https://goo.gl/maps/dummylink" /* Buraya gerçek harita linkini koyabilirsin */
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="map-link"
+          >
+            Haritada Göster →
           </a>
         </div>
 
       </div>
 
       <div className="footer-bottom">
-        <p>&copy; 2025 Prof. Dr. Faruk Erzengin. Tüm Hakları Saklıdır.</p>
+        <p>© 2025 Prof. Dr. Faruk Erzengin. Tüm Hakları Saklıdır.</p>
       </div>
     </footer>
   );

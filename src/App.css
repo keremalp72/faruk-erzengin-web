@@ -20,3 +20,7 @@ html, body {
     width: 100%;
     position: relative;
   }
+  /* Sticky özelliğinin çalışması için üst kapsayıcılarda taşma gizlenmemeli */
+body, html, #root, .App, main {
+  overflow: visible !important;
+}

@@ -101,21 +101,59 @@ const AboutPage = () => {
           </div>
         </div>
 
-        {/* 2. DETAYLI METİN BLOKLARI - AYNI */}
+        {/* 2. GÜNCELLENMİŞ DETAYLI METİN BLOKLARI */}
         <div className="detailed-bio-wrapper">
+           
+           {/* BLOK 1: AKADEMİK LİDERLİK */}
            <div className="content-block">
-             <div className="block-header"><FaMicroscope className="block-icon" /><h3 className="block-title">Tıp Literatüründe Çığır Açan Araştırmalar</h3></div>
-             <p>1997 yılında başlatılan ve <strong>22.000’den fazla hasta</strong> üzerinde yürütülen bilimsel çalışmalarıyla...</p>
+             <div className="block-header">
+               <FaAward className="block-icon" />
+               <h3 className="block-title">"Efsane Dekan" ve Akademik Liderlik</h3>
+             </div>
+             <p>
+               İstanbul Üniversitesi İstanbul Tıp Fakültesi (Çapa) tarihinde <strong>rekor oyla seçilen</strong> ve yönetim vizyonuyla "Efsane Dekan" unvanını kazanan Prof. Dr. Faruk Erzengin, görev süresi boyunca fakülteyi fiziksel ve bilimsel olarak çağ atlatmıştır.
+             </p>
+             <p className="sub-text">
+               Eğitimde fırsat eşitliğine verdiği önemle binlerce tıp öğrencisine burs imkanı sağlamış, <strong>"Hocaların Hocası"</strong> olarak yetiştirdiği binlerce uzman hekimle Türk tıbbının geleceğini şekillendirmiştir.
+             </p>
+           </div>
+
+           {/* BLOK 2: TIBBİ DEVRİMLER (KARDİYOLOJİ & İÇ HASTALIKLARI) */}
+           <div className="content-block highlight-border">
+             <div className="block-header">
+               <FaMicroscope className="block-icon" />
+               <h3 className="block-title">Tıpta Çığır Açan "Erzengin Metodları"</h3>
+             </div>
+             <p>
+               Prof. Dr. Erzengin, invaziv (girişimsel) yöntemlere alternatif olarak geliştirdiği medikal tedavilerle tanınır.
+             </p>
              <ul className="custom-list">
-               <li>Koroner bypass cerrahisine gerek kalmadan <strong>%99 başarı oranı</strong>.</li>
-               <li>Damar sertliğinin ilaçla tamamen ortadan kaldırılabileceği kanıtlanmıştır.</li>
-               <li><strong>Diabetik ayak</strong> tedavisinde ampütasyon önlenmiştir.</li>
+               <li>
+                 <strong>Damar Sertliğinde Geri Dönüş:</strong> Damar tıkanıklığına yol açan plakları (aterom) özel tedavi protokolleriyle gerileterek, by-pass veya stent önerilen hastaları ameliyatsız iyileştirmiştir.
+               </li>
+               <li>
+                 <strong>Diyabetik Ayak Kurtarıcısı:</strong> Kesilmesi (ampütasyon) planlanan diyabetik ayak yaralarını, kendi formülasyonu olan özel solüsyonlar ve tedavi yöntemleriyle iyileştirerek uzuv kaybını önlemiştir.
+               </li>
+               <li>
+                 <strong>Hipertansiyon Yönetimi:</strong> Dirençli tansiyon vakalarında kişiye özel "kombine tedavi" yaklaşımlarıyla kalıcı regülasyon sağlamaktadır.
+               </li>
              </ul>
            </div>
+
+           {/* BLOK 3: İNSANİ VE KÜLTÜREL YÖN */}
            <div className="content-block cultural-block">
-            <div className="block-header"><FaBookReader className="block-icon" /><h3 className="block-title">İnsani ve Kültürel Derinlik</h3></div>
-            <p>Faruk Erzengin’in öyküsü yalnızca bir bilim kariyeri değildir...</p>
+            <div className="block-header">
+              <FaBookReader className="block-icon" />
+              <h3 className="block-title">Bütüncül Yaklaşım ve İnsan Sevgisi</h3>
+            </div>
+            <p>
+              Ona göre hekimlik sadece reçete yazmak değil, <strong>"Biyopsikososyal"</strong> bir sanattır. Hastayı sadece bir vaka olarak değil; ruhu, çevresi ve hikayesiyle bir "insan" olarak ele alır.
+            </p>
+            <p className="sub-text">
+              Türk kültürüne, edebiyata ve sanata olan derin hakimiyeti, hasta iletişimindeki o güven verici ve babacan tavrın temelini oluşturur. Hastaları için o sadece bir doktor değil, her zaman ulaşabildikleri bir <strong>"Faruk Baba"</strong>dır.
+            </p>
           </div>
+
         </div>
 
         {/* 3. MOTTO */}
