@@ -1,1 +1,22 @@
 @import url(Reset.css);
+/* --- GENEL SIFIRLAMA VE YATAY KAYMAYI ENGELLEME --- */
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden; /* En kritik kod: Yatay taşmaları kesip atar */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Tüm elementler için taşma kontrolü */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  /* Kök element (App) için de önlem */
+  #root {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }

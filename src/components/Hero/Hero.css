@@ -176,7 +176,8 @@
 
 /* Play İkonu Dairesi */
 .play-icon-circle {
-  width: 70px; height: 70px;
+  min-width: 70px; min-height: 70px;
+  flex-shrink: 0;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
   border-radius: 50%;
@@ -233,6 +234,13 @@
     padding-top: 80px;
     height: auto; /* Mobilde içerik taşarsa uzasın */
     padding-bottom: 50px;
+  }
+  .play-icon-circle {
+    width: 60px;
+    height: 60px;
+    /* Mobilde de minimum boyutları güncelliyoruz */
+    min-width: 60px; 
+    min-height: 60px;
   }
 
   .hero-bg-wrapper { height: 100vh; position: fixed; } /* Mobilde bg sabit kalsın */

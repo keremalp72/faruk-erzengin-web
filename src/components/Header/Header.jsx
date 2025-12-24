@@ -1,32 +1,33 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom'; // Eklendi
 import TopBar from './TopBar';
 import NavBar from './NavBar';
 import './Header.css';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation(); // Eklendi
 
-  // Scroll olayını dinle
+  // Ana sayfada mıyız kontrolü
+  const isHomePage = location.pathname === '/';
+
   useEffect(() => {
     const handleScroll = () => {
-      // 50px aşağı inince 'scrolled' true olsun
       if (window.scrollY > 50) {
         setScrolled(true);
       } else {
         setScrolled(false);
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <div className="header-wrapper">
-      {/* TopBar sadece en tepedeyken görünsün, aşağı inince navbar onu kapatsın diye dışarıda */}
+    // Ana sayfa değilse 'other-page-mode' sınıfını ekle
+    <div className={`header-wrapper ${!isHomePage ? 'other-page-mode' : ''}`}>
       <TopBar />
-      
-      {/* Scrolled bilgisini NavBar'a gönderiyoruz */}
+      {/* NavBar'a sadece scroll bilgisini gönderiyoruz */}
       <NavBar scrolled={scrolled} />
     </div>
   );

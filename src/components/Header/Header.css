@@ -303,15 +303,25 @@
   .top-bar { display: none; } /* Top bar gizlenir */
   
   .main-header { 
+    position: fixed; /* Relative yerine FIXED yapıyoruz, hep sabit kalsın */
     top: 0; 
-    background: #002244; 
-    height: 90px;
-    position: relative;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: #002244; /* Mobilde hep lacivert */
+    z-index: 1100; /* Hep en üstte */
+    
+    /* Animasyonu İPTAL ET */
+    transition: none; 
+    animation: none !important;
+    border-bottom: none;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Hafif gölge hep olsun */
   }
   
   .main-header.sticky {
     position: fixed;
     background: #002244;
+    animation: none !important; /* Zıplamayı önleyen kritik kod */
   }
 
   /* Logolar ve İkonlar Beyaz */
@@ -375,4 +385,55 @@
     display: block;
     padding: 15px 0;
   }
+}
+/* --- DİĞER SAYFALAR İÇİN ÖZEL MOD (Other Page Mode) --- */
+
+/* 1. Kapsayıcıyı 'Relative' yap (Normal sıralı olsun, üst üste binmesin) */
+.header-wrapper.other-page-mode {
+  position: relative; 
+  background-color: #fff; /* Arka planı doldur */
+}
+
+/* 2. TopBar görünüyor, sorun yok. */
+
+/* 3. NavBar'ı bu modda BEYAZ ve GÖRÜNÜR yap */
+.header-wrapper.other-page-mode .main-header {
+  position: relative; /* Absolute değil, TopBar'ın altına yerleşsin */
+  top: 0;
+  background-color: #fff; /* Zemin Beyaz */
+  border-bottom: 1px solid #eee; /* Altına ince çizgi */
+}
+
+/* 4. Linklerin ve Logonun Rengini LACİVERT yap (Çünkü zemin beyaz) */
+.header-wrapper.other-page-mode .nav-link,
+.header-wrapper.other-page-mode .logo {
+  color: #002244;
+}
+
+/* 5. Butonu da bu moda uygun hale getir */
+.header-wrapper.other-page-mode .appointment-btn {
+  background-color: #002244;
+  color: #fff !important;
+  border-color: #002244;
+}
+
+/* --- ÖNEMLİ İSTİSNA: STICKY DURUMU --- */
+/* Scroll yapılıp 'sticky' sınıfı gelince, yukarıdaki kuralları ezmeli ve fixlenmeli */
+.header-wrapper.other-page-mode .main-header.sticky {
+  position: fixed; /* Tekrar sabitle */
+  top: 0;
+  animation: slideDown 0.35s ease-out;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+/* --- HAMBURGER MENÜ RENGİ DÜZELTMESİ --- */
+
+/* Diğer sayfalarda (Other Page Mode) menü ikonu Lacivert olsun */
+.header-wrapper.other-page-mode .menu-icon {
+  color: #002244;
+}
+
+/* Ama Sticky (yapışkan) olduğunda da Lacivert kalmaya devam etsin */
+/* (Zaten sticky olunca genelde lacivert yapıyorduk ama garantiye alalım) */
+.main-header.sticky .menu-icon {
+  color: #002244;
 }
