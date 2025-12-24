@@ -47,7 +47,7 @@
   margin: 0 auto;
   position: relative;
   z-index: 2; /* Overlay'in üstünde */
-  padding: 0 20px;
+  padding: 20px 20px;
 }
 
 .hero-content {

@@ -50,7 +50,7 @@
 /* --- 3. MAIN HEADER (NAVBAR) --- */
 .main-header {
   width: 100%;
-  height: 90px;
+  height: 60px;
   background: transparent; /* Başlangıçta ŞEFFAF */
   transition: all 0.4s ease-in-out; /* Yumuşak geçiş */
   border-bottom: 1px solid rgba(255, 255, 255, 0.15); /* Hafif beyaz çizgi */
@@ -305,7 +305,7 @@
   .main-header { 
     top: 0; 
     background: #002244; 
-    height: 70px;
+    height: 90px;
     position: relative;
   }
   
