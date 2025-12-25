@@ -48,6 +48,7 @@
   position: relative;
   z-index: 2; /* Overlay'in üstünde */
   padding: 20px 20px;
+  padding-top: 180px;
 }
 
 .hero-content {
@@ -60,16 +61,12 @@
 
 .hero-badge {
   display: inline-block;
-  background: rgba(197, 160, 89, 0.15);
   color: #C5A059;
-  padding: 10px 25px;
   border-radius: 50px;
   font-size: 15px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  border: 1px solid rgba(197, 160, 89, 0.5);
-  backdrop-filter: blur(5px);
   
   /* EKLENDİ: Harfler ayrıldığında boşlukların korunması için önemli */
   white-space: pre-wrap; 
@@ -229,6 +226,9 @@
 
 /* --- RESPONSIVE --- */
 @media (max-width: 900px) {
+  .hero-container {
+    padding-top: 80px; /* Mobilde header daha kısa olduğu için daha az boşluk */
+  }
   .hero-section {
     min-height: 100vh;
     padding-top: 80px;
