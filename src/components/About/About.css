@@ -134,7 +134,7 @@
 .timeline-wrapper {
   position: relative;
   border-left: 3px solid #f0f0f0;
-  padding-left: 30px;
+  padding-left: 28px;
 }
 .timeline-item { position: relative; margin-bottom: 30px; }
 .timeline-marker {
@@ -205,7 +205,7 @@
   .experience-badge { right: -10px; bottom: 10px; }
 
   /* Mobilde sağ tarafın paddingini azaltalım ki çok daralmasın */
-  .about-right { padding: 0 10px; }
+  .about-right { padding: 0 25px; }
   
   .section-title { font-size: 32px; }
   .tabs-nav { overflow-x: auto; padding-bottom: 10px; }
