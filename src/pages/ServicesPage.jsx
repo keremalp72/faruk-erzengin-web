@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { treatmentsData } from '../data/treatmentsData';
 import { blogData } from '../data/blogData'; 
 import { FaArrowRight, FaTimes, FaStethoscope, FaSyringe, FaNotesMedical, FaUserMd, FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
-import './ServicesPage.css'; // Yeni tp- sınıflarını içeren CSS
+import './ServicesPage.css';
 
-// Hocanın resmini import ediyoruz
+// 1. Animasyon Bileşenini Import Ediyoruz
+import ScrollReveal from '../components/Animations/ScrollReveal';
+
 import doctorProfileImg from '../assets/images/hakkimda1.png'; 
 
 const ServicesPage = () => {
@@ -26,111 +28,125 @@ const ServicesPage = () => {
   return (
     <div className="tp-page-wrapper">
       
-      {/* HEADER */}
+      {/* HEADER - Fade In */}
       <div className="tp-page-header">
-        <div className="container"> {/* Container global ise kalabilir, yoksa silebilirsin */}
-          <h1 className="tp-page-title">Tedaviler & Hastalıklar</h1>
-          <p className="tp-breadcrumb">Ana Sayfa / Tedaviler</p>
-        </div>
+        <ScrollReveal animation="fade-up">
+          <div className="container">
+            <h1 className="tp-page-title">Tedaviler & Hastalıklar</h1>
+            <p className="tp-breadcrumb">Ana Sayfa / Tedaviler</p>
+          </div>
+        </ScrollReveal>
       </div>
 
-      {/* ANA LAYOUT (Container ve Layout birleşimi) */}
       <div className="tp-layout">
         
         {/* --- SOL TARAFA: ANA İÇERİK (KARTLAR) --- */}
         <div className="tp-main-content">
           
-          <div className="tp-intro-section">
-            <h2>Uzmanlık Alanları ve Tedaviler</h2>
-            <p>
-              Aşağıdaki başlıklardan şikayetiniz veya hastalığınız ile ilgili detaylı bilgi alabilir, 
-              Prof. Dr. Faruk Erzengin'in tedavi yaklaşımını inceleyebilirsiniz.
-            </p>
-          </div>
+          {/* Giriş Yazısı */}
+          <ScrollReveal animation="fade-up" delay={0.2}>
+            <div className="tp-intro-section">
+              <h2>Uzmanlık Alanları ve Tedaviler</h2>
+              <p>
+                Aşağıdaki başlıklardan şikayetiniz veya hastalığınız ile ilgili detaylı bilgi alabilir, 
+                Prof. Dr. Faruk Erzengin'in tedavi yaklaşımını inceleyebilirsiniz.
+              </p>
+            </div>
+          </ScrollReveal>
 
+          {/* KARTLAR GRID - Sırayla Gelme Efekti */}
           <div className="tp-treatments-grid">
-            {treatmentsData.map((item) => (
-              <div key={item.id} className="tp-card" onClick={() => setSelectedTreatment(item)}>
-                <div className="tp-card-img-box">
-                  <img src={item.image} alt={item.title} />
-                  <div className="tp-card-overlay">
-                    <span>İncele</span>
+            {treatmentsData.map((item, index) => (
+              // index * 0.1 sayesinde her kart bir öncekinden 0.1sn sonra gelir
+              <ScrollReveal key={item.id} animation="fade-up" delay={index * 0.1}>
+                <div className="tp-card" onClick={() => setSelectedTreatment(item)}>
+                  <div className="tp-card-img-box">
+                    <img src={item.image} alt={item.title} />
+                    <div className="tp-card-overlay">
+                      <span>İncele</span>
+                    </div>
+                  </div>
+                  <div className="tp-card-body">
+                    <h3>{item.title}</h3>
+                    <p>{item.shortDesc}</p>
+                    <button className="tp-btn-link">
+                      Detaylı Bilgi <FaArrowRight />
+                    </button>
                   </div>
                 </div>
-                <div className="tp-card-body">
-                  <h3>{item.title}</h3>
-                  <p>{item.shortDesc}</p>
-                  <button className="tp-btn-link">
-                    Detaylı Bilgi <FaArrowRight />
-                  </button>
-                </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
 
-        {/* --- SAĞ TARAF: SIDEBAR (YAN MENÜ) --- */}
+        {/* --- SAĞ TARAF: SIDEBAR (Sağdan Kayarak Gelsin) --- */}
         <aside className="tp-sidebar">
           
           {/* 1. KUTU: PROFİL */}
-          <div className="tp-widget tp-profile-box">
-            <div className="tp-profile-img">
-              <img src={doctorProfileImg} alt="Prof. Dr. Faruk Erzengin" />
+          <ScrollReveal animation="slide-in-right" delay={0.2}>
+            <div className="tp-widget tp-profile-box">
+              <div className="tp-profile-img">
+                <img src={doctorProfileImg} alt="Prof. Dr. Faruk Erzengin" />
+              </div>
+              <h3>Prof. Dr. Faruk Erzengin</h3>
+              <span className="tp-profile-role">Kardiyoloji & İç Hastalıkları Uzmanı</span>
+              
+              <div className="tp-social-row">
+                <a href="#" className="tp-social-btn"><FaFacebookF /></a>
+                <a href="#" className="tp-social-btn"><FaTwitter /></a>
+                <a href="#" className="tp-social-btn"><FaInstagram /></a>
+                <a href="#" className="tp-social-btn"><FaLinkedinIn /></a>
+              </div>
             </div>
-            <h3>Prof. Dr. Faruk Erzengin</h3>
-            <span className="tp-profile-role">Kardiyoloji & İç Hastalıkları Uzmanı</span>
-            
-            <div className="tp-social-row">
-              <a href="#" className="tp-social-btn"><FaFacebookF /></a>
-              <a href="#" className="tp-social-btn"><FaTwitter /></a>
-              <a href="#" className="tp-social-btn"><FaInstagram /></a>
-              <a href="#" className="tp-social-btn"><FaLinkedinIn /></a>
-            </div>
-          </div>
+          </ScrollReveal>
 
-          {/* 2. KUTU: SON GÖNDERİLER (BLOG) */}
-          <div className="tp-widget">
-            <h4 className="tp-widget-title">Son Makaleler</h4>
-            <div>
-              {blogData && blogData.slice(0, 3).map((post) => (
-                <div key={post.id} className="tp-post-item">
-                  <div className="tp-post-thumb">
-                    <img src={post.image} alt={post.title} />
+          {/* 2. KUTU: SON GÖNDERİLER */}
+          <ScrollReveal animation="slide-in-right" delay={0.4}>
+            <div className="tp-widget">
+              <h4 className="tp-widget-title">Son Makaleler</h4>
+              <div>
+                {blogData && blogData.slice(0, 3).map((post) => (
+                  <div key={post.id} className="tp-post-item">
+                    <div className="tp-post-thumb">
+                      <img src={post.image} alt={post.title} />
+                    </div>
+                    <div className="tp-post-info">
+                      <a href="/blog">{post.title}</a>
+                      <span className="tp-post-date">{post.date}</span>
+                    </div>
                   </div>
-                  <div className="tp-post-info">
-                    <a href="/blog">{post.title}</a>
-                    <span className="tp-post-date">{post.date}</span>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
 
-          {/* 3. KUTU: İLETİŞİM BİLGİLERİ */}
-          <div className="tp-widget">
-            <h4 className="tp-widget-title">İletişim Bilgileri</h4>
-            <ul className="tp-contact-list">
-              <li>
-                <FaMapMarkerAlt className="tp-c-icon"/>
-                <span>Valikonağı Cad. No:123, Nişantaşı, İstanbul</span>
-              </li>
-              <li>
-                <FaPhone className="tp-c-icon"/>
-                <span>+90 (212) 234 56 78</span>
-              </li>
-              <li>
-                <FaEnvelope className="tp-c-icon"/>
-                <span>info@farukerzengin.com</span>
-              </li>
-            </ul>
-            <a href="/iletisim" className="tp-btn-cta">Hemen Randevu Al</a>
-          </div>
+          {/* 3. KUTU: İLETİŞİM */}
+          <ScrollReveal animation="slide-in-right" delay={0.6}>
+            <div className="tp-widget">
+              <h4 className="tp-widget-title">İletişim Bilgileri</h4>
+              <ul className="tp-contact-list">
+                <li>
+                  <FaMapMarkerAlt className="tp-c-icon"/>
+                  <span>Valikonağı Cad. No:123, Nişantaşı, İstanbul</span>
+                </li>
+                <li>
+                  <FaPhone className="tp-c-icon"/>
+                  <span>+90 (212) 234 56 78</span>
+                </li>
+                <li>
+                  <FaEnvelope className="tp-c-icon"/>
+                  <span>info@farukerzengin.com</span>
+                </li>
+              </ul>
+              <a href="/iletisim" className="tp-btn-cta">Hemen Randevu Al</a>
+            </div>
+          </ScrollReveal>
 
         </aside>
 
       </div>
 
-      {/* --- MODAL (POP-UP) --- */}
+      {/* --- MODAL (POP-UP) - Animasyonu CSS'te tanımlı (tpSlideUp), buraya dokunmuyoruz --- */}
       {selectedTreatment && (
         <div className="tp-modal-overlay" onClick={() => setSelectedTreatment(null)}>
           <div className="tp-modal-content" onClick={(e) => e.stopPropagation()}>

@@ -9,12 +9,12 @@ import Footer from './components/Footer/Footer';
 import Home from './pages/Home';
 import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
+import BlogPage from './pages/BlogPage';
 import PressPage from './pages/PressPage';
 import ReviewsPage from './pages/ReviewsPage';
 import ContactPage from './pages/ContactPage';
 
 import './App.css';
-import BlogPage from './pages/BlogPage';
 
 // --- YARDIMCI BİLEŞEN: Sayfa Başlığını ve Scroll'u Yönetir ---
 // Bu bileşeni App'in içinde Router'ın altına koyacağız.

@@ -3,6 +3,9 @@ import { reviewsData } from '../data/reviewsData';
 import { FaStar, FaQuoteRight, FaGoogle, FaCheckCircle, FaChevronDown } from 'react-icons/fa';
 import './ReviewsPage.css';
 
+// 1. Animasyon Bileşenini Import Ediyoruz
+import ScrollReveal from '../components/Animations/ScrollReveal';
+
 const ReviewsPage = () => {
   const sliderRef = useRef(null);
   const [isDown, setIsDown] = useState(false);
@@ -14,6 +17,7 @@ const ReviewsPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  // --- Slider Mouse Olayları ---
   const handleMouseDown = (e) => {
     setIsDown(true);
     setStartX(e.pageX - sliderRef.current.offsetLeft);
@@ -42,86 +46,98 @@ const ReviewsPage = () => {
   return (
     <div className="reviews-page">
       
-      {/* 1. HERO BÖLÜMÜ */}
+      {/* 1. HERO BÖLÜMÜ - Fade In Up */}
       <header className="reviews-hero-section">
-        <div className="reviews-hero-content">
-          <h1 className="reviews-hero-title">Gerçek Hikayeler,<br />Mutlu Başlangıçlar</h1>
-          <p className="reviews-hero-desc">
-            Tıbbi tecrübemizi insani değerlerle birleştiriyoruz. İşte hastalarımızın kaleminden dökülenler.
-          </p>
-        </div>
+        <ScrollReveal animation="fade-up">
+          <div className="reviews-hero-content">
+            <h1 className="reviews-hero-title">Gerçek Hikayeler,<br />Mutlu Başlangıçlar</h1>
+            <p className="reviews-hero-desc">
+              Tıbbi tecrübemizi insani değerlerle birleştiriyoruz. İşte hastalarımızın kaleminden dökülenler.
+            </p>
+          </div>
+        </ScrollReveal>
       </header>
 
-      {/* 2. SLIDER BÖLÜMÜ (Full Width) */}
+      {/* 2. SLIDER BÖLÜMÜ - Fade In */}
       <section className="reviews-slider-section">
-        <div 
-          className="slider-drag-area"
-          ref={sliderRef}
-          onMouseDown={handleMouseDown}
-          onMouseLeave={handleMouseLeave}
-          onMouseUp={handleMouseUp}
-          onMouseMove={handleMouseMove}
-        >
-          <div className="slider-track-row">
-            {reviewsData.map((review) => (
-              <div key={review.id} className="slide-card-wrap">
-                <div className="review-card-item">
-                  <FaQuoteRight className="card-quote-bg" />
-                  
-                  <div className="card-stars-line">
-                    {renderStars(review.rating)}
-                  </div>
-                  
-                  <p className="card-comment-text">"{review.comment}"</p>
-                  
-                  <div className="card-bottom-info">
-                    <div className="patient-details">
-                      <h4>{review.name}</h4>
-                      <span className="treatment-tag"><FaCheckCircle/> {review.treatment}</span>
+        <ScrollReveal animation="fade-up" delay={0.2}>
+          <div 
+            className="slider-drag-area"
+            ref={sliderRef}
+            onMouseDown={handleMouseDown}
+            onMouseLeave={handleMouseLeave}
+            onMouseUp={handleMouseUp}
+            onMouseMove={handleMouseMove}
+          >
+            <div className="slider-track-row">
+              {reviewsData.map((review) => (
+                <div key={review.id} className="slide-card-wrap">
+                  <div className="review-card-item">
+                    <FaQuoteRight className="card-quote-bg" />
+                    
+                    <div className="card-stars-line">
+                      {renderStars(review.rating)}
+                    </div>
+                    
+                    <p className="card-comment-text">"{review.comment}"</p>
+                    
+                    <div className="card-bottom-info">
+                      <div className="patient-details">
+                        <h4>{review.name}</h4>
+                        <span className="treatment-tag"><FaCheckCircle/> {review.treatment}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* 3. GOOGLE BÖLÜMÜ */}
       <section className="reviews-google-section">
-        {/* Çakışmayı önlemek için 'container' yerine 'reviews-container' kullandık */}
         <div className="reviews-container">
           
-          <div className="google-cta-banner">
-            <div className="cta-left">
-              <div className="cta-icon-box"><FaGoogle /></div>
-              <div className="cta-text-box">
-                <h2>Google'da Bizi Değerlendirin</h2>
-                <p>Şeffaf, sansürsüz ve gerçek hasta deneyimleri.</p>
-              </div>
-            </div>
-            <a href="https://maps.google.com" target="_blank" rel="noreferrer" className="btn-google-link">
-              Yorum Yapın
-            </a>
-          </div>
-
-          <div className="google-reviews-grid">
-            {reviewsData.slice(0, visibleGoogleCount).map((item) => (
-              <div key={item.id} className="google-review-box">
-                <div className="gr-header">
-                  <div className="gr-avatar">{item.name.charAt(0)}</div>
-                  <div className="gr-meta">
-                    <strong>{item.name}</strong>
-                    <span className="gr-date">{item.date}</span>
-                  </div>
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="G" className="gr-logo-small" />
+          {/* Google Banner - Sağdan Gelir */}
+          <ScrollReveal animation="slide-in-right" delay={0.2}>
+            <div className="google-cta-banner">
+              <div className="cta-left">
+                <div className="cta-icon-box"><FaGoogle /></div>
+                <div className="cta-text-box">
+                  <h2>Google'da Bizi Değerlendirin</h2>
+                  <p>Şeffaf, sansürsüz ve gerçek hasta deneyimleri.</p>
                 </div>
-                <div className="gr-stars">{renderStars(item.rating)}</div>
-                <p className="gr-comment">{item.comment}</p>
               </div>
+              <a href="https://maps.google.com" target="_blank" rel="noreferrer" className="btn-google-link">
+                Yorum Yapın
+              </a>
+            </div>
+          </ScrollReveal>
+
+          {/* Google Yorumları Grid - Sırayla Gelir (Staggered) */}
+          <div className="google-reviews-grid">
+            {reviewsData.slice(0, visibleGoogleCount).map((item, index) => (
+              // index % 3 yaparak her satırda animasyonun tekrar baştan başlamasını değil,
+              // yüklenen kadarının akıcı gelmesini sağlıyoruz.
+              <ScrollReveal key={item.id} animation="fade-up" delay={(index % 3) * 0.1}>
+                <div className="google-review-box">
+                  <div className="gr-header">
+                    <div className="gr-avatar">{item.name.charAt(0)}</div>
+                    <div className="gr-meta">
+                      <strong>{item.name}</strong>
+                      <span className="gr-date">{item.date}</span>
+                    </div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="G" className="gr-logo-small" />
+                  </div>
+                  <div className="gr-stars">{renderStars(item.rating)}</div>
+                  <p className="gr-comment">{item.comment}</p>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
 
+          {/* Daha Fazla Yükle Butonu */}
           {visibleGoogleCount < reviewsData.length && (
             <div className="load-more-wrapper">
               <button className="btn-load-more-reviews" onClick={handleLoadMore}>
