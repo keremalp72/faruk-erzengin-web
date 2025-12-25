@@ -65,7 +65,7 @@ export const treatmentsData = [
       id: 6,
       title: "Hiperlipidemi (Kolesterol)",
       shortDesc: "Yüksek kolesterolün damar yapısına zarar vermeden kontrol altına alınması.",
-      image: "https://images.unsplash.com/photo-1579165466741-7f35e4755652?auto=format&fit=crop&w=600&q=80", // Kan tüpü
+      image: "https://images.unsplash.com/photo-1551818255-e6e10975bc17?auto=format&fit=crop&w=600&q=80", // Kan tüpü
       content: {
         description: "Kandaki yağ oranının (kolesterol ve trigliserid) yüksek olması, damar tıkanıklığının ana sebebidir.",
         symptoms: "Genellikle belirti vermez, kan tahlili ile anlaşılır. İleri evrede göz çevresinde yağ bezeleri görülebilir.",
