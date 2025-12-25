@@ -79,7 +79,18 @@ const PressPage = () => {
                   <span className="news-date">{news.date}</span>
                   <h3>{news.title}</h3>
                   <p>{news.summary}</p>
-                  <a href={news.link} className="news-link">Haberin Devamı <FaExternalLinkAlt /></a>
+                  
+                  {/* --- GÜNCELLENEN KISIM --- */}
+                  <a 
+                    href={news.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="news-link"
+                  >
+                    Haberin Devamı <FaExternalLinkAlt />
+                  </a>
+                  {/* ------------------------- */}
+
                 </div>
               </div>
             ))}

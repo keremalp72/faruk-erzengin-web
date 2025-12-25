@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-/* FaCheck ikonunu zaten eklemiştik, kullanacağız */
+/* İkonlar */
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaCheck } from 'react-icons/fa';
 import './ContactPage.css';
 
@@ -17,20 +17,15 @@ const ContactPage = () => {
   });
 
   const [errors, setErrors] = useState({ name: '', phone: '' });
-  const [showSuccess, setShowSuccess] = useState(false); // Modal için
-
-  // YENİ: Form altındaki sabit yazı için state
+  const [showSuccess, setShowSuccess] = useState(false);
   const [isSent, setIsSent] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    
-    // YENİ: Kullanıcı tekrar yazmaya başlarsa başarı mesajını kaldır
     if (isSent) setIsSent(false);
 
     let newErrors = { ...errors };
 
-    // İsim Validasyonu
     if (name === "name") {
       const nameRegex = /^[a-zA-ZğüşıöçĞÜŞİÖÇ\s]*$/;
       if (!nameRegex.test(value)) {
@@ -40,7 +35,6 @@ const ContactPage = () => {
       }
     }
 
-    // Telefon Validasyonu
     if (name === "phone") {
       const phoneRegex = /^[0-9\s]*$/;
       if (!phoneRegex.test(value)) {
@@ -62,16 +56,10 @@ const ContactPage = () => {
       return;
     }
 
-    // 1. Animasyonlu Modalı Aç
     setShowSuccess(true);
-    
-    // 2. Form Altındaki Yazıyı Aç (Bu kalıcı olacak)
     setIsSent(true);
-    
-    // Formu temizle
     setFormData({ name: '', phone: '', email: '', message: '' });
 
-    // Modalı 3.5 saniye sonra kapat ama alttaki yazı kalsın
     setTimeout(() => {
       setShowSuccess(false);
     }, 3500);
@@ -80,7 +68,7 @@ const ContactPage = () => {
   return (
     <div className="contact-page">
       
-      {/* BAŞARI MODALI (Aynı kalıyor) */}
+      {/* BAŞARI MODALI */}
       <div className={`success-overlay ${showSuccess ? 'active' : ''}`}>
         <div className="success-modal">
           <div className="success-icon-circle">
@@ -91,7 +79,7 @@ const ContactPage = () => {
         </div>
       </div>
 
-      {/* HEADER ... (Aynı) */}
+      {/* HEADER */}
       <div className="contact-header-section">
         <div className="contact-header-content">
           <h1 className="contact-hero-title">İletişime Geçin</h1>
@@ -102,10 +90,8 @@ const ContactPage = () => {
       </div>
 
       <div className="contact-container">
-        {/* KARTLAR ... (Aynı) */}
+        {/* KARTLAR */}
         <div className="contact-info-grid">
-           {/* ... Kart kodlarınız ... */}
-           {/* (Burayı kalabalık olmasın diye kısalttım, senin kodundaki ile aynı) */}
            <div className="contact-card">
             <div className="icon-circle"><FaMapMarkerAlt /></div>
             <h3>Adresimiz</h3>
@@ -128,10 +114,10 @@ const ContactPage = () => {
 
         <div className="contact-content-wrapper">
           
+          {/* FORM ALANI */}
           <div className="contact-form-area">
             <h2 className="form-title">Bize Mesaj Gönderin</h2>
             <form onSubmit={handleSubmit} className="custom-form">
-              {/* INPUTLAR (Aynı) */}
               <div className="form-row">
                 <div className="form-group">
                   <label>Adınız Soyadınız</label>
@@ -157,31 +143,31 @@ const ContactPage = () => {
 
               <button type="submit" className="btn-send-message">GÖNDER</button>
 
-              {/* --- YENİ EKLENEN KISIM: SABİT BAŞARI MESAJI --- */}
               {isSent && (
                 <div className="form-success-message">
                   <FaCheck /> Mesajınız başarıyla gönderildi. Teşekkürler!
                 </div>
               )}
-              {/* ----------------------------------------------- */}
-
             </form>
           </div>
 
+          {/* HARİTA VE SOSYAL MEDYA */}
           <div className="contact-map-area">
-             {/* HARİTA VE SOSYAL MEDYA (Aynı) */}
              <div className="map-frame">
               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3008.9633698339308!2d28.993478515415754!3d41.04748497929683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab7650656bd63%3A0x8ca058b28c20b6c3!2sNi%C5%9Fanta%C5%9F%C4%B1%2C%20Te%C5%9Fvikiye%2C%20%C5%9Ei%C5%9Fli%2F%C4%B0stanbul!5e0!3m2!1str!2str!4v1612345678901!5m2!1str!2str" width="100%" height="100%" style={{border:0}} allowFullScreen="" loading="lazy" title="Google Map"></iframe>
             </div>
+            
             <div className="social-connect-box">
               <h3>Bizi Takip Edin</h3>
               <div className="social-icons-row">
-                <a href="#" className="s-icon"><FaFacebookF /></a>
-                <a href="#" className="s-icon"><FaTwitter /></a>
-                <a href="#" className="s-icon"><FaInstagram /></a>
-                <a href="#" className="s-icon"><FaLinkedinIn /></a>
+                {/* GÜNCELLENEN SOSYAL MEDYA LİNKLERİ */}
+                <a href="https://www.facebook.com/faruk.erzengin.2025/" target="_blank" rel="noopener noreferrer" className="s-icon"><FaFacebookF /></a>
+                <a href="#" target="_blank" rel="noopener noreferrer" className="s-icon"><FaTwitter /></a>
+                <a href="https://www.instagram.com/farukerzengin/" target="_blank" rel="noopener noreferrer" className="s-icon"><FaInstagram /></a>
+                <a href="https://www.linkedin.com/in/prof-dr-faruk-erzengin-676391130/" target="_blank" rel="noopener noreferrer" className="s-icon"><FaLinkedinIn /></a>
               </div>
             </div>
+
           </div>
 
         </div>

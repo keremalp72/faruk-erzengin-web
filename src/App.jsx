@@ -14,6 +14,7 @@ import ReviewsPage from './pages/ReviewsPage';
 import ContactPage from './pages/ContactPage';
 
 import './App.css';
+import BlogPage from './pages/BlogPage';
 
 // --- YARDIMCI BİLEŞEN: Sayfa Başlığını ve Scroll'u Yönetir ---
 // Bu bileşeni App'in içinde Router'ın altına koyacağız.
@@ -33,6 +34,9 @@ const PageMeta = () => {
         break;
       case '/tedaviler':
         document.title = "Tedaviler ve Uzmanlıklar" + siteSuffix;
+        break;
+        case '/blog':
+        document.title = "Blog" + siteSuffix;
         break;
       case '/basin':
         document.title = "Basın ve Medya" + siteSuffix;
@@ -70,6 +74,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/hakkimda" element={<AboutPage />} />
             <Route path="/tedaviler" element={<ServicesPage />} />
+            <Route path="/blog" element={<BlogPage />} />
             <Route path="/basin" element={<PressPage />} />
             <Route path="/yorumlar" element={<ReviewsPage />} />
             <Route path="/iletisim" element={<ContactPage />} />
