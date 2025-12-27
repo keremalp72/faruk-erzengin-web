@@ -21,9 +21,9 @@ const Footer = () => {
             <a href="https://www.facebook.com/faruk.erzengin.2025/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="social-icon">
                 <FaFacebookF />
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="social-icon">
-                <FaTwitter />
-            </a>
+            {/*<a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <FaTwitter />
+          </a>*/}
             <a href="https://www.linkedin.com/in/prof-dr-faruk-erzengin-676391130/" target="_blank" rel="noopener noreferrer" aria-label="Linkedin" className="social-icon">
                 <FaLinkedinIn />
             </a>
@@ -47,26 +47,32 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* 3. SÜTUN: Adres */}
+        {/* 3. SÜTUN: Adres (Mecidiyeköy - Merkez) */}
         <div className="footer-col">
-          <h3 className="footer-title">Adres</h3>
+          <h3 className="footer-title">Merkez Ofis (Avrupa)</h3>
           <div className="single-contact-box">
              <FaMapMarkerAlt className="big-icon" />
              <p className="address-text">
-               Teşvikiye Mah. Hakkı Yeten Cad. <br/>
-               No:11 Şişli / İstanbul
+               Büyükdere Cad. Kral Apt. No: 75 <br/>
+               Kat: 1, D: 3, Mecidiyeköy <br/>
+               Şişli / İstanbul
              </p>
           </div>
           
-          {/* GÜNCELLENDİ: Gerçek Google Haritalar Linki */}
+          {/* Gerçek Google Haritalar Arama Linki */}
           <a 
-            href="https://www.google.com/maps/place/Te%C5%9Fvikiye,+Hakk%C4%B1+Yeten+Cd.+No:11%2F13,+34394+%C5%9Ei%C5%9Fli%2F%C4%B0stanbul/@41.0548526,28.9986853,17z/data=!3m1!4b1!4m5!3m4!1s0x14cab7cf21c6eabd:0x34f84f5f36494ac6!8m2!3d41.0548526!4d28.9986853" 
+            href="https://www.google.com/maps/search/?api=1&query=Büyükdere+Cad.+Kral+Apt.+No:+75,+Mecidiyeköy,+Şişli,+İstanbul" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="map-link"
           >
             Haritada Göster →
           </a>
+
+          {/* Anadolu Yakası Bilgilendirmesi */}
+          <div style={{marginTop: '15px', fontSize: '13px', color: '#aaa', lineHeight: '1.4'}}>
+            <span style={{color: '#C5A059'}}>*</span> Anadolu Yakası (Kadıköy) ofis bilgileri için <Link to="/iletisim" style={{color: '#fff', textDecoration: 'underline'}}>iletişim sayfasına</Link> bakınız.
+          </div>
         </div>
 
       </div>
