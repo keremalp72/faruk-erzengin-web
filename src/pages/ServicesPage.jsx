@@ -101,7 +101,7 @@ const ServicesPage = () => {
               
               <div className="tp-social-row">
                 <a href="https://www.facebook.com/faruk.erzengin.2025/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="tp-social-btn"><FaFacebookF /></a>
-                <a href="#" target="_blank" rel="noopener noreferrer" className="tp-social-btn"><FaTwitter /></a>
+                {/*<a href="#" target="_blank" rel="noopener noreferrer" className="tp-social-btn"><FaTwitter /></a>*/}
                 <a href="https://www.instagram.com/farukerzengin/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="tp-social-btn"><FaInstagram /></a>
                 <a href="https://www.linkedin.com/in/prof-dr-faruk-erzengin-676391130/" target="_blank" rel="noopener noreferrer" aria-label="Linkedin" className="tp-social-btn"><FaLinkedinIn /></a>
               </div>
