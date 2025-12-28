@@ -6,7 +6,7 @@ import './BlogPage.css';
 // 1. Animasyon Bileşenini Import Ediyoruz
 import ScrollReveal from '../components/Animations/ScrollReveal';
 
-import doctorProfileImg from '../assets/images/hakkimda1.png'; 
+import doctorProfileImg from '../assets/images/aboutme/hakkimda1.png'; 
 
 const BlogPage = () => {
   const [selectedPost, setSelectedPost] = useState(null);

@@ -2,25 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { FaUserMd, FaAward, FaMicroscope, FaBookReader, FaQuoteLeft, FaChevronLeft, FaChevronRight, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import './AboutPage.css';
 
-// 1. Animasyon Bileşeni (Yolunu düzeltmiştik)
+// 1. Animasyon Bileşeni
 import ScrollReveal from '../components/Animations/ScrollReveal';
 
-// Data
+// Data Importları
 import { publicationsData } from '../data/publicationsData';
+// YENİ: Blog Verisini Buradan Çekiyoruz (Yolunu Kendi Klasör Yapına Göre Ayarla)
+// Eğer blogData dosyan 'src/data/blogData.js' içindeyse:
+import { blogData } from '../data/blogData'; 
 
-// Resimler
-import slide1 from '../assets/images/hakkimda1.png';
-import slide2 from '../assets/images/hakkimda2.png';
-import slide3 from '../assets/images/hakkimda3.png';
+// Slider Resimleri
+import slide1 from '../assets/images/aboutme/hakkimda1.png';
+import slide2 from '../assets/images/aboutme/hakkimda2.png';
+import slide3 from '../assets/images/aboutme/hakkimda3.png';
+import slide4 from '../assets/images/aboutme/hakkimda4.png';
 
-// Blog Resimleri
-import articleImg1 from '../assets/images/blog/makale1.png'; 
 
 const AboutPage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [openPubIndex, setOpenPubIndex] = useState(0); 
 
-  const sliderImages = [ slide1, slide2, slide3 ];
+  const sliderImages = [ slide1, slide2, slide3, slide4 ];
 
   // Slider Mantığı
   useEffect(() => {
@@ -44,16 +46,13 @@ const AboutPage = () => {
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
-  const blogPosts = [
-    { id: 1, title: "Kalp Sağlığınızı Korumak İçin 5 Altın Kural", date: "15 Ekim 2025", image: articleImg1, excerpt: "Kalp krizi riskini azaltmak için..." },
-    { id: 2, title: "Hipertansiyon: Sessiz Katil Hakkında Bilmeniz Gerekenler", date: "02 Kasım 2025", image: articleImg1, excerpt: "Yüksek tansiyon belirti vermeden ilerleyebilir..." },
-    { id: 3, title: "Diyabetik Ayak Yaralarında Ameliyatsız Çözüm", date: "20 Aralık 2025", image: articleImg1, excerpt: "Özel solüsyon tedavileri ile ampütasyon riskini önlüyoruz." }
-  ];
+  // ARTIK 'blogPosts' DİYE BİR ARRAY TANIMLAMIYORUZ.
+  // DİREKT 'blogData'YI KULLANACAĞIZ.
 
   return (
     <div className="about-page">
       
-      {/* HEADER - ARTIK ANİMASYONLU! */}
+      {/* HEADER */}
       <div className="page-header">
         <ScrollReveal animation="fade-up">
           <div className="container">
@@ -68,7 +67,7 @@ const AboutPage = () => {
         {/* 1. GİRİŞ BÖLÜMÜ (SLIDER + METİN) */}
         <div className="bio-section">
           
-          {/* Slider Soldan Gelsin (CSS class eklendiği için küçülmez) */}
+          {/* Slider */}
           <ScrollReveal animation="slide-in-left" className="slider-reveal-wrapper">
             <div className="bio-slider-container">
               <div className="bio-slider-wrapper" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
@@ -86,7 +85,7 @@ const AboutPage = () => {
             </div>
           </ScrollReveal>
 
-          {/* Metin Sağdan Gelsin */}
+          {/* Metin */}
           <ScrollReveal animation="slide-in-right" delay={0.2}>
             <div className="bio-text">
               <h2 className="section-title">Prof. Dr. <span className="gold-text">Faruk Erzengin</span></h2>
@@ -208,11 +207,17 @@ const AboutPage = () => {
           </div>
         </ScrollReveal>
 
-        {/* 5. BLOG */}
+        {/* 5. BLOG (YENİLENMİŞ - DİNAMİK VERİ) */}
         <div className="blog-section-preview">
-          <ScrollReveal animation="fade-up"><h3 className="section-heading-center">Güncel Sağlık Makaleleri</h3></ScrollReveal>
+          <ScrollReveal animation="fade-up">
+             <h3 className="section-heading-center">Güncel Sağlık Makaleleri</h3>
+          </ScrollReveal>
+          
           <div className="blog-grid">
-            {blogPosts.map((post, idx) => (
+            {/* Burada blogData'nın sadece ilk 3 tanesini veya hepsini gösterebilirsin.
+                Şimdilik .slice(0, 3) ile ilk 3'ü gösteriyoruz ki sayfa çok uzamasın.
+                Hepsini göstermek istersen .slice kısmını kaldır. */}
+            {blogData.slice(0, 3).map((post, idx) => (
               <ScrollReveal key={post.id} delay={idx * 0.2} animation="fade-up">
                 <div className="blog-card">
                   <div className="blog-img-wrapper">
@@ -222,6 +227,7 @@ const AboutPage = () => {
                   <div className="blog-info">
                     <h4>{post.title}</h4>
                     <p>{post.excerpt}</p>
+                    {/* İleride Blog Detay Sayfasına Link Verilecek */}
                     <button className="read-more-btn">Devamını Oku →</button>
                   </div>
                 </div>

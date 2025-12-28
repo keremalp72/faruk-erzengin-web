@@ -4,7 +4,7 @@ import ScrollReveal from '../Animations/ScrollReveal';
 import './About.css';
 
 // Resim importu
-import doctorProfileImg from '../../assets/images/anasayfa-bg.jpeg'; 
+import doctorProfileImg from '../../assets/images/homepage/anasayfa-bg.jpeg'; 
 
 const About = () => {
   const [activeTab, setActiveTab] = useState('kariyer');

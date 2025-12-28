@@ -1,48 +1,19 @@
 // Resimlerin import edildiğinden emin ol (Dosya yollarını kendi projene göre düzenle)
-import blogImg1 from '../assets/images/blog/makale1.png'; 
-import blogImg2 from '../assets/images/blog/makale1.png';
-import blogImg3 from '../assets/images/blog/makale1.png';
+import asprin from '../assets/images/blog/makale-asprin.png'; 
+import bacakagrisi from '../assets/images/blog/makale-bacakagrisi.png'; 
+import carpinti from '../assets/images/blog/makale-carpinti.png'; 
+import diyabetikayak from '../assets/images/blog/makale-diyabetik.png'; 
+import hipertansiyon from '../assets/images/blog/makale-hipertansiyon.png'; 
+import kolestrol from '../assets/images/blog/makale-kolestrol.png'; 
+
 
 export const blogData = [
   {
     id: 1,
-    title: "Kan Sonuçlarınız Kalp Krizi Riskinizi Söylüyor Olabilir!",
-    date: "25 Aralık 2025",
-    category: "Kalp Sağlığı & Genetik",
-    image: blogImg1,
-    excerpt: "Kalp krizi çoğu zaman ani sanılır ama aslında önceden sinyal verir. Lp(a) testi ile gizli genetik riskinizi öğrenin.",
-    content: `
-      <p>Kalp krizi çoğu zaman ani sanılmaktadır. Oysa çoğu kriz önceden sinyal verir. Bu sinyallerin bir kısmı kan testlerinde gizlidir. Günümüzde kalp krizi riskini öngörmede klasik kolesterol ölçümleri yeterli değildir. Daha derin ve genetik temelli risk faktörleri önem kazanmıştır. Bunlardan biri <strong>Lipoprotein(a)</strong> yani Lp(a) değeridir. Bu değer, kolesterolden bağımsız çalışır. Tek sefer ölçülmesi yeterlidir. Yüksek olması ömür boyu risk anlamına gelir.</p>
-
-      <h4>Lipoprotein(a) Nedir ve Neden Önemlidir?</h4>
-      <p>Lipoprotein(a), genetik olarak belirlenen özel bir lipoproteindir. LDL kolesterole benzer bir yapısı vardır. Ancak daha tehlikelidir. Damar duvarında daha kolay birikir ve pıhtı oluşumunu tetikler. En önemli özelliği, yaşam tarzıyla kolay düşürülememesidir. Diyet ve egzersiz genellikle yeterli olmaz. Bu nedenle erken saptanması hayati önem taşır.</p>
-
-      <h4>Kolesterolden Bağımsız Bir Risk Faktörü</h4>
-      <p>Birçok hasta <strong>LDL kolesterolü</strong> normal olduğu halde kalp krizi geçirebilir. Bunun nedeni Lp(a) yüksekliği olabilir. Bu değer, total kolesterolden bağımsız çalışır. Normal kolesterol değerleri yanıltıcı olabilmektedir. Özellikle genç yaşta kalp krizi geçirenlerde sık görülmektedir. Ailesel erken kalp krizi öyküsü varsa mutlaka değerlendirilmelidir.</p>
-
-      <h4>Kimler Lipoprotein(a) Testi Yaptırmalı?</h4>
-      <ul>
-        <li>Ailesinde genç yaşta (50 yaş altı) kalp krizi öyküsü olanlar.</li>
-        <li>Kolesterolü normal olmasına rağmen damar tıkanıklığı yaşayanlar.</li>
-        <li>Tekrarlayan stent veya bypass öyküsü olanlar.</li>
-        <li>Açıklanamayan inme veya felç geçirenler.</li>
-      </ul>
-
-      <h4>Kalp Krizi %80 Önlenebilir Bir Hastalıktır</h4>
-      <p>Kalp krizinin en sevindirici yönü önlenebilir olmasıdır. Risk faktörleri doğru yönetildiğinde krizlerin büyük bölümü engellenebilir. Yüksek tansiyon kontrol altına alınmalı, sigara bırakılmalı ve eğer <strong>Lp(a) yüksekliği</strong> varsa daha agresif bir tedavi planlanmalıdır.</p>
-
-      <div class="doctor-note-box">
-        <strong>Prof. Dr. Faruk Erzengin'in Notu:</strong>
-        "Kalp krizi kader değildir. Bilgi en güçlü korunma aracıdır. Tek bir kan testi ile genetik haritanızı görün ve önleminizi erkenden alın."
-      </div>
-    `
-  },
-  {
-    id: 2,
     title: "Sessiz Katil Hipertansiyon: Vücudunuza Neler Yapıyor?",
     date: "18 Aralık 2025",
     category: "Hipertansiyon",
-    image: blogImg2,
+    image: hipertansiyon,
     excerpt: "Hiçbir belirti vermeden böbreklerinizi çürütebilir ve kalbinizi yorabilir. Tansiyonunuzu kontrol altına almanın yolları.",
     content: `
       <p>Hipertansiyon, yani yüksek tansiyon, dünya genelinde en yaygın görülen kronik hastalıklardan biridir. Ancak ne yazık ki hastaların büyük bir kısmı, tansiyon hastası olduğunun farkında bile değildir. Bu nedenle tıp literatüründe ona <strong>"Sessiz Katil" (Silent Killer)</strong> adı verilir. Yıllarca hiçbir belirti vermeden damarlarınızı tahrip edebilir.</p>
@@ -63,11 +34,11 @@ export const blogData = [
     `
   },
   {
-    id: 3,
+    id: 2,
     title: "Diyabetik Ayak ve Ampütasyon Riski: Kesilmek Kader Değil!",
     date: "05 Aralık 2025",
     category: "Diyabet & Yara Tedavisi",
-    image: blogImg3,
+    image: diyabetikayak,
     excerpt: "Diyabet hastalarının korkulu rüyası ayak yaraları, özel solüsyonlar ve doğru tedavi ile iyileştirilebilir.",
     content: `
       <p>Diyabet (Şeker Hastalığı), sadece kan şekerinin yükselmesi değildir. Zamanla vücuttaki tüm damar ve sinir ağını etkileyen sistemik bir hastalıktır. Diyabetin en yıkıcı sonuçlarından biri de "Diyabetik Ayak" yaralarıdır. Ne yazık ki dünyada her 30 saniyede bir, diyabete bağlı olarak bir ayak kaybedilmektedir.</p>
@@ -92,11 +63,11 @@ export const blogData = [
     `
   },
 {
-  id: 4,
+  id: 3,
   title: "Çarpıntı Ne Zaman Tehlikeli? 'Masum' ile 'Ciddi' Çarpıntıyı Ayırt Etme Rehberi",
   date: "10 Ocak 2025",
   category: "Aritmi & Kalp Ritim Bozuklukları",
-  image: blogImg1, // blogImg4 olarak değiştirin
+  image: carpinti, 
   excerpt: "Göğsünüzde kuş kanat çırpıyor gibi mi hissediyorsunuz? Her çarpıntı alarm nedeni değil, ancak hangi türü doktora koşmanız gerektiğini bilin.",
   content: `
     <p>Çarpıntı, kalp atışlarınızın normalden farklı, hızlı, güçlü veya düzensiz hissedilmesidir. Çoğu zaman stres, kafein veya yorgunluk kaynaklı masum bir durum olsa da, bazen ciddi bir kalp hastalığının ilk sinyali olabilir.</p>
@@ -127,11 +98,11 @@ export const blogData = [
   `
 },
 {
-  id: 5,
+  id: 4,
   title: "Bacak Damar Tıkanıklığı: Yürürken Duran Kalçalarınızın Sessiz Çığlığı",
   date: "28 Aralık 2025",
   category: "Damar Sağlığı & Periferik Arter Hastalığı",
-  image: blogImg1, // blogImg5 olarak değiştirin
+  image: bacakagrisi, 
   excerpt: "Bacak ağrınız sadece yorgunluk değil, kalbinizden uzaktaki damarların tıkandığının işareti olabilir. Kladikasyo ağrısı nedir, nasıl anlaşılır?",
   content: `
     <p>Periferik Arter Hastalığı (PAH), kalbi besleyen koroner damarlar gibi, bacakları besleyen atardamarların daralması veya tıkanmasıdır. En tipik belirtisi, <strong>"kladikasyo intermitan"</strong> denilen yürüme ağrısıdır. Bu ağrı, bir alarmdır.</p>
@@ -156,11 +127,11 @@ export const blogData = [
   `
 },
 {
-  id: 6,
+  id: 5,
   title: "Aspirin Kullanmalı mıyım? Koruyucu Kalp Tedavisinde En Büyük Yanılgı",
   date: "15 Aralık 2025",
   category: "Koruyucu Kardiyoloji & İlaçlar",
-  image: blogImg1, // blogImg6 olarak değiştirin
+  image: asprin, 
   excerpt: "Herkesin evinde bulunan bu küçük hap, bazıları için hayat kurtarıcıyken, bazıları için gereksiz kanama riski taşıyabilir. Aspirin profilaksisi ne zaman başlanmalı?",
   content: `
     <p>"Günde bir baby aspirin kalp krizini önler" fikri uzun yıllar hakimdi. Ancak modern kardiyoloji, bu yaklaşımın <strong>herkes için geçerli olmadığını</strong> ve hatta bazı kişilerde zararlı olabileceğini net bir şekilde ortaya koymuştur.</p>
@@ -187,11 +158,11 @@ export const blogData = [
   `
 },
 {
-  id: 7,
+  id: 6,
   title: "Kolesterol Düşman mı, Dost mu? İyi ve Kötü Kolesterol Efsaneleri",
   date: "02 Aralık 2025",
   category: "Kolesterol & Metabolizma",
-  image: blogImg1, // blogImg7 olarak değiştirin
+  image: kolestrol, 
   excerpt: "Kolesterol kötü bir şey mi? HDL ve LDL gerçekte ne anlama geliyor? Statin ilaçları hakkında doğru bilinen yanlışları bu makalede çürütüyoruz.",
   content: `
     <p>Kolesterol, vücudumuzdaki tüm hücre zarının yapı taşı, D vitamini ve bazı hormonların üretimi için temel bir maddedir. Yani, hayati öneme sahiptir. Sorun, kolesterolün <strong>miktarı ve taşındığı araçlarla (lipoproteinler)</strong> ilgilidir.</p>

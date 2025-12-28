@@ -1,5 +1,10 @@
 // src/data/pressData.js
 import solusyonhbr from '../assets/images/press/solusyonhaber.png';
+import kalpkrizi from '../assets/images/press/haber-kalpkrizi.png';
+import nobel from '../assets/images/press/haber-nobel.png';
+import nobelekip from '../assets/images/press/haber-nobel-ekip.png';
+import corona from '../assets/images/press/haber-corona.png';
+
 
 export const pressData = {
     videos: [
@@ -51,7 +56,7 @@ export const pressData = {
         title: "Tıpta Nobellik Buluş",
         source: "Önce Vatan Gazetesi",
         date: "17 Ocak 2014",
-        image: solusyonhbr,
+        image: nobel,
         link: "https://www.oncevatan.com.tr/tipta-nobellik-bulus",
         summary: "Prof. Dr. Faruk Erzengin ve ekibi, damar sertliği tedavisinde dünya literatürüne giren buluşa imza attı."
       },
@@ -60,7 +65,7 @@ export const pressData = {
         title: "Nobel'e Aday Gösterilen Türk Profesör",
         source: "Hürriyet",
         date: "22 Nisan 2024",
-        image: solusyonhbr,
+        image: nobelekip,
         link: "https://www.oncevatan.com.tr/erzengin-adi-literature-gecti",
         summary: "32 kişilik bilim kurulu ile yürütülen çalışmalar, Prof. Erzengin'i Nobel Tıp Ödülü adaylığına taşıdı."
       },
@@ -69,7 +74,7 @@ export const pressData = {
         title: "Kalp Krizini Önlemek Mümkün Mü?",
         source: "Sabah Gazetesi",
         date: "10 Ocak 2023",
-        image: solusyonhbr,
+        image: kalpkrizi,
         link: "https://www.sabah.com.tr/roza/saglik/soguk-havalarda-o-kisiler-dikkatli-olmali-kalp-krizini-boyle-tetikliyor",
         summary: "Prof. Dr. Erzengin, kalp sağlığını korumak için 5 altın kuralı ve soğuk havalarda dikkat edilmesi gerekenleri anlattı."
       },
@@ -78,7 +83,7 @@ export const pressData = {
         title: "Covid-19'a Dair Önemli Bilgiler",
         source: "Önce Vatan Gazetesi",
         date: "10 Haziran 2021",
-        image: solusyonhbr,
+        image: corona,
         link: "https://www.oncevatan.com.tr/degerli-hocamiz-faruk-erzenginden-covid-19a-dair-onemli-bilgiler",
         summary: "Prof. Dr. Erzengin, Covid-19'a dair dikkat edilmesi gereken önemli bilgileri anlattı."
       }

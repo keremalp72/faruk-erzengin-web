@@ -1,11 +1,19 @@
 // src/data/treatmentsData.js
+import aritmi from '../assets/images/services/aritmi.png';
+import diyabetikayak from '../assets/images/services/diyabetikayak.png';
+import hiperlipidemi from '../assets/images/services/hiperlipidemi.png';
+import hipertansiyon from '../assets/images/services/hipertansiyon.png';
+import kalpyetersizligi from '../assets/images/services/kalpyetersizligi.png';
+import koronerarter from '../assets/images/services/koronerarter.png';
+
+
 
 export const treatmentsData = [
     {
       id: 1,
       title: "Hipertansiyon (Yüksek Tansiyon)",
       shortDesc: "Sessiz katil olarak bilinen yüksek tansiyonun tanı, takip ve kişiye özel ilaç tedavisi.",
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80", // Tansiyon aleti resmi
+      image: hipertansiyon, 
       content: {
         description: "Hipertansiyon, kan basıncının atardamarlarda sürekli olarak yüksek olması durumudur. Tedavi edilmezse kalp krizi, felç ve böbrek yetmezliğine yol açabilir.",
         symptoms: ["Baş ağrısı ve baş dönmesi", "Burun kanaması", "Kulak çınlaması", "Yorgunluk ve halsizlik"],
@@ -17,7 +25,7 @@ export const treatmentsData = [
       id: 2,
       title: "Diyabetik Ayak Yaraları",
       shortDesc: "Ampütasyon (kesilme) riski taşıyan yaraların özel solüsyonlar ile kurtarılması.",
-      image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80", // Ayak/Muayene resmi
+      image: diyabetikayak, // Ayak/Muayene resmi
       content: {
         description: "Diyabet hastalarında damar tıkanıklığı ve sinir hasarına bağlı olarak ayaklarda iyileşmeyen yaralar oluşabilir.",
         symptoms: ["Ayakta his kaybı veya uyuşma", "İyileşmeyen yaralar", "Renk değişikliği ve morarma", "Ağrı (bazen hiç hissedilmeyebilir)"],
@@ -29,7 +37,7 @@ export const treatmentsData = [
       id: 3,
       title: "Koroner Arter Hastalığı",
       shortDesc: "Damar sertliği ve kalp krizi riskine karşı erken teşhis ve tedavi.",
-      image: "https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?auto=format&fit=crop&w=600&q=80", // Kalp modeli/doktor
+      image: koronerarter, 
       content: {
         description: "Kalbi besleyen damarların (koroner) daralması veya tıkanması sonucu kalbin yeterli oksijen alamaması durumudur.",
         symptoms: ["Göğüs ağrısı (Anjina)", "Nefes darlığı", "Çarpıntı", "Sol kola vuran ağrı"],
@@ -41,7 +49,7 @@ export const treatmentsData = [
       id: 4,
       title: "Kalp Yetersizliği",
       shortDesc: "Kalbin vücuda yeterli kanı pompalayamadığı durumlarda yaşam kalitesini artıran tedaviler.",
-      image: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&w=600&q=80", // EKG cihazı
+      image: kalpyetersizligi, // EKG cihazı
       content: {
         description: "Kalp kasının zayıflaması veya sertleşmesi sonucu pompalama gücünün azalmasıdır.",
         symptoms: ["Çabuk yorulma", "Ayaklarda şişlik (ödem)", "Gece nefes darlığı ile uyanma", "İştahsızlık"],
@@ -53,7 +61,7 @@ export const treatmentsData = [
       id: 5,
       title: "Aritmi (Ritim Bozukluğu)",
       shortDesc: "Çarpıntı, tekleme ve düzensiz kalp atışlarının tanı ve tedavisi.",
-      image: "https://images.unsplash.com/photo-1551818255-e6e10975bc17?auto=format&fit=crop&w=600&q=80", // Kalp ritim grafiği
+      image: aritmi, 
       content: {
         description: "Kalbin çok hızlı, çok yavaş veya düzensiz atması durumudur.",
         symptoms: ["Göğüste kuş çırpınması hissi", "Baş dönmesi", "Bayılma", "Nefes darlığı"],
@@ -65,7 +73,7 @@ export const treatmentsData = [
       id: 6,
       title: "Hiperlipidemi (Kolesterol)",
       shortDesc: "Yüksek kolesterolün damar yapısına zarar vermeden kontrol altına alınması.",
-      image: "https://images.unsplash.com/photo-1551818255-e6e10975bc17?auto=format&fit=crop&w=600&q=80", // Kan tüpü
+      image: hiperlipidemi, 
       content: {
         description: "Kandaki yağ oranının (kolesterol ve trigliserid) yüksek olması, damar tıkanıklığının ana sebebidir.",
         symptoms: "Genellikle belirti vermez, kan tahlili ile anlaşılır. İleri evrede göz çevresinde yağ bezeleri görülebilir.",

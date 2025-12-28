@@ -12,6 +12,40 @@ const ReviewsPage = () => {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [visibleGoogleCount, setVisibleGoogleCount] = useState(3);
+  const [expandedReviews, setExpandedReviews] = useState({});
+
+  const toggleReadMore = (id) => {
+    setExpandedReviews(prev => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
+
+  // Yorum Metnini İşleyen Fonksiyon
+  const renderComment = (comment, id) => {
+    if (!comment || comment.trim() === "") {
+      return <span className="no-comment-text">*(Yazılı yorum yapılmadı, puan verildi)</span>;
+    }
+
+    const maxLength = 140; // Kaç karakterden sonra kessin?
+    const isExpanded = expandedReviews[id];
+
+    if (comment.length <= maxLength) {
+      return `"${comment}"`;
+    }
+
+    return (
+      <>
+        "{isExpanded ? comment : `${comment.substring(0, maxLength)}...`}"
+        <button 
+          className="btn-read-more-text" 
+          onClick={(e) => { e.stopPropagation(); toggleReadMore(id); }}
+        >
+          {isExpanded ? " (Küçült)" : " (Devamını Oku)"}
+        </button>
+      </>
+    );
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -79,7 +113,7 @@ const ReviewsPage = () => {
                       {renderStars(review.rating)}
                     </div>
                     
-                    <p className="card-comment-text">"{review.comment}"</p>
+                    <p className="card-comment-text">{renderComment(review.comment, review.id)}</p>
                     
                     <div className="card-bottom-info">
                       <div className="patient-details">
@@ -109,7 +143,7 @@ const ReviewsPage = () => {
                   <p>Şeffaf, sansürsüz ve gerçek hasta deneyimleri.</p>
                 </div>
               </div>
-              <a href="https://maps.google.com" target="_blank" rel="noreferrer" className="btn-google-link">
+              <a href="https://www.google.com/search?sca_esv=a7ea5b6f397deb12&q=Dr.+Faruk+erzengin+Yorumlar&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIyMjQztjS0NDQyNTe0MDExMDLawMj4ilHapUhPwS2xqDRbIbWoKjUvPTNPITK_qDQ3J7FoESs-WQAU3qj2VQAAAA&rldimm=216391912571844022&tbm=lcl&hl=tr-TR&sa=X&ved=2ahUKEwjh06iqh-GRAxVqQvEDHc70II4Q9fQKegQIJxAG&biw=1920&bih=919&dpr=1#lkt=LocalPoiReviews" target="_blank" rel="noreferrer" className="btn-google-link">
                 Yorum Yapın
               </a>
             </div>
@@ -131,7 +165,7 @@ const ReviewsPage = () => {
                     <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="G" className="gr-logo-small" />
                   </div>
                   <div className="gr-stars">{renderStars(item.rating)}</div>
-                  <p className="gr-comment">{item.comment}</p>
+                  <p className="gr-comment">{renderComment(item.comment, item.id)}</p>
                 </div>
               </ScrollReveal>
             ))}

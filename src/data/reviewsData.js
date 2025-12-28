@@ -25,19 +25,19 @@ export const reviewsData = [
     },
     {
       id: 4,
-      name: "Selin Kaya",
-      date: "5 Ay önce",
+      name: "Taner Kaya",
+      date: "11 Ay önce",
       rating: 5,
-      treatment: "Genel Muayene",
-      comment: "Güler yüzlü, babacan ve çok ilgili bir doktor. Sorularınızı sıkılmadan cevaplıyor. Kesinlikle tavsiye ediyorum."
+      treatment: "Tansiyon Hastalığı",
+      comment: "Prof Dr Faruk ERZENGİN hocamız alanında çok yetkin ve çok profesyonel bir doktordur, tavsiye üzerine gitmiştim, iyi ki gitmişim, çok naif çok candan, hastasına karşı şefkatli, teşhisleri çok isabetli, devam eden sıkıntılı tansiyon hastalığıma çözüm bulan kişidir, özgeçmişi okumalarını tavsiye ederim..."
     },
     {
       id: 5,
-      name: "Caner Erkin",
+      name: "NECLA EKSİOGLU",
       date: "6 Ay önce",
-      rating: 4,
-      treatment: "Aritmi Tedavisi",
-      comment: "Çarpıntı şikayetiyle gittim. Yapılan tetkikler sonucu doğru teşhis konuldu ve tedavim başladı. Randevu bulmak biraz zor olsa da beklemeye değer."
+      rating: 5,
+      treatment: "Genel Yorum",
+      comment: "Türkiye bulunmaz doktor ALLAH üzün ömürler versin Prof : Faruk erzengin gerçek doktorlar yaşasın Bazı doktorlar işinde sadece paraya bakar hastaya bakmaz bile anlayan anlamıştır"
     },
     {
       id: 6,
@@ -46,6 +46,37 @@ export const reviewsData = [
       rating: 5,
       treatment: "Hipertansiyon Takibi",
       comment: "Yıllardır düşüremediğimiz tansiyon sorunumu Faruk Hocam çözdü. Bana sadece ilaç yazıp göndermedi, hayat tarzımı nasıl değiştirmem gerektiğini de sabırla anlattı. Şimdi çok daha sağlıklıyım."
+    },
+    {
+      id: 7,
+      name: "Busra Canturk",
+      date: "1 Yıl önce",
+      rating: 5,
+      treatment: "Genel Yorum",
+      comment: ""
+    },
+    {
+      id: 8,
+      name: "Ayşe Demir",
+      date: "1 Ay önce",
+      rating: 5,
+      treatment: "Hipertansiyon Takibi",
+      comment: "Yıllardır düşüremediğimiz tansiyon sorunumu Faruk Hocam çözdü. Bana sadece ilaç yazıp göndermedi, hayat tarzımı nasıl değiştirmem gerektiğini de sabırla anlattı. Şimdi çok daha sağlıklıyım."
+    },
+    {
+      id: 9,
+      name: "Serdar Güngör",
+      date: "2 Yıl önce",
+      rating: 5,
+      treatment: "Genel Yorum",
+      comment: ""
+    },
+    {
+      id: 10,
+      name: "Muzaffer ALP",
+      date: "2 Yıl önce",
+      rating: 5,
+      treatment: "Genel Yorum",
+      comment: ""
     }
-    
   ];

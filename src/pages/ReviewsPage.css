@@ -258,3 +258,27 @@
     .cta-left { flex-direction: column; }
     .slide-card-wrap { width: 300px; }
   }
+  /* --- YORUM METNİ DÜZENLEMELERİ --- */
+
+/* Boş yorum yazısı (Gri ve italik) */
+.no-comment-text {
+  font-style: italic;
+  color: #999;
+  font-size: 13px;
+}
+
+/* Devamını Oku Butonu (Link gibi görünen buton) */
+.btn-read-more-text {
+  background: none;
+  border: none;
+  color: #C5A059; /* Altın rengi */
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0 5px;
+  text-decoration: underline;
+}
+
+.btn-read-more-text:hover {
+  color: #002244; /* Hoverda Lacivert */
+}

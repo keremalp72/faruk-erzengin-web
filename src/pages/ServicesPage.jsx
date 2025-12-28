@@ -7,7 +7,7 @@ import './ServicesPage.css';
 // 1. Animasyon Bileşenini Import Ediyoruz
 import ScrollReveal from '../components/Animations/ScrollReveal';
 
-import doctorProfileImg from '../assets/images/hakkimda1.png'; 
+import doctorProfileImg from '../assets/images/aboutme/hakkimda1.png'; 
 
 const ServicesPage = () => {
   const [selectedTreatment, setSelectedTreatment] = useState(null);
@@ -57,7 +57,6 @@ const ServicesPage = () => {
           {/* KARTLAR GRID - Sırayla Gelme Efekti */}
           <div className="tp-treatments-grid">
             {treatmentsData.map((item, index) => (
-              // index * 0.1 sayesinde her kart bir öncekinden 0.1sn sonra gelir
               <ScrollReveal key={item.id} animation="fade-up" delay={index * 0.1}>
                 <div className="tp-card" onClick={() => setSelectedTreatment(item)}>
                   <div className="tp-card-img-box">
@@ -93,7 +92,7 @@ const ServicesPage = () => {
               
               <div className="tp-social-row">
                 <a href="https://www.facebook.com/faruk.erzengin.2025/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="tp-social-btn"><FaFacebookF /></a>
-               {/*<a href="#" className="tp-social-btn"><FaTwitter /></a>*/} 
+                <a href="#" target="_blank" rel="noopener noreferrer" className="tp-social-btn"><FaTwitter /></a>
                 <a href="https://www.instagram.com/farukerzengin/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="tp-social-btn"><FaInstagram /></a>
                 <a href="https://www.linkedin.com/in/prof-dr-faruk-erzengin-676391130/" target="_blank" rel="noopener noreferrer" aria-label="Linkedin" className="tp-social-btn"><FaLinkedinIn /></a>
               </div>
@@ -120,22 +119,26 @@ const ServicesPage = () => {
             </div>
           </ScrollReveal>
 
-          {/* 3. KUTU: İLETİŞİM */}
+          {/* 3. KUTU: İLETİŞİM (GÜNCELLENEN KISIM) */}
           <ScrollReveal animation="slide-in-right" delay={0.6}>
             <div className="tp-widget">
-              <h4 className="tp-widget-title">İletişim Bilgileri</h4>
+              <h4 className="tp-widget-title">Merkez Ofis (Avrupa)</h4>
               <ul className="tp-contact-list">
                 <li>
                   <FaMapMarkerAlt className="tp-c-icon"/>
-                  <span>Valikonağı Cad. No:123, Nişantaşı, İstanbul</span>
+                  <span>Büyükdere Cad. Kral Apt. No: 75, Kat: 1, Mecidiyeköy / İstanbul</span>
                 </li>
                 <li>
                   <FaPhone className="tp-c-icon"/>
-                  <span>+90 (212) 234 56 78</span>
+                  <span>0212 356 88 88</span>
+                </li>
+                <li>
+                  <FaPhone className="tp-c-icon"/>
+                  <span>0532 453 51 79 (Ortak Hat)</span>
                 </li>
                 <li>
                   <FaEnvelope className="tp-c-icon"/>
-                  <span>info@farukerzengin.com</span>
+                  <span>farukerzengin@gmail.com</span>
                 </li>
               </ul>
               <a href="/iletisim" className="tp-btn-cta">Hemen Randevu Al</a>
@@ -146,7 +149,7 @@ const ServicesPage = () => {
 
       </div>
 
-      {/* --- MODAL (POP-UP) - Animasyonu CSS'te tanımlı (tpSlideUp), buraya dokunmuyoruz --- */}
+      {/* --- MODAL (POP-UP) --- */}
       {selectedTreatment && (
         <div className="tp-modal-overlay" onClick={() => setSelectedTreatment(null)}>
           <div className="tp-modal-content" onClick={(e) => e.stopPropagation()}>

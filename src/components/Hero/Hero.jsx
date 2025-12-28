@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaPlay, FaChevronRight } from 'react-icons/fa';
-import heroBg from '../../assets/images/hero-bg.png';
+import heroBg from '../../assets/images/homepage/hero-bg.png';
 import './Hero.css';
 
 // --- ANİMASYON AYARLARI (Genel Kapsayıcı İçin) ---
