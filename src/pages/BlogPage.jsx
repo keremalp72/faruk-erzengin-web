@@ -3,7 +3,10 @@ import { blogData } from '../data/blogData';
 import { FaCalendarAlt, FaUserMd, FaArrowLeft, FaFacebookF, FaTwitter, FaLinkedinIn, FaTag } from 'react-icons/fa';
 import './BlogPage.css';
 
-// 1. Animasyon Bileşenini Import Ediyoruz
+// 1. SEO Bileşenini Çağırıyoruz (Çok Önemli)
+import SEO from '../components/SEO';
+
+// 2. Animasyon Bileşeni
 import ScrollReveal from '../components/Animations/ScrollReveal';
 
 import doctorProfileImg from '../assets/images/aboutme/hakkimda1.png'; 
@@ -12,6 +15,7 @@ const BlogPage = () => {
   const [selectedPost, setSelectedPost] = useState(null);
   const [activeCategory, setActiveCategory] = useState('Tümü');
 
+  // Sayfa değiştiğinde veya kategori değiştiğinde en tepeye çık
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [selectedPost, activeCategory]);
@@ -57,6 +61,13 @@ const BlogPage = () => {
   return (
     <div className="bp-page-wrapper">
       
+      {/* --- SEO AYARLARI (DİNAMİK) --- */}
+      {/* Eğer bir yazı seçiliyse başlık o yazının başlığı olsun, değilse genel Blog başlığı olsun */}
+      <SEO 
+        title={selectedPost ? selectedPost.title : "Sağlık Rehberi & Blog"} 
+        description={selectedPost ? selectedPost.excerpt : "Kalp sağlığı, hipertansiyon, diyabet ve iç hastalıkları hakkında güncel tıbbi makaleler, sağlıklı yaşam ipuçları ve Prof. Dr. Faruk Erzengin'in uzman görüşleri."} 
+      />
+
       {/* HEADER - Fade In */}
       <div className="bp-page-header">
         <ScrollReveal animation="fade-up">

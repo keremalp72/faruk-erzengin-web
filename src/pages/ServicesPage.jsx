@@ -7,6 +7,9 @@ import './ServicesPage.css';
 // 1. Animasyon Bileşenini Import Ediyoruz
 import ScrollReveal from '../components/Animations/ScrollReveal';
 
+// 2. SEO Bileşenini Ekliyoruz (Çok Önemli)
+import SEO from '../components/SEO';
+
 import doctorProfileImg from '../assets/images/aboutme/hakkimda1.png'; 
 
 const ServicesPage = () => {
@@ -28,6 +31,12 @@ const ServicesPage = () => {
   return (
     <div className="tp-page-wrapper">
       
+      {/* --- SEO AYARLARI --- */}
+      <SEO 
+        title="Tedaviler & Uzmanlık Alanları" 
+        description="Prof. Dr. Faruk Erzengin'in uzmanlık alanları: Kalp damar hastalıkları, hipertansiyon, diyabetik ayak, ritim bozukluğu ve iç hastalıkları tedavileri hakkında detaylı bilgiler." 
+      />
+
       {/* HEADER - Fade In */}
       <div className="tp-page-header">
         <ScrollReveal animation="fade-up">
@@ -119,7 +128,7 @@ const ServicesPage = () => {
             </div>
           </ScrollReveal>
 
-          {/* 3. KUTU: İLETİŞİM (GÜNCELLENEN KISIM) */}
+          {/* 3. KUTU: İLETİŞİM */}
           <ScrollReveal animation="slide-in-right" delay={0.6}>
             <div className="tp-widget">
               <h4 className="tp-widget-title">Merkez Ofis (Avrupa)</h4>

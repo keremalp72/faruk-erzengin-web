@@ -6,6 +6,9 @@ import './ReviewsPage.css';
 // 1. Animasyon Bileşenini Import Ediyoruz
 import ScrollReveal from '../components/Animations/ScrollReveal';
 
+// 2. SEO Bileşenini Ekliyoruz (Çok Önemli)
+import SEO from '../components/SEO';
+
 const ReviewsPage = () => {
   const sliderRef = useRef(null);
   const [isDown, setIsDown] = useState(false);
@@ -80,6 +83,12 @@ const ReviewsPage = () => {
   return (
     <div className="reviews-page">
       
+      {/* --- SEO AYARLARI --- */}
+      <SEO 
+        title="Hasta Yorumları & Değerlendirmeler" 
+        description="Prof. Dr. Faruk Erzengin hakkında gerçek hasta yorumları, Google değerlendirmeleri ve tedavi süreçleri hakkındaki hasta görüşleri." 
+      />
+
       {/* 1. HERO BÖLÜMÜ - Fade In Up */}
       <header className="reviews-hero-section">
         <ScrollReveal animation="fade-up">

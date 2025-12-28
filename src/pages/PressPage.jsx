@@ -6,6 +6,9 @@ import './PressPage.css';
 // 1. Animasyon Bileşenini Import Ediyoruz
 import ScrollReveal from '../components/Animations/ScrollReveal';
 
+// 2. SEO Bileşenini Ekliyoruz (Çok Önemli)
+import SEO from '../components/SEO';
+
 const PressPage = () => {
   const [activeTab, setActiveTab] = useState('videos'); // Başlangıçta videolar açık olsun
 
@@ -16,6 +19,12 @@ const PressPage = () => {
   return (
     <div className="press-page">
       
+      {/* --- SEO AYARLARI --- */}
+      <SEO 
+        title="Basında Biz" 
+        description="Prof. Dr. Faruk Erzengin'in televizyon röportajları, gazete haberleri, katıldığı canlı yayınlar ve basında yer alan bilimsel çalışmaları." 
+      />
+
       {/* HEADER - Fade In */}
       <div className="page-header">
         <ScrollReveal animation="fade-up">

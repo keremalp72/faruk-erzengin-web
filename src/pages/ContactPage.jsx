@@ -6,12 +6,15 @@ import ScrollReveal from '../components/Animations/ScrollReveal';
 // 1. EmailJS Kütüphanesini Çağırıyoruz
 import emailjs from '@emailjs/browser';
 
+// 2. SEO Bileşenini Ekliyoruz (Çok Önemli)
+import SEO from '../components/SEO';
+
 const ContactPage = () => {
   
   // Harita Seçimi İçin State
   const [activeMap, setActiveMap] = useState('europe');
   
-  // 2. Form Referansı Oluşturuyoruz
+  // 3. Form Referansı Oluşturuyoruz
   const form = useRef();
 
   useEffect(() => {
@@ -29,7 +32,7 @@ const ContactPage = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [isSent, setIsSent] = useState(false);
   
-  // 3. Gönderim Durumu İçin State (Butonu kilitlemek için)
+  // Gönderim Durumu İçin State
   const [isSending, setIsSending] = useState(false);
 
   const mapUrls = {
@@ -41,8 +44,7 @@ const ContactPage = () => {
     const { name, value } = e.target;
     if (isSent) setIsSent(false);
 
-    // EmailJS için HTML name'lerini 'user_name' yaptık ama 
-    // State'imiz hala 'name' bekliyor. Burada eşleştirme yapıyoruz:
+    // EmailJS name eşleştirmesi
     let stateKey = name;
     if (name === 'user_name') stateKey = 'name';
     if (name === 'user_phone') stateKey = 'phone';
@@ -80,23 +82,20 @@ const ContactPage = () => {
       return;
     }
 
-    // Gönderim Başlıyor
     setIsSending(true);
 
-    // 4. EmailJS Gönderim Fonksiyonu
-    // BURADAKİ ID BİLGİLERİNİ KENDİ PANELİNDEN ALIP YAPIŞTIR
     emailjs.sendForm(
-      'service_ss629lf',   // Örn: service_x9d8f7s
-      'template_0s1f0sr',  // Örn: template_8d7s6f5
-      form.current,        // Form referansı
-      '8r3vtuP8_9Qrw-Utv'    // Örn: user_H8s9d7f6g5h4
+      'service_ss629lf',
+      'template_0s1f0sr',
+      form.current,
+      '8r3vtuP8_9Qrw-Utv'
     )
     .then((result) => {
         console.log('Email başarıyla gönderildi:', result.text);
         setShowSuccess(true);
         setIsSent(true);
         setFormData({ name: '', phone: '', email: '', message: '' });
-        setIsSending(false); // Buton kilidini aç
+        setIsSending(false);
 
         setTimeout(() => {
           setShowSuccess(false);
@@ -104,13 +103,19 @@ const ContactPage = () => {
     }, (error) => {
         console.log('Hata oluştu:', error.text);
         alert("Mesaj gönderilirken bir hata oluştu, lütfen tekrar deneyiniz.");
-        setIsSending(false); // Buton kilidini aç
+        setIsSending(false);
     });
   };
 
   return (
     <div className="contact-page">
       
+      {/* --- SEO AYARLARI --- */}
+      <SEO 
+        title="İletişim & Randevu" 
+        description="Prof. Dr. Faruk Erzengin ile iletişime geçin. Mecidiyeköy ve Kadıköy muayenehane adresleri, telefon numaraları ve online randevu formu." 
+      />
+
       {/* BAŞARI MODALI */}
       <div className={`success-overlay ${showSuccess ? 'active' : ''}`}>
         <div className="success-modal">
@@ -197,12 +202,10 @@ const ContactPage = () => {
           <ScrollReveal animation="slide-in-left" className="contact-form-area" delay={0.2}>
             <h2 className="form-title">Bize Mesaj Gönderin</h2>
             
-            {/* 5. Form'a ref ekledik */}
             <form ref={form} onSubmit={handleSubmit} className="custom-form">
               <div className="form-row">
                 <div className="form-group">
                   <label>Adınız Soyadınız</label>
-                  {/* name="user_name" EmailJS için standarttır */}
                   <input 
                     type="text" 
                     name="user_name" 
@@ -215,7 +218,6 @@ const ContactPage = () => {
                 </div>
                 <div className="form-group">
                   <label>Telefon Numaranız</label>
-                  {/* name="user_phone" */}
                   <input 
                     type="tel" 
                     name="user_phone" 
@@ -229,7 +231,6 @@ const ContactPage = () => {
               </div>
               <div className="form-group">
                 <label>E-posta Adresiniz</label>
-                {/* name="user_email" */}
                 <input 
                   type="email" 
                   name="user_email" 
@@ -241,7 +242,6 @@ const ContactPage = () => {
               </div>
               <div className="form-group">
                 <label>Mesajınız</label>
-                {/* name="message" */}
                 <textarea 
                   rows="5" 
                   name="message" 
@@ -252,7 +252,6 @@ const ContactPage = () => {
                 ></textarea>
               </div>
               
-              {/* Buton gönderim sırasında pasif olur */}
               <button type="submit" className="btn-send-message" disabled={isSending}>
                 {isSending ? 'GÖNDERİLİYOR...' : 'GÖNDER'}
               </button>

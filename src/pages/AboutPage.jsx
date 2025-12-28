@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { FaUserMd, FaAward, FaMicroscope, FaBookReader, FaQuoteLeft, FaChevronLeft, FaChevronRight, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import './AboutPage.css';
 
-// 1. Animasyon Bileşeni
+// 1. SEO Bileşeni (Daha önce oluşturduğumuz bileşen)
+import SEO from '../components/SEO';
+
+// 2. Animasyon Bileşeni
 import ScrollReveal from '../components/Animations/ScrollReveal';
 
 // Data Importları
 import { publicationsData } from '../data/publicationsData';
-// YENİ: Blog Verisini Buradan Çekiyoruz (Yolunu Kendi Klasör Yapına Göre Ayarla)
-// Eğer blogData dosyan 'src/data/blogData.js' içindeyse:
 import { blogData } from '../data/blogData'; 
 
 // Slider Resimleri
@@ -17,11 +18,11 @@ import slide2 from '../assets/images/aboutme/hakkimda2.png';
 import slide3 from '../assets/images/aboutme/hakkimda3.png';
 import slide4 from '../assets/images/aboutme/hakkimda4.png';
 
-
 const AboutPage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [openPubIndex, setOpenPubIndex] = useState(0); 
 
+  // Slider resimleri dizisi (4. resim eklendi)
   const sliderImages = [ slide1, slide2, slide3, slide4 ];
 
   // Slider Mantığı
@@ -46,11 +47,14 @@ const AboutPage = () => {
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
-  // ARTIK 'blogPosts' DİYE BİR ARRAY TANIMLAMIYORUZ.
-  // DİREKT 'blogData'YI KULLANACAĞIZ.
-
   return (
     <div className="about-page">
+      
+      {/* --- SEO AYARLARI BURAYA EKLENDİ --- */}
+      <SEO 
+        title="Hakkımda" 
+        description="İstanbul Üniversitesi Tıp Fakültesi önceki dekanı Prof. Dr. Faruk Erzengin'in biyografisi, akademik kariyeri, tıbbi başarıları ve Nobel adaylığı süreci hakkında detaylı bilgiler." 
+      />
       
       {/* HEADER */}
       <div className="page-header">
@@ -207,16 +211,13 @@ const AboutPage = () => {
           </div>
         </ScrollReveal>
 
-        {/* 5. BLOG (YENİLENMİŞ - DİNAMİK VERİ) */}
+        {/* 5. BLOG */}
         <div className="blog-section-preview">
           <ScrollReveal animation="fade-up">
              <h3 className="section-heading-center">Güncel Sağlık Makaleleri</h3>
           </ScrollReveal>
           
           <div className="blog-grid">
-            {/* Burada blogData'nın sadece ilk 3 tanesini veya hepsini gösterebilirsin.
-                Şimdilik .slice(0, 3) ile ilk 3'ü gösteriyoruz ki sayfa çok uzamasın.
-                Hepsini göstermek istersen .slice kısmını kaldır. */}
             {blogData.slice(0, 3).map((post, idx) => (
               <ScrollReveal key={post.id} delay={idx * 0.2} animation="fade-up">
                 <div className="blog-card">
@@ -227,7 +228,6 @@ const AboutPage = () => {
                   <div className="blog-info">
                     <h4>{post.title}</h4>
                     <p>{post.excerpt}</p>
-                    {/* İleride Blog Detay Sayfasına Link Verilecek */}
                     <button className="read-more-btn">Devamını Oku →</button>
                   </div>
                 </div>
