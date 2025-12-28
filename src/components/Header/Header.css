@@ -170,6 +170,8 @@
   border: none;
   z-index: 1;
   overflow: hidden;
+  flex-shrink: 0;
+  white-space: nowrap;
   
   /* 2. Sihirli Kısım: Hareketli Arka Plan */
   background: linear-gradient(
@@ -284,7 +286,7 @@
 
 
 /* --- RESPONSIVE (MOBİL AYARLARI) --- */
-@media (max-width: 1150px) {
+@media (max-width: 1200px) {
 
   .top-bar { display: none; } /* Mobilde üst barı gizle */
   
@@ -430,8 +432,54 @@
 }
 
 /* Mobilde sticky animasyonunu zaten kapatmıştık, aynen koruyoruz */
-@media (max-width: 1150px) {
+@media (max-width: 1200px) {
   .header-wrapper.other-page-mode .main-header.sticky {
     animation: none !important;
+  }
+}
+body.menu-open {
+  overflow: hidden;
+  height: 100vh;
+}
+@media (max-width: 1200px) {
+  .nav-menu.active {
+    position: fixed !important; /* Bunu ekle */
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100vh; /* veya 'bottom: 0;' kullanabilirsin */
+    overflow-y: auto;
+    z-index: 1200;
+  }
+}
+/* --- MOBİL MENÜ SABİTLEME DÜZELTMESİ (EN ALTA EKLE) --- */
+
+@media screen and (max-width: 1200px) {
+  
+  /* Menü aktif olduğunda EKRANA ÇİVİLE */
+  .nav-menu.active {
+    position: fixed !important; /* Absolute değil, FIXED olmalı */
+    top: 0 !important;
+    right: 0 !important;
+    width: 300px !important; /* Menü genişliği */
+    height: 100vh !important; /* Tam ekran yüksekliği */
+    z-index: 99999 !important; /* Her şeyin üstünde */
+    overflow-y: auto !important; /* İçerik taşarsa menü içinde kaydır */
+    background-color: #fff !important;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.2) !important;
+    
+    /* Sayfa kaydırmasından etkilenmemesi için transform sıfırlama */
+    transform: none !important; 
+  }
+
+  /* Overlay (Gri perde) de sabitlenmeli */
+  .nav-overlay.active {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    /*z-index: 99998 !important; /* Menünün bir tık altında */
+    background-color: rgba(0,0,0,0.5) !important;
   }
 }
