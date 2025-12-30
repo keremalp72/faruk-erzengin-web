@@ -1,0 +1,634 @@
+/* --- GENEL BÖLÜM AYARLARI --- */
+.fm-section {
+    padding: 100px 0;
+    position: relative;
+    background-color: #fcfcfc;
+    overflow: hidden;
+}
+
+/* YENİ: Kenar Boşluklarını Ayarlayan Sınıf */
+.fm-container-padding {
+    padding-left: 5%;
+    padding-right: 5%;
+    /* Eğer container zaten global bir width'e sahipse, bu padding içeriği sıkıştırmaz, ferahlatır */
+}
+
+/* Dekoratif Arka Plan Işıkları */
+.fm-bg-blur {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.07;
+    z-index: 0;
+}
+.blur-1 { top: -100px; left: -100px; background: #002244; }
+.blur-2 { bottom: -100px; right: -100px; background: #C5A059; }
+
+/* --- BAŞLIK ALANI --- */
+.fm-header {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 1;
+}
+
+.fm-title {
+    font-size: 42px;
+    font-family: 'Georgia', serif;
+    color: #002244;
+    margin-bottom: 15px;
+}
+
+.gold-text { color: #C5A059; }
+
+.fm-divider {
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #002244 0%, #C5A059 100%);
+    margin: 0 auto 20px auto;
+    border-radius: 2px;
+}
+
+.fm-subtitle {
+    color: #666;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* --- GRID YAPISI --- */
+.fm-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 50px; /* Buton ile arasına mesafe */
+}
+
+/* --- KART STİLLERİ (Aynı kaldı) --- */
+.fm-card {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 1px solid rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Kart boylarını eşitlemek için */
+}
+
+.fm-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.12);
+}
+
+.card-top-decoration { height: 4px; width: 100%; background: #e0e0e0; }
+.gold-border { background: linear-gradient(90deg, #C5A059, #e6c88b); }
+
+.video-frame {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    background: #000;
+}
+.video-frame iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+.fm-card-content {
+    padding: 30px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.fm-tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.fm-card h3 {
+    font-size: 24px;
+    font-family: 'Georgia', serif;
+    color: #002244;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.fm-card p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* ATV Özel */
+.live-badge {
+    position: absolute;
+    top: 15px; left: 15px;
+    background: rgba(204, 0, 0, 0.9);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    pointer-events: none;
+}
+.dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; animation: blink 1.5s infinite; }
+@keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+
+.news-header { display: flex; align-items: start; gap: 15px; margin-bottom: 15px; }
+.news-icon { font-size: 24px; color: #C5A059; flex-shrink: 0; margin-top: 5px; }
+.highlight-desc { font-weight: 500; color: #333; margin-bottom: 0; /* Buton kalktığı için bottom margin'i sıfırladık */ }
+
+
+/* --- YENİ: ORTALANMIŞ BÜYÜK BUTON ALANI --- */
+.fm-action-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 80px;
+}
+
+.fm-big-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    background: linear-gradient(135deg, #002244 0%, #003366 100%);
+    color: #fff;
+    padding: 18px 50px;
+    border-radius: 50px; /* Hap şeklinde */
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 25px rgba(0, 34, 68, 0.3);
+    border: 2px solid transparent;
+}
+
+.btn-icon-circle {
+    width: 35px; height: 35px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #C5A059;
+    transition: 0.3s;
+}
+
+.fm-big-cta-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 34, 68, 0.5);
+    background: #fff;
+    color: #002244;
+    border-color: #002244;
+}
+
+.fm-big-cta-btn:hover .btn-icon-circle {
+    background: #002244;
+    color: #fff;
+}
+
+.fm-cta-note {
+    margin-top: 15px;
+    color: #888;
+    font-size: 14px;
+}
+
+
+/* --- GALERİ / SLIDER --- */
+.fm-gallery-section {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.03);
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-title {
+    text-align: center;
+    font-size: 24px;
+    color: #002244;
+    font-family: 'Georgia', serif;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.fm-slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    position: relative;
+}
+
+.fm-slide-wrapper {
+    flex-grow: 1;
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.fm-slide-image-box { width: 100%; height: 100%; position: relative; }
+.fm-slide-image-box img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    transition: transform 0.5s ease;
+}
+
+.fm-slide-caption {
+    position: absolute;
+    bottom: 0; left: 0; width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    padding: 40px 20px 20px 20px;
+    color: #fff; text-align: center;
+}
+.fm-slide-caption span { font-size: 18px; font-weight: 500; letter-spacing: 0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+
+.slider-nav-btn {
+    width: 50px; height: 50px; border-radius: 50%;
+    background: #fff; border: 1px solid #eee;
+    color: #002244; font-size: 20px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.1); z-index: 5;
+}
+.slider-nav-btn:hover { background: #C5A059; color: #fff; transform: scale(1.1); }
+
+.fm-slider-dots { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+.dot-indicator { width: 12px; height: 12px; border-radius: 50%; background: #ddd; cursor: pointer; transition: 0.3s; }
+.dot-indicator.active { background: #C5A059; transform: scale(1.2); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .fm-grid { grid-template-columns: 1fr; gap: 40px; }
+    .fm-title { font-size: 32px; }
+    
+    .fm-container-padding {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .fm-slide-wrapper { height: 300px; }
+    .slider-nav-btn {
+        width: 40px; height: 40px; font-size: 16px;
+        position: absolute; top: 50%; transform: translateY(-50%);
+        background: rgba(255,255,255,0.7);
+    }
+    .prev { left: 10px; }
+    .next { right: 10px; }
+    .fm-big-cta-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+/* ... Üstteki kodlar (fm-section, fm-header, fm-grid vb.) AYNEN KALSIN ... */
+
+/* ... fm-action-wrapper ve fm-big-cta-btn kodları da AYNEN KALSIN ... */
+
+
+/* =========================================
+   YENİ FOTOĞRAF GALERİSİ STİLLERİ (En Alta Ekleyin)
+========================================= */
+
+.fm-gallery-section {
+    margin-top: 80px;
+    /* Arka planı kaldırdık, direkt sayfa zemininde duracak, daha ferah */
+    padding-top: 30px;
+    border-top: 1px solid rgba(0,0,0,0.05); /* Hafif bir ayraç çizgi */
+    position: relative;
+}
+
+/* Galeri Başlık ve Butonlar Satırı */
+.gallery-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.gallery-title {
+    font-size: 28px;
+    color: #002244;
+    font-family: 'Georgia', serif;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.gallery-nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.g-nav-btn {
+    width: 45px; height: 45px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #eee;
+    color: #002244;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.g-nav-btn:hover {
+    background: #002244;
+    color: #fff;
+    border-color: #002244;
+}
+
+/* Kaydırılabilir Alan (Track) */
+.fm-gallery-track {
+    display: flex;
+    gap: 25px;
+    overflow-x: auto; /* Yatay kaydırma */
+    scroll-snap-type: x mandatory; /* Telefondaki gibi "tık tık" kayma hissi */
+    padding-bottom: 30px; /* Scrollbar için pay */
+    scrollbar-width: none; /* Firefox scrollbar gizle */
+    -ms-overflow-style: none; /* IE/Edge scrollbar gizle */
+}
+
+/* Chrome/Safari için Scrollbar Gizleme */
+.fm-gallery-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* Tekil Galeri Kartı */
+.fm-gallery-item {
+    flex: 0 0 auto; /* Kartlar sıkışmasın */
+    width: 300px; /* Her kartın sabit genişliği */
+    scroll-snap-align: start; /* Kayınca başa hizalansın */
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.fm-gallery-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+}
+
+/* Resim Alanı */
+.g-img-box {
+    width: 100%;
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+}
+
+.g-img-box img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: top center;
+    transition: transform 0.5s ease;
+}
+
+/* Hover'da resim hafif büyüsün */
+.fm-gallery-item:hover .g-img-box img {
+    transform: scale(1.1);
+}
+
+/* Resim Üzeri Hafif Karartı (Lüks hissi için) */
+.g-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, transparent 60%, rgba(0, 34, 68, 0.6) 100%);
+    opacity: 0.8;
+}
+
+/* Alt Bilgi Alanı */
+.g-caption-box {
+    padding: 20px;
+    position: relative;
+}
+
+.g-caption-box h4 {
+    font-size: 18px;
+    color: #002244;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.g-caption-box span {
+    font-size: 14px;
+    color: #C5A059;
+    font-weight: 500;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .gallery-nav-buttons {
+        display: none; /* Mobilde oklara gerek yok, parmakla kayar */
+    }
+    .fm-gallery-item {
+        width: 260px; /* Mobilde kartlar biraz daha daralsın */
+    }
+    .g-img-box {
+        height: 180px;
+    }
+}
+/* ... Üstteki kodlar (fm-section, fm-header, fm-grid vb.) AYNEN KALSIN ... */
+/* ... fm-action-wrapper ve fm-big-cta-btn kodları da AYNEN KALSIN ... */
+
+
+/* =========================================
+   GÜNCELLENMİŞ FOTOĞRAF GALERİSİ STİLLERİ
+========================================= */
+
+.fm-gallery-section {
+    margin-top: 80px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+}
+
+.gallery-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.gallery-title {
+    font-size: 28px;
+    color: #002244;
+    font-family: 'Georgia', serif;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.gallery-nav-buttons { display: flex; gap: 10px; }
+.g-nav-btn {
+    width: 45px; height: 45px; border-radius: 50%;
+    background: #fff; border: 1px solid #eee; color: #002244; font-size: 18px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+.g-nav-btn:hover { background: #002244; color: #fff; border-color: #002244; }
+
+/* Kaydırılabilir Alan (Track) */
+.fm-gallery-track {
+    display: flex;
+    gap: 20px; /* Boşluk biraz azaltıldı */
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 30px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.fm-gallery-track::-webkit-scrollbar { display: none; }
+
+/* GÜNCELLENEN Tekil Galeri Kartı */
+.fm-gallery-item {
+    flex: 0 0 auto;
+    width: 280px; /* Kart genişliği */
+    height: 280px; /* Kareye yakın bir form */
+    scroll-snap-align: start;
+    background: #fff;
+    border-radius: 16px; /* Daha yuvarlak köşeler */
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.03);
+    cursor: pointer; /* Tıklanabilir olduğunu göster */
+    position: relative;
+}
+
+.fm-gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+/* GÜNCELLENEN Resim Alanı */
+.g-img-box {
+    width: 100%;
+    height: 100%; /* Tüm kartı kaplasın */
+    position: relative;
+}
+
+.g-img-box img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    transition: transform 0.5s ease;
+}
+
+.fm-gallery-item:hover .g-img-box img {
+    transform: scale(1.05); /* Hafif zoom efekti */
+}
+
+/* GÜNCELLENEN Overlay ve Zoom Yazısı */
+.g-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 34, 68, 0.4); /* Daha şeffaf koyu katman */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex; align-items: center; justify-content: center;
+}
+
+.fm-gallery-item:hover .g-overlay {
+    opacity: 1;
+}
+
+.zoom-hint {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    background: rgba(0,0,0,0.5);
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.3);
+    pointer-events: none; /* Yazıya tıklanınca altındaki resim algılasın */
+}
+
+/* --- ESKİ CAPTION STİLLERİ SİLİNDİ --- */
+
+
+/* =========================================
+   YENİ LIGHTBOX (TAM EKRAN MODAL) STİLLERİ
+========================================= */
+.lightbox-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.9); /* Çok koyu arka plan */
+    z-index: 9999; /* En üstte olsun */
+    display: flex; align-items: center; justify-content: center;
+    padding: 40px;
+    animation: fadeIn 0.3s ease;
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 90%;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    animation: scaleIn 0.3s ease;
+}
+
+.lightbox-content img {
+    width: 100%;
+    height: auto;
+    max-height: 85vh; /* Ekran boyunu taşmasın */
+    display: block;
+    object-fit: contain;
+}
+
+.lightbox-close-btn {
+    position: absolute;
+    top: 20px; right: 30px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 36px;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 10000;
+}
+
+.lightbox-close-btn:hover {
+    color: #C5A059;
+    transform: rotate(90deg);
+}
+
+/* Lightbox Animasyonları */
+@keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+}
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .gallery-nav-buttons { display: none; }
+    .fm-gallery-item { width: 220px; height: 220px; } /* Mobilde daha küçük kareler */
+    .lightbox-overlay { padding: 20px; }
+    .lightbox-close-btn { top: 10px; right: 15px; font-size: 28px; }
+}

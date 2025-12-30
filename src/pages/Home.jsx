@@ -6,6 +6,7 @@ import Reviews from '../components/Reviews/Reviews';
 
 // 1. SEO Bileşenini Çağırıyoruz (En Önemli Adım)
 import SEO from '../components/SEO';
+import FeaturedMedia from '../components/FeaturedMedia/FeaturedMedia';
 
 const Home = () => {
   return (
@@ -17,7 +18,7 @@ const Home = () => {
       />
 
       <Hero />
-      {/* Ana Sayfa Hakkımda Özeti (Components klasöründeki) */}
+      <FeaturedMedia />
       <About /> 
       <Services />
       <Reviews />

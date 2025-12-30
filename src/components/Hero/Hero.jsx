@@ -28,7 +28,7 @@ const itemVariants = {
 };
 
 // --- YENİ: DAKTİLO EFEKTİ VARYANTLARI ---
-const badgeText = "Kardiyolog ve İç Hastalıkları Uzmanı";
+const badgeText = "İç Hastalıkları ve Kalp - Damar Hastalıkları Uzmanı";
 
 // Cümlenin tamamını kapsayan varyant (Harfleri sıraya sokar)
 const typewriterSentence = {

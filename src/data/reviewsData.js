@@ -8,7 +8,7 @@ export const reviewsData = [
       comment: "Faruk bey kardeşim ben bu yaşıma geldim  ömrümde senin gibi  en üst düzeyde bilgi sahibi olan ve bu kadar Alçak gönüllü bir insan görmedim,Tanımadım.Benim dostum dediğim insan bir bulunmaz cevher çıktı.Önce dost ve kardeş olduk yıllar sonrada ödül alma vesilesi ile ilk defa 3.Ay içinde ve bu günde senin paylaştığın videon ile seni gerçekten  tanımış oldum.Her ne olursan ol Sen benim gene yoldaş kafa dengi,Dostum  ve yıllardır ünvanını bilmeden değer verdiğim biricik faruk kardeşimsin.Sen benim için öylede kalacaksın biz seninle hiç bir menfaat beklemeden bu güne kadar dostluğumuzu sürdürdük bizler  bu dünyadan  göç edene kadarda böyle kalsın yüce Yaradandan Temennim budur..."
     },
     {
-      id: 6,
+      id: 2,
       name: "Turgut Koçar",
       date: "1 Yıl önce",
       rating: 5,
