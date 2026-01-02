@@ -1,10 +1,10 @@
 import React, { useState, useRef } from 'react';
 import './FeaturedMedia.css';
-import { FaQuoteRight, FaCalendarCheck, FaChevronLeft, FaChevronRight, FaImages, FaTimes, FaPlayCircle } from 'react-icons/fa';
+import { FaQuoteRight, FaCalendarCheck, FaChevronLeft, FaChevronRight, FaImages, FaTimes } from 'react-icons/fa';
 import ScrollReveal from '../Animations/ScrollReveal';
 import { Link } from 'react-router-dom';
 
-// Image Imports
+// Resim Importları
 import img1 from '../../assets/images/aboutme/about12-min.png';
 import img2 from '../../assets/images/aboutme/about10-min.png';
 import img3 from '../../assets/images/aboutme/about9-min.png';
@@ -22,9 +22,6 @@ import img14 from '../../assets/images/aboutme/about5-min.png';
 import img15 from '../../assets/images/aboutme/about15-min.png';
 import img16 from '../../assets/images/aboutme/about11-min.png';
 import img17 from '../../assets/images/aboutme/about8-min.png';
-
-
-import tanitimvideosu from '../../assets/videos/sorucevap.mp4';
 
 const FeaturedMedia = () => {
   const galleryRef = useRef(null);
@@ -89,7 +86,7 @@ const FeaturedMedia = () => {
           </div>
         </ScrollReveal>
 
-        {/* --- VIDEO GRID (UPDATED TO 3 COLUMNS) --- */}
+        {/* --- VIDEO GRID (TEKRAR 2 SÜTUN) --- */}
         <div className="fm-grid">
           
           {/* 1. VIDEO: Biography */}
@@ -135,39 +132,6 @@ const FeaturedMedia = () => {
                 </div>
                 <p className="highlight-desc">
                   Prof. Dr. Erzengin, ameliyatsız damar açma tedavisiyle kalp hastalıklarında yeni bir dönem başlattı.
-                </p>
-              </div>
-            </div>
-          </ScrollReveal>
-
-           {/* 3. NEW VIDEO: 17 Min Special */}
-                    <ScrollReveal animation="fade-up" delay={0.3}>
-            <div className="fm-card video-card">
-              <div className="card-top-decoration"></div>
-              <div className="video-frame">
-                
-                {/* YEREL VİDEO OYNATICI (HTML5 Video Tag) */}
-                <video 
-                  width="100%" 
-                  height="100%" 
-                  controls 
-                  controlsList="nodownload" // İndirmeyi kapatır
-                  className="local-video" // CSS'te stil vereceğiz
-                  // poster={img1} // İsterseniz bir kapak resmi (thumbnail) koyabilirsiniz
-                >
-                  <source src={tanitimvideosu} type="video/mp4" />
-                  Tarayıcınız bu videoyu desteklemiyor.
-                </video>
-
-                {/* Süre Rozeti */}
-                <div className="duration-badge"><FaPlayCircle /> Soru-Cevap</div>
-              </div>
-              
-              <div className="fm-card-content">
-                <div className="fm-tag">Özel Röportaj</div>
-                <h3>Prof. Dr. Faruk Erzengin Kimdir?</h3>
-                <p>
-                  Prof. Dr. Faruk Erzengin hakkında bilinmeyenleri öğrenin.
                 </p>
               </div>
             </div>

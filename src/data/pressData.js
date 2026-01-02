@@ -39,6 +39,14 @@ export const pressData = {
         date: "2025",
         videoUrl: "https://www.youtube.com/embed/qcr3tWmyAD8",
         desc: "Prof. Dr. Faruk Erzengin, İstanbul Üniversitesi’nin geleceği ve bilimsel vizyonu hakkında konuşuyor."
+      },
+      {
+        id: 5,
+        title: "BY-PAS ve Stent Tarih Oluyor – Prof. Dr. Faruk Erzengin",
+        channel: "ATV Haberleri",
+        date: "2015",
+        videoUrl: "https://www.youtube.com/embed/watch?v=qVGggabOSRI",
+        desc: "Prof. Dr. Faruk Erzengin’in kalp damar hastalıklarında kullanılan bypass ve stent yöntemlerinin gelecekte önemini yitirebileceğini, yeni tedavi seçeneklerinin öne çıkacağını anlattığı bir konuşmadır."
       }
     ],
     news: [
