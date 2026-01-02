@@ -1,20 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { blogData } from '../data/blogData';
-import { FaCalendarAlt, FaUserMd, FaTag } from 'react-icons/fa';
+import { FaCalendarAlt, FaUserMd } from 'react-icons/fa'; // FaTag kullanılmıyorsa silebilirsin, ekli kalsın zararı yok
 import './BlogPage.css';
 
-// YENİ: Link import edildi
-import { Link } from 'react-router-dom';
+// DÜZELTME 1: useLocation buraya eklendi!
+import { Link, useLocation } from 'react-router-dom';
 
 import SEO from '../components/SEO';
 import ScrollReveal from '../components/Animations/ScrollReveal';
 import doctorProfileImg from '../assets/images/aboutme/hakkimda1.png'; 
 
 const BlogPage = () => {
-  // selectedPost state'ine gerek kalmadı, çünkü detaylar yeni sayfada açılacak.
-  const [activeCategory, setActiveCategory] = useState('Tümü');
+  const location = useLocation(); 
 
-  // Sayfa açılınca en tepeye çık
+  // Başlangıç değeri: Eğer dışarıdan state gelmişse onu al, yoksa 'Tümü'
+  const [activeCategory, setActiveCategory] = useState(location.state?.category || 'Tümü');
+
+  // DÜZELTME 2: URL'den (Detay sayfasından) yeni bir kategori verisi gelirse state'i güncelle
+  // Bu useEffect olmazsa, detay sayfasından tıklandığında filtreleme tetiklenmeyebilir.
+  useEffect(() => {
+    if (location.state?.category) {
+      setActiveCategory(location.state.category);
+    }
+  }, [location.state]);
+
+  // Sayfa açılınca veya kategori değişince en tepeye çık
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [activeCategory]);
@@ -71,7 +81,6 @@ const BlogPage = () => {
               filteredPosts.map((post, index) => (
                 <ScrollReveal key={post.id} animation="fade-up" delay={index * 0.1}>
                   
-                  {/* KART YAPISI (Link ile sarmalandı veya buton link yapıldı) */}
                   <article className="bp-card">
                     
                     {/* Resim Alanı */}
@@ -87,14 +96,12 @@ const BlogPage = () => {
                         <span><FaUserMd /> Prof. Dr. Faruk Erzengin</span>
                       </div>
                       
-                      {/* Başlığa tıklandığında da gitmesi için Link */}
                       <h3 className="bp-card-title">
                         <Link to={`/blog/${post.id}`}>{post.title}</Link>
                       </h3>
                       
                       <p className="bp-card-excerpt">{post.excerpt}</p>
                       
-                      {/* BUTON ARTIK GERÇEK BİR LINK */}
                       <Link to={`/blog/${post.id}`} className="bp-read-more">
                         Devamını Oku →
                       </Link>
@@ -152,8 +159,7 @@ const BlogPage = () => {
             <div className="bp-widget">
               <h4 className="bp-widget-title">Son Yazılar</h4>
               <div className="bp-recent-list">
-                {blogData.slice(0, 3).map(item => (
-                  // Buradaki Link'i de güncelledik
+              {[...blogData].reverse().slice(0, 3).map(item => (
                   <Link to={`/blog/${item.id}`} key={item.id} className="bp-recent-item">
                     <img src={item.image} alt={item.title} />
                     <div>

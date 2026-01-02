@@ -127,7 +127,7 @@ const BlogPostDetail = () => {
                   <li><Link to="/blog" className="cat-link">Tümü <span className="count">({blogData.length})</span></Link></li>
                   {Object.entries(categoryCounts).map(([cat, count]) => (
                     <li key={cat}>
-                      <Link to="/blog" className="cat-link">{cat} <span className="count">({count})</span></Link>
+                      <Link to="/blog" state={{ category: cat }} className="cat-link">{cat} <span className="count">({count})</span></Link>
                     </li>
                   ))}
                 </ul>
@@ -138,7 +138,7 @@ const BlogPostDetail = () => {
               <div className="bd-widget">
                 <h4 className="widget-header">Son Yazılar</h4>
                 <div className="recent-posts-list">
-                  {blogData.slice(0, 3).map((item) => (
+                {[...blogData].reverse().slice(0, 3).map((item) => (
                     <Link to={`/blog/${item.id}`} key={item.id} className="recent-post-item">
                       <img src={item.image} alt={item.title} />
                       <div className="rp-info">

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { treatmentsData } from '../data/treatmentsData';
 import { blogData } from '../data/blogData'; 
+// Link bileşenini ekliyoruz
+import { Link } from 'react-router-dom'; 
 import { FaArrowRight, FaTimes, FaStethoscope, FaSyringe, FaNotesMedical, FaUserMd, FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import './ServicesPage.css';
 
-// 1. Animasyon Bileşenini Import Ediyoruz
+// Animasyon ve SEO
 import ScrollReveal from '../components/Animations/ScrollReveal';
-
-// 2. SEO Bileşenini Ekliyoruz (Çok Önemli)
 import SEO from '../components/SEO';
 
 import doctorProfileImg from '../assets/images/aboutme/hakkimda1.png'; 
@@ -19,7 +19,6 @@ const ServicesPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Modal açılınca scroll engelleme
   useEffect(() => {
     if (selectedTreatment) {
       document.body.style.overflow = 'hidden';
@@ -31,13 +30,12 @@ const ServicesPage = () => {
   return (
     <div className="tp-page-wrapper">
       
-      {/* --- SEO AYARLARI --- */}
       <SEO 
         title="Tedaviler & Uzmanlık Alanları" 
-        description="Prof. Dr. Faruk Erzengin'in uzmanlık alanları: Kalp damar hastalıkları, hipertansiyon, diyabetik ayak, ritim bozukluğu ve iç hastalıkları tedavileri hakkında detaylı bilgiler." 
+        description="Prof. Dr. Faruk Erzengin'in uzmanlık alanları..." 
       />
 
-      {/* HEADER - Fade In */}
+      {/* HEADER */}
       <div className="tp-page-header">
         <ScrollReveal animation="fade-up">
           <div className="container">
@@ -49,10 +47,9 @@ const ServicesPage = () => {
 
       <div className="tp-layout">
         
-        {/* --- SOL TARAFA: ANA İÇERİK (KARTLAR) --- */}
+        {/* SOL TARAFA: ANA İÇERİK */}
         <div className="tp-main-content">
           
-          {/* Giriş Yazısı */}
           <ScrollReveal animation="fade-up" delay={0.2}>
             <div className="tp-intro-section">
               <h2>Uzmanlık Alanları ve Tedaviler</h2>
@@ -63,7 +60,6 @@ const ServicesPage = () => {
             </div>
           </ScrollReveal>
 
-          {/* KARTLAR GRID - Sırayla Gelme Efekti */}
           <div className="tp-treatments-grid">
             {treatmentsData.map((item, index) => (
               <ScrollReveal key={item.id} animation="fade-up" delay={index * 0.1}>
@@ -87,10 +83,10 @@ const ServicesPage = () => {
           </div>
         </div>
 
-        {/* --- SAĞ TARAF: SIDEBAR (Sağdan Kayarak Gelsin) --- */}
+        {/* SAĞ TARAF: SIDEBAR */}
         <aside className="tp-sidebar">
           
-          {/* 1. KUTU: PROFİL */}
+          {/* PROFİL */}
           <ScrollReveal animation="slide-in-right" delay={0.2}>
             <div className="tp-widget tp-profile-box">
               <div className="tp-profile-img">
@@ -100,26 +96,30 @@ const ServicesPage = () => {
               <span className="tp-profile-role">Kardiyoloji & İç Hastalıkları Uzmanı</span>
               
               <div className="tp-social-row">
-                <a href="https://www.facebook.com/faruk.erzengin.2025/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="tp-social-btn"><FaFacebookF /></a>
-                {/*<a href="#" target="_blank" rel="noopener noreferrer" className="tp-social-btn"><FaTwitter /></a>*/}
-                <a href="https://www.instagram.com/farukerzengin/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="tp-social-btn"><FaInstagram /></a>
-                <a href="https://www.linkedin.com/in/prof-dr-faruk-erzengin-676391130/" target="_blank" rel="noopener noreferrer" aria-label="Linkedin" className="tp-social-btn"><FaLinkedinIn /></a>
+                <a href="https://www.facebook.com/faruk.erzengin.2025/" target="_blank" rel="noopener noreferrer" className="tp-social-btn"><FaFacebookF /></a>
+                <a href="https://www.instagram.com/farukerzengin/" target="_blank" rel="noopener noreferrer" className="tp-social-btn"><FaInstagram /></a>
+                <a href="https://www.linkedin.com/in/prof-dr-faruk-erzengin-676391130/" target="_blank" rel="noopener noreferrer" className="tp-social-btn"><FaLinkedinIn /></a>
               </div>
             </div>
           </ScrollReveal>
 
-          {/* 2. KUTU: SON GÖNDERİLER */}
+          {/* SON GÖNDERİLER (DÜZELTİLEN KISIM) */}
           <ScrollReveal animation="slide-in-right" delay={0.4}>
             <div className="tp-widget">
               <h4 className="tp-widget-title">Son Makaleler</h4>
               <div>
                 {blogData && blogData.slice(0, 3).map((post) => (
                   <div key={post.id} className="tp-post-item">
-                    <div className="tp-post-thumb">
+                    {/* Resme tıklayınca da gitmesi için Link ile sarmaladık */}
+                    <Link to={`/blog/${post.id}`} className="tp-post-thumb">
                       <img src={post.image} alt={post.title} />
-                    </div>
+                    </Link>
+                    
                     <div className="tp-post-info">
-                      <a href="/blog">{post.title}</a>
+                      {/* Başlığa tıklayınca ID'ye göre gitmesi için Link kullandık */}
+                      <Link to={`/blog/${post.id}`}>
+                        {post.title}
+                      </Link>
                       <span className="tp-post-date">{post.date}</span>
                     </div>
                   </div>
@@ -128,7 +128,7 @@ const ServicesPage = () => {
             </div>
           </ScrollReveal>
 
-          {/* 3. KUTU: İLETİŞİM */}
+          {/* İLETİŞİM */}
           <ScrollReveal animation="slide-in-right" delay={0.6}>
             <div className="tp-widget">
               <h4 className="tp-widget-title">Merkez Ofis (Avrupa)</h4>
@@ -150,7 +150,7 @@ const ServicesPage = () => {
                   <span>farukerzengin@gmail.com</span>
                 </li>
               </ul>
-              <a href="/iletisim" className="tp-btn-cta">Hemen Randevu Al</a>
+              <Link to="/iletisim" className="tp-btn-cta">Hemen Randevu Al</Link>
             </div>
           </ScrollReveal>
 
@@ -158,7 +158,7 @@ const ServicesPage = () => {
 
       </div>
 
-      {/* --- MODAL (POP-UP) --- */}
+      {/* MODAL (POP-UP) */}
       {selectedTreatment && (
         <div className="tp-modal-overlay" onClick={() => setSelectedTreatment(null)}>
           <div className="tp-modal-content" onClick={(e) => e.stopPropagation()}>
@@ -200,7 +200,7 @@ const ServicesPage = () => {
               </div>
 
               <div className="tp-modal-footer">
-                <a href="/iletisim" className="tp-btn-modal">Randevu Al</a>
+                <Link to="/iletisim" className="tp-btn-modal">Randevu Al</Link>
               </div>
             </div>
           </div>
