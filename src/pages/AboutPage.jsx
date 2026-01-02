@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react';
+// YENİ: Link bileşenini buraya ekledik
+import { Link } from 'react-router-dom'; 
 import { FaUserMd, FaAward, FaMicroscope, FaBookReader, FaQuoteLeft, FaChevronLeft, FaChevronRight, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import './AboutPage.css';
 
-// 1. SEO Bileşeni (Daha önce oluşturduğumuz bileşen)
 import SEO from '../components/SEO';
-
-// 2. Animasyon Bileşeni
 import ScrollReveal from '../components/Animations/ScrollReveal';
 
-// Data Importları
 import { publicationsData } from '../data/publicationsData';
 import { blogData } from '../data/blogData'; 
 
-// Slider Resimleri
 import slide1 from '../assets/images/aboutme/hakkimda1.png';
 import slide2 from '../assets/images/aboutme/hakkimda2.png';
 import slide3 from '../assets/images/aboutme/hakkimda3.png';
@@ -22,10 +19,8 @@ const AboutPage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [openPubIndex, setOpenPubIndex] = useState(0); 
 
-  // Slider resimleri dizisi (4. resim eklendi)
   const sliderImages = [ slide1, slide2, slide3, slide4 ];
 
-  // Slider Mantığı
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev === sliderImages.length - 1 ? 0 : prev + 1));
@@ -36,7 +31,6 @@ const AboutPage = () => {
   const nextSlide = () => setCurrentSlide((prev) => (prev === sliderImages.length - 1 ? 0 : prev + 1));
   const prevSlide = () => setCurrentSlide((prev) => (prev === 0 ? sliderImages.length - 1 : prev - 1));
 
-  // Accordion Mantığı
   const toggleAccordion = (index) => {
     if (openPubIndex === index) {
       setOpenPubIndex(-1); 
@@ -50,7 +44,6 @@ const AboutPage = () => {
   return (
     <div className="about-page">
       
-      {/* --- SEO AYARLARI BURAYA EKLENDİ --- */}
       <SEO 
         title="Hakkımda" 
         description="İstanbul Üniversitesi Tıp Fakültesi önceki dekanı Prof. Dr. Faruk Erzengin'in biyografisi, akademik kariyeri, tıbbi başarıları ve Nobel adaylığı süreci hakkında detaylı bilgiler." 
@@ -113,7 +106,7 @@ const AboutPage = () => {
 
         {/* 2. DETAYLI METİN BLOKLARI */}
         <div className="detailed-bio-wrapper">
-           
+           {/* ... (Bu kısımlar aynı kaldı, özet geçiyorum) ... */}
            {/* BLOK 1 */}
            <ScrollReveal delay={0.1} animation="fade-up">
              <div className="content-block">
@@ -169,7 +162,6 @@ const AboutPage = () => {
               </p>
             </div>
            </ScrollReveal>
-
         </div>
 
         {/* 3. MOTTO */}
@@ -214,7 +206,7 @@ const AboutPage = () => {
         {/* 5. BLOG */}
         <div className="blog-section-preview">
           <ScrollReveal animation="fade-up">
-             <h3 className="section-heading-center">Güncel Sağlık Makaleleri</h3>
+              <h3 className="section-heading-center">Güncel Sağlık Makaleleri</h3>
           </ScrollReveal>
           
           <div className="blog-grid">
@@ -228,7 +220,12 @@ const AboutPage = () => {
                   <div className="blog-info">
                     <h4>{post.title}</h4>
                     <p>{post.excerpt}</p>
-                    <button className="read-more-btn">Devamını Oku →</button>
+                    
+                    {/* DÜZELTİLEN KISIM: Button yerine Link kullanıldı */}
+                    <Link to={`/blog/${post.id}`} className="read-more-btn">
+                      Devamını Oku →
+                    </Link>
+
                   </div>
                 </div>
               </ScrollReveal>

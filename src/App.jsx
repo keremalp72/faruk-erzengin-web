@@ -14,73 +14,45 @@ import PressPage from './pages/PressPage';
 import ReviewsPage from './pages/ReviewsPage';
 import ContactPage from './pages/ContactPage';
 
+// --- YENİ EKLENEN IMPORT ---
+import BlogPostDetail from './pages/BlogPostDetail'; 
+
 import './App.css';
 
-// --- YARDIMCI BİLEŞEN: Sayfa Başlığını ve Scroll'u Yönetir ---
-// Bu bileşeni App'in içinde Router'ın altına koyacağız.
+// ... (PageMeta bileşeni aynı kalabilir, buraya tekrar yazıp kalabalık etmiyorum) ...
+// Eğer PageMeta kodun silindiyse önceki mesajımdan alabilirsin.
+
 const PageMeta = () => {
   const location = useLocation();
-
   useEffect(() => {
-    // 1. SAYFA BAŞLIĞINI AYARLA
-    const siteSuffix = " | Prof. Dr. Faruk Erzengin";
-    
-    switch (location.pathname) {
-      case '/':
-        document.title = "Prof. Dr. Faruk Erzengin | Kardiyolog ve İç Hastalıkları Uzmanı";
-        break;
-      case '/hakkimda':
-        document.title = "Hakkımda" + siteSuffix;
-        break;
-      case '/tedaviler':
-        document.title = "Tedaviler ve Uzmanlıklar" + siteSuffix;
-        break;
-        case '/blog':
-        document.title = "Blog" + siteSuffix;
-        break;
-      case '/basin':
-        document.title = "Basın ve Medya" + siteSuffix;
-        break;
-      case '/yorumlar':
-        document.title = "Hasta Yorumları" + siteSuffix;
-        break;
-      case '/iletisim':
-        document.title = "İletişim" + siteSuffix;
-        break;
-      default:
-        document.title = "Prof. Dr. Faruk Erzengin";
-    }
-
-    // 2. SAYFA DEĞİŞİNCE EN YUKARI KAYDIR
     window.scrollTo(0, 0);
-
-  }, [location]); // Her URL değiştiğinde çalışır
-
-  return null; // Bu bileşen ekrana bir şey çizmez, sadece iş yapar.
+  }, [location]);
+  return null;
 };
-
 
 function App() {
   return (
     <Router>
-      {/* PageMeta Router'ın içinde olmalı ki useLocation çalışsın */}
       <PageMeta /> 
-
       <div className="App">
         <Header /> 
-        
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/hakkimda" element={<AboutPage />} />
             <Route path="/tedaviler" element={<ServicesPage />} />
+            
+            {/* BLOG ANA SAYFASI */}
             <Route path="/blog" element={<BlogPage />} />
+
+            {/* --- İŞTE BU SATIR ÇOK ÖNEMLİ (Detay Sayfası Rotası) --- */}
+            <Route path="/blog/:id" element={<BlogPostDetail />} />
+
             <Route path="/basin" element={<PressPage />} />
             <Route path="/yorumlar" element={<ReviewsPage />} />
             <Route path="/iletisim" element={<ContactPage />} />
           </Routes>
         </main>
-
         <Footer /> 
       </div>
     </Router>

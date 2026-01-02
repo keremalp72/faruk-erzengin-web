@@ -245,3 +245,34 @@
 .bp-filter-info button:hover {
   color: #c9302c;
 }
+/* --- LİNK RENK DÜZELTMESİ (MOR YAZI SORUNU) --- */
+
+/* Başlık Linki */
+.bp-card-title a {
+  color: #002244 !important; /* Her zaman koyu lacivert kal */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+/* Tıklanmış (Visited) olsa bile rengi değişmesin */
+.bp-card-title a:visited {
+  color: #002244 !important;
+}
+
+/* Hover (Üzerine gelince) */
+.bp-card-title a:hover {
+  color: #C5A059 !important; /* Altın rengi */
+}
+
+/* Devamını Oku Butonu Linki */
+.bp-read-more {
+  color: #C5A059 !important;
+  text-decoration: none;
+  font-weight: 700;
+}
+.bp-read-more:visited {
+  color: #C5A059 !important;
+}
+.bp-read-more:hover {
+  color: #002244 !important;
+}
