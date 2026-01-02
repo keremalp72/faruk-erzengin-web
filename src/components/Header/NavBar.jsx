@@ -59,7 +59,7 @@ useEffect(() => {
                
                <ul className="nav-links">
                  <li><NavLink to="/" className="nav-link" onClick={closeNav}>ANA SAYFA</NavLink></li>
-                 <li><NavLink to="/hakkimda" className="nav-link" onClick={closeNav}>HAKKIMDA</NavLink></li>
+                 <li><NavLink to="/hakkinda" className="nav-link" onClick={closeNav}>HAKKINDA</NavLink></li>
                  <li><NavLink to="/tedaviler" className="nav-link" onClick={closeNav}>TEDAVİLER</NavLink></li>
                  <li><NavLink to="/blog" className="nav-link" onClick={closeNav}>BLOG</NavLink></li>
                  <li><NavLink to="/basin" className="nav-link" onClick={closeNav}>BASIN</NavLink></li>

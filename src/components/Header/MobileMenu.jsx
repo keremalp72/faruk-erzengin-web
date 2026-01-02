@@ -23,7 +23,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
         {/* Menü Linkleri */}
         <ul className="mobile-nav-list">
           <li onClick={onClose}><a href="#home">Ana Sayfa</a></li>
-          <li onClick={onClose}><a href="#about">Hakkımda</a></li>
+          <li onClick={onClose}><a href="#about">Hakkında</a></li>
           <li onClick={onClose}><a href="#treatments">Tedaviler</a></li>
           <li onClick={onClose}><a href="#publications">Yayınlar</a></li>
           <li onClick={onClose}><a href="#reviews">Hasta Yorumları</a></li>

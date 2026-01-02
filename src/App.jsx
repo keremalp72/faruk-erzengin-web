@@ -39,7 +39,7 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/hakkimda" element={<AboutPage />} />
+            <Route path="/hakkinda" element={<AboutPage />} />
             <Route path="/tedaviler" element={<ServicesPage />} />
             
             {/* BLOG ANA SAYFASI */}

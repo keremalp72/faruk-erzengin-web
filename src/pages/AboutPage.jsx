@@ -45,7 +45,7 @@ const AboutPage = () => {
     <div className="about-page">
       
       <SEO 
-        title="Hakkımda" 
+        title="Hakkında" 
         description="İstanbul Üniversitesi Tıp Fakültesi önceki dekanı Prof. Dr. Faruk Erzengin'in biyografisi, akademik kariyeri, tıbbi başarıları ve Nobel adaylığı süreci hakkında detaylı bilgiler." 
       />
       
@@ -53,8 +53,8 @@ const AboutPage = () => {
       <div className="page-header">
         <ScrollReveal animation="fade-up">
           <div className="container">
-            <h1 className="page-title">Hakkımda</h1>
-            <p className="breadcrumb">Ana Sayfa / Hakkımda</p>
+            <h1 className="page-title">Hakkında</h1>
+            <p className="breadcrumb">Ana Sayfa / Hakkında</p>
           </div>
         </ScrollReveal>
       </div>
