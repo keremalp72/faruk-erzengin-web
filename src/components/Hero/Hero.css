@@ -2,14 +2,14 @@
 .hero-section {
   position: relative;
   width: 100%;
-  height: 100vh; /* Tam ekran */
-  min-height: 800px; /* Asla çok küçülmesin */
+  height: 100vh;
+  min-height: 700px;
   display: flex;
   align-items: center;
-  overflow: hidden; /* Taşan efektleri (Zoom gibi) gizle */
+  overflow: hidden;
 }
 
-/* --- ARKA PLAN (Zoom Animasyonlu) --- */
+/* --- ARKA PLAN --- */
 .hero-bg-wrapper {
   position: absolute;
   top: 0; left: 0;
@@ -21,7 +21,6 @@
   width: 100%; height: 100%;
   object-fit: cover;
   object-position: center;
-  /* Sinematik Yavaş Yaklaşma Efekti */
   animation: slowZoom 20s infinite alternate; 
 }
 
@@ -30,12 +29,12 @@
   to { transform: scale(1.1); }
 }
 
-/* Karartma Katmanı (Senin kodundaki gradient) */
+/* MASAÜSTÜ İÇİN KARARTMA (Overlay) */
 .hero-overlay {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  /* Soldan sağa koyu lacivertten şeffafa geçiş */
+  /* Soldan sağa geçiş */
   background: linear-gradient(90deg, rgba(0, 34, 68, 0.95) 0%, rgba(0, 34, 68, 0.7) 60%, rgba(0, 34, 68, 0.2) 100%);
   z-index: 1;
 }
@@ -46,13 +45,13 @@
   max-width: 1400px;
   margin: 0 auto;
   position: relative;
-  z-index: 2; /* Overlay'in üstünde */
+  z-index: 2;
   padding: 20px 20px;
-  padding-top: 180px;
+  padding-top: 100px;
 }
 
 .hero-content {
-  max-width: 900px; /* Genişlik arttırıldı */
+  max-width: 900px;
   color: #ffffff;
 }
 
@@ -67,19 +66,17 @@
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  
-  /* EKLENDİ: Harfler ayrıldığında boşlukların korunması için önemli */
   white-space: pre-wrap; 
 }
 
-/* --- BAŞLIK (DEVASA & GÜÇLÜ) --- */
+/* --- BAŞLIK --- */
 .hero-title {
   font-family: 'Georgia', serif;
-  font-size: 80px; /* Senin istediğin büyük font */
+  font-size: 80px; 
   line-height: 1.1;
   margin-bottom: 30px;
   font-weight: 800;
-  text-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Derinlik */
+  text-shadow: 0 10px 30px rgba(0,0,0,0.5); 
 }
 
 .title-prefix {
@@ -92,15 +89,69 @@
   letter-spacing: 1px;
 }
 
-/* --- AÇIKLAMA --- */
-.hero-description {
+/* --- VİDEO LİNKİ --- */
+.video-link-wrapper {
+  margin-top: 20px;
+  /* DESKTOP İÇİN DÜZENLEME: Video linki ile buton arası mesafe */
+  margin-bottom: 10px; 
+}
+
+.video-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  text-decoration: none;
+  color: #ffffff;
+  transition: 0.3s;
+}
+
+.play-icon-circle {
+  min-width: 70px; min-height: 70px;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  border-radius: 50%;
+  display: flex; justify-content: center; align-items: center;
+  border: 2px solid #C5A059;
+  transition: 0.4s;
+  position: relative;
+  box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
   font-size: 24px;
-  line-height: 1.6;
-  color: #f0f0f0;
-  margin-bottom: 50px;
-  max-width: 750px;
-  font-weight: 400;
-  text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+  color: #fff;
+}
+
+.play-icon-circle::before {
+  content: '';
+  position: absolute;
+  top: -5px; left: -5px; right: -5px; bottom: -5px;
+  border-radius: 50%;
+  border: 2px solid rgba(197, 160, 89, 0.6);
+  opacity: 0;
+  animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+.video-link:hover .play-icon-circle {
+  background-color: #C5A059;
+  color: #002244;
+  box-shadow: 0 0 40px rgba(197, 160, 89, 0.8);
+  transform: scale(1.1);
+}
+
+.video-link span {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+  transition: 0.3s;
+}
+
+.video-link:hover span {
+  color: #C5A059;
 }
 
 /* --- BUTONLAR --- */
@@ -108,9 +159,11 @@
   display: flex;
   gap: 25px;
   margin-bottom: 60px;
+  
+  /* DESKTOP REVİZE: Üstten boşluk ekledik (Video linkine yapışmasın) */
+  margin-top: 40px; 
 }
 
-/* 1. Buton: Altın Gradient */
 .btn-primary {
   background: linear-gradient(135deg, #C5A059 0%, #a68545 100%);
   color: #ffffff;
@@ -132,132 +185,119 @@
   color: #fff;
 }
 
-/* 2. Buton: Glassmorphism */
-.btn-secondary {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  color: #ffffff;
-  padding: 18px 45px;
-  border-radius: 8px;
-  font-weight: 700;
-  text-decoration: none;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  transition: all 0.4s ease;
-  font-size: 18px;
-  display: flex; align-items: center; gap: 10px;
-}
-
-.btn-secondary:hover {
-  background-color: #ffffff;
-  color: #002244;
-  border-color: #ffffff;
-  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
-  transform: translateY(-5px);
-}
-
 .btn-arrow { font-size: 16px; }
 
-/* --- VİDEO LİNKİ (GLOW & PULSE) --- */
-.video-link-wrapper {
-  margin-top: 20px;
-}
 
-.video-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 20px;
-  text-decoration: none;
-  color: #ffffff;
-  transition: 0.3s;
-}
+/* =======================================================
+   MOBİL VE TABLET DÜZENLEMESİ (REVİZE EDİLDİ)
+======================================================= */
 
-/* Play İkonu Dairesi */
-.play-icon-circle {
-  min-width: 70px; min-height: 70px;
-  flex-shrink: 0;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(5px);
-  border-radius: 50%;
-  display: flex; justify-content: center; align-items: center;
-  border: 2px solid #C5A059;
-  transition: 0.4s;
-  position: relative;
-  box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
-  font-size: 24px;
-  color: #fff;
-}
-
-/* Animasyonlu Dalga (Pulse) */
-.play-icon-circle::before {
-  content: '';
-  position: absolute;
-  top: -5px; left: -5px; right: -5px; bottom: -5px;
-  border-radius: 50%;
-  border: 2px solid rgba(197, 160, 89, 0.6);
-  opacity: 0;
-  animation: pulse-ring 2s infinite;
-}
-
-@keyframes pulse-ring {
-  0% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(1.5); opacity: 0; }
-}
-
-/* Hover Efektleri */
-.video-link:hover .play-icon-circle {
-  background-color: #C5A059;
-  color: #002244;
-  box-shadow: 0 0 40px rgba(197, 160, 89, 0.8);
-  transform: scale(1.1);
-}
-
-.video-link span {
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-  transition: 0.3s;
-}
-
-.video-link:hover span {
-  color: #C5A059;
-}
-
-
-/* --- RESPONSIVE --- */
-@media (max-width: 900px) {
-  .hero-container {
-    padding-top: 80px; /* Mobilde header daha kısa olduğu için daha az boşluk */
-  }
-  .hero-section {
-    min-height: 100vh;
-    padding-top: 80px;
-    height: auto; /* Mobilde içerik taşarsa uzasın */
-    padding-bottom: 50px;
-  }
-  .play-icon-circle {
-    width: 60px;
-    height: 60px;
-    /* Mobilde de minimum boyutları güncelliyoruz */
-    min-width: 60px; 
-    min-height: 60px;
-  }
-
-  .hero-bg-wrapper { height: 100vh; position: fixed; } /* Mobilde bg sabit kalsın */
-
-  .hero-title { font-size: 48px; }
-  .title-prefix { font-size: 28px; }
-  .hero-description { font-size: 18px; }
+@media (max-width: 1024px) {
   
-  .hero-buttons {
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
+  /* 1. Kapsayıcı Ayarı */
+  .hero-section {
+    align-items: flex-start;
+    height: 100vh;
+    min-height: 600px;
+    padding: 0;
   }
 
-  .btn-primary, .btn-secondary {
+  .hero-bg-wrapper {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+  }
+
+  .hero-bg-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: top center !important;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  /* 2. KARARTMA (OVERLAY) - REVİZE EDİLDİ */
+  .hero-overlay {
+    background: linear-gradient(
+      to bottom, 
+      rgba(0, 34, 68, 0.85) 0%,   /* EN ÜST: Koyu Mavi (%85 Opaklık) -> Yazılar okunsun */
+      rgba(0, 34, 68, 0.6) 25%,   /* Geçiş yumuşatıldı */
+      rgba(0, 34, 68, 0.0) 50%,   /* ORTA: Tamamen şeffaf -> Hoca görünsün */
+      rgba(0, 34, 68, 0.9) 85%,   /* ALT: Koyu Mavi -> Butonlar okunsun */
+      rgba(0, 34, 68, 1) 100%
+    );
+  }
+
+  /* 3. İçerik Düzeni ve Boşluklar */
+  .hero-container {
+    /* REVİZE: Üstten daha fazla boşluk (100px -> 130px) */
+    padding-top: 130px; 
+    padding-bottom: 40px;
+    width: 90%;
+    height: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 5;
+  }
+
+  .hero-content {
+    text-align: center;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+  }
+
+  /* --- ÜST KISIM (Yazılar) --- */
+  .hero-badge-wrapper {
+    margin-bottom: 15px;
+    order: 1;
+  }
+  
+  .hero-badge {
+    font-size: 16px;
+    line-height: 1.4;
+    /* Yazının okunurluğunu artırmak için parlaklık */
+    text-shadow: 0 0 10px rgba(0,0,0,0.8); 
+  }
+
+  .hero-title {
+    font-size: 48px;
+    margin-bottom: 0;
+    line-height: 1.1;
+    order: 2;
+  }
+  .title-prefix {
+    font-size: 24px;
+    color: #ddd;
+  }
+
+  /* --- ALT KISIM (Butonlar) --- */
+  .video-link-wrapper {
+    margin-top: auto;
+    margin-bottom: 25px; /* Butonla arası açıldı */
+    order: 3;
+    display: flex;
     justify-content: center;
-    padding: 15px 30px;
+  }
+
+  /* DESKTOP'taki margin-top'ı mobilde sıfırlıyoruz */
+  .hero-buttons {
+    margin-top: 0; 
+    width: 100%;
+    order: 4;
+    margin-bottom: 20px;
+  }
+
+  .btn-primary {
+    width: 100%;
+    padding: 18px;
+    font-size: 18px;
+    justify-content: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
   }
 }

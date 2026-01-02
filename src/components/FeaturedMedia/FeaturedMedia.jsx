@@ -1,66 +1,81 @@
 import React, { useState, useRef } from 'react';
 import './FeaturedMedia.css';
-// FaTimes (Kapatma X ikonu) eklendi
-import { FaQuoteRight, FaCalendarCheck, FaChevronLeft, FaChevronRight, FaImages, FaTimes } from 'react-icons/fa';
+import { FaQuoteRight, FaCalendarCheck, FaChevronLeft, FaChevronRight, FaImages, FaTimes, FaPlayCircle } from 'react-icons/fa';
 import ScrollReveal from '../Animations/ScrollReveal';
 import { Link } from 'react-router-dom';
 
-// Resim Importları
-import img1 from '../../assets/images/aboutme/hakkimda1.png';
-import img2 from '../../assets/images/aboutme/hakkimda2.png';
-import img3 from '../../assets/images/aboutme/hakkimda3.png';
-import img4 from '../../assets/images/aboutme/hakkimda4.png';
+// Image Imports
+import img1 from '../../assets/images/aboutme/about12-min.png';
+import img2 from '../../assets/images/aboutme/about10-min.png';
+import img3 from '../../assets/images/aboutme/about9-min.png';
+import img4 from '../../assets/images/aboutme/about7-min.png';
+import img5 from '../../assets/images/aboutme/about1-min.png';
+import img6 from '../../assets/images/aboutme/about13-min.png';
+import img7 from '../../assets/images/aboutme/about14-min.png';
+import img8 from '../../assets/images/aboutme/about6-min.png';
+import img9 from '../../assets/images/aboutme/about2-min.png';
+import img10 from '../../assets/images/aboutme/about17-min.png';
+import img11 from '../../assets/images/aboutme/about16-min.png';
+import img12 from '../../assets/images/aboutme/about3-min.png';
+import img13 from '../../assets/images/aboutme/about4-min.png';
+import img14 from '../../assets/images/aboutme/about5-min.png';
+import img15 from '../../assets/images/aboutme/about15-min.png';
+import img16 from '../../assets/images/aboutme/about11-min.png';
+import img17 from '../../assets/images/aboutme/about8-min.png';
+
+
+import tanitimvideosu from '../../assets/videos/sorucevap.mp4';
 
 const FeaturedMedia = () => {
   const galleryRef = useRef(null);
-  
-  // YENİ STATE: Seçilen (büyütülen) resim
   const [selectedImage, setSelectedImage] = useState(null);
 
-  // Galeri Verisi (Artık sadece ID ve SRC yeterli, başlıkları sildik)
   const galleryImages = [
     { id: 1, src: img1 },
     { id: 2, src: img2 },
     { id: 3, src: img3 },
     { id: 4, src: img4 },
-    // Örnek çoğaltma
-    { id: 5, src: img1 },
-    { id: 6, src: img2 },
+    { id: 5, src: img5 },
+    { id: 6, src: img6 },
+    { id: 7, src: img7 },
+    { id: 8, src: img8 },
+    { id: 9, src: img9 },
+    { id: 10, src: img10 },
+    { id: 11, src: img11 },
+    { id: 12, src: img12 },
+    { id: 13, src: img13 },
+    { id: 14, src: img14 },
+    { id: 15, src: img15 },
+    { id: 16, src: img16 },
+    { id: 17, src: img17 },
   ];
 
   const scrollLeft = () => {
-    if (galleryRef.current) {
-      galleryRef.current.scrollBy({ left: -300, behavior: 'smooth' });
-    }
+    if (galleryRef.current) galleryRef.current.scrollBy({ left: -300, behavior: 'smooth' });
   };
 
   const scrollRight = () => {
-    if (galleryRef.current) {
-      galleryRef.current.scrollBy({ left: 300, behavior: 'smooth' });
-    }
+    if (galleryRef.current) galleryRef.current.scrollBy({ left: 300, behavior: 'smooth' });
   };
 
-  // Lightbox açma fonksiyonu
   const openLightbox = (imgSrc) => {
     setSelectedImage(imgSrc);
-    document.body.style.overflow = 'hidden'; // Arka plan kaymasını engelle
+    document.body.style.overflow = 'hidden';
   };
 
-  // Lightbox kapatma fonksiyonu
   const closeLightbox = () => {
     setSelectedImage(null);
-    document.body.style.overflow = 'unset'; // Kaydırmayı geri aç
+    document.body.style.overflow = 'unset';
   };
 
   return (
     <section className="fm-section">
-      
       <div className="fm-bg-blur blur-1"></div>
       <div className="fm-bg-blur blur-2"></div>
 
       <div className="container fm-container-padding">
         
-        {/* --- BAŞLIK (Değişmedi) --- */}
+        {/* --- TITLE --- */}
         <ScrollReveal animation="fade-up">
           <div className="fm-header">
             <h2 className="fm-title">
@@ -74,10 +89,11 @@ const FeaturedMedia = () => {
           </div>
         </ScrollReveal>
 
-        {/* --- VİDEO GRID (Değişmedi) --- */}
+        {/* --- VIDEO GRID (UPDATED TO 3 COLUMNS) --- */}
         <div className="fm-grid">
-          {/* Video 1: Tanıtım */}
-          <ScrollReveal animation="slide-in-left" delay={0.2}>
+          
+          {/* 1. VIDEO: Biography */}
+          <ScrollReveal animation="fade-up" delay={0.1}>
             <div className="fm-card video-card">
               <div className="card-top-decoration"></div>
               <div className="video-frame">
@@ -99,8 +115,8 @@ const FeaturedMedia = () => {
             </div>
           </ScrollReveal>
 
-          {/* Video 2: ATV Haber */}
-          <ScrollReveal animation="slide-in-right" delay={0.4}>
+          {/* 2. VIDEO: ATV News */}
+          <ScrollReveal animation="fade-up" delay={0.2}>
             <div className="fm-card news-card">
               <div className="card-top-decoration gold-border"></div>
               <div className="video-frame">
@@ -123,10 +139,44 @@ const FeaturedMedia = () => {
               </div>
             </div>
           </ScrollReveal>
+
+           {/* 3. NEW VIDEO: 17 Min Special */}
+                    <ScrollReveal animation="fade-up" delay={0.3}>
+            <div className="fm-card video-card">
+              <div className="card-top-decoration"></div>
+              <div className="video-frame">
+                
+                {/* YEREL VİDEO OYNATICI (HTML5 Video Tag) */}
+                <video 
+                  width="100%" 
+                  height="100%" 
+                  controls 
+                  controlsList="nodownload" // İndirmeyi kapatır
+                  className="local-video" // CSS'te stil vereceğiz
+                  // poster={img1} // İsterseniz bir kapak resmi (thumbnail) koyabilirsiniz
+                >
+                  <source src={tanitimvideosu} type="video/mp4" />
+                  Tarayıcınız bu videoyu desteklemiyor.
+                </video>
+
+                {/* Süre Rozeti */}
+                <div className="duration-badge"><FaPlayCircle /> Soru-Cevap</div>
+              </div>
+              
+              <div className="fm-card-content">
+                <div className="fm-tag">Özel Röportaj</div>
+                <h3>Prof. Dr. Faruk Erzengin Kimdir?</h3>
+                <p>
+                  Prof. Dr. Faruk Erzengin hakkında bilinmeyenleri öğrenin.
+                </p>
+              </div>
+            </div>
+          </ScrollReveal>
+
         </div>
 
-        {/* --- ORTALANMIŞ BUTON ALANI (Değişmedi) --- */}
-        <ScrollReveal animation="fade-up" delay={0.5}>
+        {/* --- BUTTON AREA --- */}
+        <ScrollReveal animation="fade-up" delay={0.4}>
             <div className="fm-action-wrapper">
                 <Link to="/iletisim" className="fm-big-cta-btn">
                   <span>Hemen Randevu Al</span>
@@ -136,10 +186,9 @@ const FeaturedMedia = () => {
             </div>
         </ScrollReveal>
 
-        {/* --- FOTOĞRAF KÖŞESİ / GALERİ (GÜNCELLENDİ) --- */}
-        <ScrollReveal animation="fade-up" delay={0.6}>
+        {/* --- PHOTO GALLERY --- */}
+        <ScrollReveal animation="fade-up" delay={0.5}>
           <div className="fm-gallery-section">
-            
             <div className="gallery-header-row">
               <h3 className="gallery-title"><FaImages /> Fotoğraf Galerisi</h3>
               <div className="gallery-nav-buttons">
@@ -147,10 +196,8 @@ const FeaturedMedia = () => {
                 <button className="g-nav-btn" onClick={scrollRight} aria-label="Sağa Kaydır"><FaChevronRight /></button>
               </div>
             </div>
-            
             <div className="fm-gallery-track" ref={galleryRef}>
               {galleryImages.map((img) => (
-                // GÜNCELLEME: onClick eklendi, caption box silindi
                 <div 
                   key={img.id} 
                   className="fm-gallery-item clickable-gallery-item" 
@@ -158,28 +205,24 @@ const FeaturedMedia = () => {
                 >
                   <div className="g-img-box">
                     <img src={img.src} alt={`Galeri Görseli ${img.id}`} />
-                    {/* Hover efekti için overlay, üzerinde büyüteç ikonu çıkabilir */}
                     <div className="g-overlay">
                         <span className="zoom-hint">Büyütmek için tıklayın</span>
                     </div>
                   </div>
-                  {/* ESKİ CAPTION BOX BURADAYDI, ARTIK YOK */}
                 </div>
               ))}
             </div>
-
           </div>
         </ScrollReveal>
 
       </div>
 
-      {/* --- YENİ: LIGHTBOX (TAM EKRAN RESİM MODALI) --- */}
+      {/* --- LIGHTBOX --- */}
       {selectedImage && (
         <div className="lightbox-overlay" onClick={closeLightbox}>
           <button className="lightbox-close-btn" onClick={closeLightbox}>
             <FaTimes />
           </button>
-          {/* Resim kapsayıcısına tıklayınca kapanmasın diye stopPropagation */}
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
             <img src={selectedImage} alt="Tam Ekran Görünüm" />
           </div>

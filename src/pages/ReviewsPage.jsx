@@ -2,11 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { reviewsData } from '../data/reviewsData';
 import { FaStar, FaQuoteRight, FaGoogle, FaCheckCircle, FaChevronDown } from 'react-icons/fa';
 import './ReviewsPage.css';
-
-// 1. Animasyon Bileşenini Import Ediyoruz
 import ScrollReveal from '../components/Animations/ScrollReveal';
-
-// 2. SEO Bileşenini Ekliyoruz (Çok Önemli)
 import SEO from '../components/SEO';
 
 const ReviewsPage = () => {
@@ -14,8 +10,14 @@ const ReviewsPage = () => {
   const [isDown, setIsDown] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
+  
+  // Google yorumlarını başlangıçta 3 tane göster
   const [visibleGoogleCount, setVisibleGoogleCount] = useState(3);
   const [expandedReviews, setExpandedReviews] = useState({});
+
+  // --- 1. VERİYİ AYIRIYORUZ ---
+  const googleReviews = reviewsData.filter(item => item.source === "google");
+  const websiteReviews = reviewsData.filter(item => item.source === "website");
 
   const toggleReadMore = (id) => {
     setExpandedReviews(prev => ({
@@ -24,13 +26,12 @@ const ReviewsPage = () => {
     }));
   };
 
-  // Yorum Metnini İşleyen Fonksiyon
   const renderComment = (comment, id) => {
     if (!comment || comment.trim() === "") {
       return <span className="no-comment-text">*(Yazılı yorum yapılmadı, puan verildi)</span>;
     }
 
-    const maxLength = 140; // Kaç karakterden sonra kessin?
+    const maxLength = 140;
     const isExpanded = expandedReviews[id];
 
     if (comment.length <= maxLength) {
@@ -83,13 +84,12 @@ const ReviewsPage = () => {
   return (
     <div className="reviews-page">
       
-      {/* --- SEO AYARLARI --- */}
       <SEO 
         title="Hasta Yorumları & Değerlendirmeler" 
         description="Prof. Dr. Faruk Erzengin hakkında gerçek hasta yorumları, Google değerlendirmeleri ve tedavi süreçleri hakkındaki hasta görüşleri." 
       />
 
-      {/* 1. HERO BÖLÜMÜ - Fade In Up */}
+      {/* 1. HERO BÖLÜMÜ */}
       <header className="reviews-hero-section">
         <ScrollReveal animation="fade-up">
           <div className="reviews-hero-content">
@@ -101,7 +101,7 @@ const ReviewsPage = () => {
         </ScrollReveal>
       </header>
 
-      {/* 2. SLIDER BÖLÜMÜ - Fade In */}
+      {/* 2. SLIDER BÖLÜMÜ (Sadece Web Sitesi Hikayeleri) */}
       <section className="reviews-slider-section">
         <ScrollReveal animation="fade-up" delay={0.2}>
           <div 
@@ -113,7 +113,8 @@ const ReviewsPage = () => {
             onMouseMove={handleMouseMove}
           >
             <div className="slider-track-row">
-              {reviewsData.map((review) => (
+              {/* BURADA 'websiteReviews' KULLANIYORUZ */}
+              {websiteReviews.map((review) => (
                 <div key={review.id} className="slide-card-wrap">
                   <div className="review-card-item">
                     <FaQuoteRight className="card-quote-bg" />
@@ -138,11 +139,10 @@ const ReviewsPage = () => {
         </ScrollReveal>
       </section>
 
-      {/* 3. GOOGLE BÖLÜMÜ */}
+      {/* 3. GOOGLE BÖLÜMÜ (Sadece Google Yorumları) */}
       <section className="reviews-google-section">
         <div className="reviews-container">
           
-          {/* Google Banner - Sağdan Gelir */}
           <ScrollReveal animation="slide-in-right" delay={0.2}>
             <div className="google-cta-banner">
               <div className="cta-left">
@@ -158,11 +158,9 @@ const ReviewsPage = () => {
             </div>
           </ScrollReveal>
 
-          {/* Google Yorumları Grid - Sırayla Gelir (Staggered) */}
+          {/* BURADA 'googleReviews' KULLANIYORUZ */}
           <div className="google-reviews-grid">
-            {reviewsData.slice(0, visibleGoogleCount).map((item, index) => (
-              // index % 3 yaparak her satırda animasyonun tekrar baştan başlamasını değil,
-              // yüklenen kadarının akıcı gelmesini sağlıyoruz.
+            {googleReviews.slice(0, visibleGoogleCount).map((item, index) => (
               <ScrollReveal key={item.id} animation="fade-up" delay={(index % 3) * 0.1}>
                 <div className="google-review-box">
                   <div className="gr-header">
@@ -181,7 +179,7 @@ const ReviewsPage = () => {
           </div>
 
           {/* Daha Fazla Yükle Butonu */}
-          {visibleGoogleCount < reviewsData.length && (
+          {visibleGoogleCount < googleReviews.length && (
             <div className="load-more-wrapper">
               <button className="btn-load-more-reviews" onClick={handleLoadMore}>
                 Daha Fazla Yükle <FaChevronDown />

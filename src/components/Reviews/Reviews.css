@@ -168,3 +168,9 @@
   .review-footer { flex-direction: column; align-items: flex-start; gap: 10px; }
   .review-date { align-self: flex-start; }
 }
+.review-text.no-comment {
+  color: #b0b0b0; /* Daha silik, açık gri renk */
+  font-style: italic; /* İtalik yazı */
+  font-size: 14px; /* Biraz daha küçük punto */
+  font-weight: 400;
+}

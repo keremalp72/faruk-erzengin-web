@@ -5,21 +5,17 @@ import { FaPlay, FaChevronRight } from 'react-icons/fa';
 import heroBg from '../../assets/images/homepage/hero-bg.png';
 import './Hero.css';
 
-// --- ANİMASYON AYARLARI (Genel Kapsayıcı İçin) ---
+// --- ANİMASYON AYARLARI ---
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.3, // Ana elemanlar 0.3sn arayla gelsin
-      delayChildren: 0.5    // Sayfa açıldıktan sonra başlama süresi
-    }
+    transition: { staggerChildren: 0.3, delayChildren: 0.5 }
   }
 };
 
-// Ana elemanların (Başlık, Butonlar vb.) yukarı kayarak gelmesi
 const itemVariants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 30 },
   visible: { 
     opacity: 1, 
     y: 0, 
@@ -27,28 +23,20 @@ const itemVariants = {
   }
 };
 
-// --- YENİ: DAKTİLO EFEKTİ VARYANTLARI ---
+// Daktilo Efekti
 const badgeText = "İç Hastalıkları ve Kalp - Damar Hastalıkları Uzmanı";
 
-// Cümlenin tamamını kapsayan varyant (Harfleri sıraya sokar)
 const typewriterSentence = {
   hidden: { opacity: 1 },
   visible: {
     opacity: 1,
-    transition: {
-      delayChildren: 0.8, // Ana blok geldikten biraz sonra başlasın
-      staggerChildren: 0.04, // Harfler arası bekleme süresi (Hız ayarı)
-    },
+    transition: { delayChildren: 0.8, staggerChildren: 0.04 },
   },
 };
 
-// Tek bir harfin varyantı
 const typewriterLetter = {
   hidden: { opacity: 0, y: 5 },
-  visible: {
-    opacity: 1,
-    y: 0,
-  },
+  visible: { opacity: 1, y: 0 },
 };
 
 
@@ -56,7 +44,7 @@ const Hero = () => {
   return (
     <section className="hero-section" id="home">
       
-      {/* ARKA PLAN (Zoom Animasyonu) */}
+      {/* ARKA PLAN */}
       <div className="hero-bg-wrapper">
         <img src={heroBg} alt="Prof. Dr. Faruk Erzengin" className="hero-bg-img" />
         <div className="hero-overlay"></div>
@@ -64,7 +52,6 @@ const Hero = () => {
 
       <div className="hero-container">
         
-        {/* İÇERİK KAPSAYICISI */}
         <motion.div 
           className="hero-content"
           variants={containerVariants}
@@ -72,14 +59,12 @@ const Hero = () => {
           animate="visible"
         >
           
-          {/* 1. ROZET (DAKTİLO ANİMASYONLU) */}
+          {/* 1. ROZET (Unvan) */}
           <motion.div variants={itemVariants} className="hero-badge-wrapper">
             <motion.span 
               className="hero-badge"
-              variants={typewriterSentence} // Cümle varyantını buraya atadık
-              // initial="hidden" ve animate="visible" üstteki parent'tan miras alınır
+              variants={typewriterSentence} 
             >
-              {/* Metni harflerine ayırıp (split) döngüye sokuyoruz */}
               {badgeText.split("").map((char, index) => (
                 <motion.span key={index} variants={typewriterLetter}>
                   {char}
@@ -88,29 +73,13 @@ const Hero = () => {
             </motion.span>
           </motion.div>
           
-          {/* 2. Başlık */}
+          {/* 2. BAŞLIK (İsim) */}
           <motion.h1 variants={itemVariants} className="hero-title">
             <span className="title-prefix">Prof. Dr.</span>
             Faruk Erzengin
           </motion.h1>
-          
-          {/* 3. Açıklama */}
-          <motion.p variants={itemVariants} className="hero-description">
-            40 yılı aşkın akademik birikim, binlerce vaka tecrübesi ve 
-            insan odaklı yaklaşım ile sağlığınız güvenilir ellerde.
-          </motion.p>
 
-          {/* 4. Butonlar */}
-          <motion.div variants={itemVariants} className="hero-buttons">
-            <Link to="/iletisim" className="btn-primary">
-              Randevu Oluştur <FaChevronRight className="btn-arrow"/>
-            </Link>
-            <Link to="/hakkimda" className="btn-secondary">
-              Özgeçmişi İncele
-            </Link>
-          </motion.div>
-
-          {/* 5. Video Linki */}
+          {/* 3. VİDEO LİNKİ (Sıralamada üste alındı) */}
           <motion.div variants={itemVariants} className="video-link-wrapper">
              <a 
                href="https://www.youtube.com/watch?v=gD-7bmIkBp0" 
@@ -123,6 +92,14 @@ const Hero = () => {
                 </div>
                 <span>Prof. Dr. Faruk Erzengin Kimdir?</span>
              </a>
+          </motion.div>
+
+          {/* 4. RANDEVU BUTONU (En alta alındı) */}
+          <motion.div variants={itemVariants} className="hero-buttons">
+            <Link to="/iletisim" className="btn-primary">
+              Randevu Oluştur <FaChevronRight className="btn-arrow"/>
+            </Link>
+            {/* Özgeçmiş butonu kaldırıldı */}
           </motion.div>
 
         </motion.div>
