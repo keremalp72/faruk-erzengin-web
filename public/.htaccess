@@ -1,11 +1,12 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # --- 1. HTTP Gelen İstekleri HTTPS'e Yönlendir ---
+  # 1. HTTPS ZORLAMA (Güvenlik kilidi için)
   RewriteCond %{HTTPS} off
   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-  # --- 2. React Router Yönlendirmesi (Sayfa yenileme sorunu için) ---
+  # 2. REACT ROUTER AYARI (404 sorunu için)
+  # Eğer istenen şey gerçek bir dosya değilse, index.html'e yönlendir.
   RewriteBase /
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
