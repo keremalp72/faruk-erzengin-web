@@ -19,7 +19,7 @@ const About = () => {
 
   const tabContent = {
     kariyer: [
-      { year: '1972', title: 'Dönem Birinciliği', desc: 'İstanbul Üniversitesi Tıp Fakültesi (Mezuniyet)' },
+      { year: '1972', title: 'En Üst Derecede Mezuniyet', desc: 'İstanbul Üniversitesi Tıp Fakültesi (Mezuniyet)' },
       { year: '1978', title: 'İç Hastalıkları Uzmanlığı', desc: 'İstanbul Tıp Fakültesi (Üstün Başarı)' },
       { year: '1982', title: 'Senior Registrar (İngiltere)', desc: 'St. James’s University Hospital, Leeds - Kardiyoloji Departmanı' },
       { year: '1987', title: 'Doçentlik', desc: 'İstanbul Tıp Fakültesi Kardiyoloji Anabilim Dalı' },

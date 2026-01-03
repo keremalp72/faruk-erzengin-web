@@ -158,10 +158,9 @@
 .hero-buttons {
   display: flex;
   gap: 25px;
-  margin-bottom: 60px;
   
   /* DESKTOP REVİZE: Üstten boşluk ekledik (Video linkine yapışmasın) */
-  margin-top: 40px; 
+  margin-top: 60px; 
 }
 
 .btn-primary {
@@ -216,15 +215,15 @@
     transform: none !important;
   }
 
-  /* 2. KARARTMA (OVERLAY) - REVİZE EDİLDİ */
+  /* 2. KARARTMA (OVERLAY) - REVİZE EDİLDİ - Doktor daha görünür */
   .hero-overlay {
     background: linear-gradient(
       to bottom, 
-      rgba(0, 34, 68, 0.85) 0%,   /* EN ÜST: Koyu Mavi (%85 Opaklık) -> Yazılar okunsun */
-      rgba(0, 34, 68, 0.6) 25%,   /* Geçiş yumuşatıldı */
-      rgba(0, 34, 68, 0.0) 50%,   /* ORTA: Tamamen şeffaf -> Hoca görünsün */
-      rgba(0, 34, 68, 0.9) 85%,   /* ALT: Koyu Mavi -> Butonlar okunsun */
-      rgba(0, 34, 68, 1) 100%
+      rgba(0, 34, 68, 0.75) 0%,   /* EN ÜST: Daha açık -> Yazılar okunsun */
+      rgba(0, 34, 68, 0.4) 30%,   /* Geçiş yumuşatıldı */
+      rgba(0, 34, 68, 0.0) 60%,   /* ORTA: Tamamen şeffaf -> Doktor net görünsün */
+      rgba(0, 34, 68, 0.7) 90%,   /* ALT: Daha açık -> Butonlar okunsun */
+      rgba(0, 34, 68, 0.95) 100%
     );
   }
 
@@ -232,7 +231,6 @@
   .hero-container {
     /* REVİZE: Üstten daha fazla boşluk (100px -> 130px) */
     padding-top: 130px; 
-    padding-bottom: 40px;
     width: 90%;
     height: 100%;
     
@@ -290,7 +288,6 @@
     margin-top: 0; 
     width: 100%;
     order: 4;
-    margin-bottom: 20px;
   }
 
   .btn-primary {
@@ -299,5 +296,55 @@
     font-size: 18px;
     justify-content: center;
     box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+  }
+
+  /* --- SCROLL INDICATOR (Mobil/Tablet için) - Kompakt versiyon --- */
+  .scroll-indicator {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 10px;
+    cursor: pointer;
+    order: 5;
+    padding: 8px 15px;
+    transition: opacity 0.3s ease;
+  }
+
+  .scroll-indicator:hover {
+    opacity: 0.8;
+  }
+
+  .scroll-indicator-text {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+
+  .scroll-arrow {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(197, 160, 89, 0.2);
+    backdrop-filter: blur(5px);
+    border-radius: 50%;
+    border: 2px solid rgba(197, 160, 89, 0.6);
+    color: #C5A059;
+    font-size: 18px;
+    box-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
+    flex-shrink: 0;
+  }
+}
+
+/* Desktop'ta scroll indicator gizli */
+@media (min-width: 1025px) {
+  .scroll-indicator {
+    display: none;
   }
 }

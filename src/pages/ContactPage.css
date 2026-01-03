@@ -81,7 +81,7 @@
   }
   
   .contact-card h3 {
-    font-size: 20px;
+    font-size: 24px;
     color: #002244;
     margin-bottom: 15px;
     font-weight: 700;
@@ -90,7 +90,33 @@
   .contact-card p {
     color: #666;
     line-height: 1.8;
-    font-size: 15px;
+    font-size: 16px;
+  }
+
+  /* Lokasyon detayları için özel stil */
+  .location-details {
+    margin-top: 20px;
+    text-align: left;
+  }
+
+  .location-details p {
+    font-size: 16px;
+    color: #444;
+    line-height: 1.9;
+    margin-bottom: 12px;
+  }
+
+  .location-details p strong {
+    color: #002244;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .location-subtitle {
+    font-size: 18px !important;
+    color: #C5A059 !important;
+    font-weight: 600 !important;
+    margin-bottom: 15px !important;
   }
   
   /* --- 2. ALT BÖLÜM (FORM + HARİTA) --- */
@@ -443,7 +469,7 @@
 }
 
 .link-text span {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   color: #002244;
 }
@@ -456,7 +482,7 @@
 
 .main-hotline .link-text span {
   color: #C5A059; /* Numarayı altın rengi yap */
-  font-size: 18px; /* Numarayı biraz büyüt */
+  font-size: 20px; /* Numarayı biraz büyüt */
 }
 
 /* --- Lokasyon Kartlarındaki Telefon Listesi --- */
@@ -466,21 +492,28 @@
   border-top: 1px solid #f0f0f0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .phone-list a {
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: #555;
+  gap: 12px;
+  color: #002244;
   text-decoration: none;
-  font-weight: 600;
-  font-size: 15px;
+  font-weight: 700;
+  font-size: 18px;
   transition: 0.2s;
+  padding: 8px 0;
 }
 
 .phone-list a:hover {
+  color: #C5A059;
+  transform: translateX(5px);
+}
+
+.phone-list a svg {
+  font-size: 20px;
   color: #C5A059;
 }
 /* --- HARİTA DEĞİŞTİRME BUTONLARI --- */

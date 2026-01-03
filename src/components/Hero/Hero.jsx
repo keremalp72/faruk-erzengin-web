@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaPlay, FaChevronRight } from 'react-icons/fa';
+import { FaPlay, FaChevronRight, FaChevronDown } from 'react-icons/fa';
 import heroBg from '../../assets/images/homepage/hero-bg.png';
 import './Hero.css';
 
@@ -100,6 +100,26 @@ const Hero = () => {
               Randevu Oluştur <FaChevronRight className="btn-arrow"/>
             </Link>
             {/* Özgeçmiş butonu kaldırıldı */}
+          </motion.div>
+
+          {/* 5. SCROLL INDICATOR (Mobil/Tablet için) */}
+          <motion.div 
+            variants={itemVariants} 
+            className="scroll-indicator"
+            onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+          >
+            <span className="scroll-indicator-text">Daha fazla bilgi</span>
+            <motion.div
+              className="scroll-arrow"
+              animate={{ y: [0, 8, 0] }}
+              transition={{ 
+                duration: 1.5, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
+            >
+              <FaChevronDown />
+            </motion.div>
           </motion.div>
 
         </motion.div>

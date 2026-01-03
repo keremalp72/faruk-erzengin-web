@@ -123,14 +123,12 @@ const FeaturedMedia = () => {
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                   allowFullScreen
                 ></iframe>
-                <div className="live-badge"><span className="dot"></span> ATV ANA HABER</div>
               </div>
               <div className="fm-card-content">
                 <div className="news-header">
-                  <FaQuoteRight className="news-icon"/>
-                  <h3>"By-Pass ve Stent Tarihe Karışıyor"</h3>
+                  <h3>By-Pass ve Stent Tarihe Karışıyor</h3>
                 </div>
-                <p className="highlight-desc">
+                <p>
                   Prof. Dr. Erzengin, ameliyatsız damar açma tedavisiyle kalp hastalıklarında yeni bir dönem başlattı.
                 </p>
               </div>
