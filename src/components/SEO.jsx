@@ -71,15 +71,21 @@ const SEO = ({ title, description, image, url, isArticle = false, articleDate, a
     "name": "Prof. Dr. Faruk Erzengin - Kardiyoloji ve İç Hastalıkları",
     "description": description,
     "url": siteUrl,
+    "telephone": "+90 212 356 88 88",
+    "email": "farukerzengin@gmail.com",
+    "image": `${siteUrl}/favicon.png`,
+    "priceRange": "$$",
     "medicalSpecialty": [
       "Kardiyoloji",
       "İç Hastalıkları"
     ],
     "address": {
       "@type": "PostalAddress",
-      "addressCountry": "TR",
-      "addressLocality": "İstanbul"
-      // Detaylı adres bilgisi varsa ekleyin
+      "streetAddress": "Büyükdere Cad. Kral Apt. No: 75 Kat: 1 D: 2",
+      "addressLocality": "Mecidiyeköy",
+      "addressRegion": "İstanbul",
+      "postalCode": "34394",
+      "addressCountry": "TR"
     }
   } : null;
 
