@@ -168,7 +168,7 @@ const FeaturedMedia = () => {
                   onClick={() => openLightbox(img.src)}
                 >
                   <div className="g-img-box">
-                    <img src={img.src} alt={`Galeri Görseli ${img.id}`} />
+                    <img src={img.src} alt={`Prof. Dr. Faruk Erzengin - Galeri Görseli ${img.id}`} />
                     <div className="g-overlay">
                         <span className="zoom-hint">Büyütmek için tıklayın</span>
                     </div>
@@ -188,7 +188,7 @@ const FeaturedMedia = () => {
             <FaTimes />
           </button>
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-            <img src={selectedImage} alt="Tam Ekran Görünüm" />
+            <img src={selectedImage} alt="Prof. Dr. Faruk Erzengin - Galeri Görseli Tam Ekran" />
           </div>
         </div>
       )}

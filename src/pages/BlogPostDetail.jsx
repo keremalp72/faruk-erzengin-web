@@ -42,7 +42,21 @@ const BlogPostDetail = () => {
 
   return (
     <div className="blog-detail-page">
-      <SEO title={post.title} description={post.excerpt} image={post.image} url={window.location.href} />
+      <SEO 
+        title={post.title} 
+        description={post.excerpt} 
+        image={post.image} 
+        url={window.location.href}
+        isArticle={true}
+        articleDate={post.date}
+        articleAuthor="Prof. Dr. Faruk Erzengin"
+        breadcrumbs={[
+          { name: "Ana Sayfa", url: "/" },
+          { name: "Blog", url: "/blog" },
+          { name: post.category, url: `/blog?category=${post.category}` },
+          { name: post.title, url: `/blog/${post.id}` }
+        ]}
+      />
 
       {/* --- KOYU MAVİ BAŞLIK ALANI --- */}
       <div className="bd-dark-header">

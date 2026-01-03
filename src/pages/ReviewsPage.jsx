@@ -4,6 +4,7 @@ import { FaStar, FaQuoteRight, FaGoogle, FaCheckCircle, FaChevronDown } from 're
 import './ReviewsPage.css';
 import ScrollReveal from '../components/Animations/ScrollReveal';
 import SEO from '../components/SEO';
+import { Helmet } from 'react-helmet-async';
 
 const ReviewsPage = () => {
   const sliderRef = useRef(null);
@@ -81,6 +82,47 @@ const ReviewsPage = () => {
     setVisibleGoogleCount(prev => prev + 3);
   };
 
+  // Review Schema için hesaplamalar
+  const totalReviews = reviewsData.length;
+  const averageRating = reviewsData.reduce((sum, review) => sum + review.rating, 0) / totalReviews;
+  const siteUrl = "https://farukerzengin.com";
+
+  // Aggregate Rating Schema
+  const aggregateRatingSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Prof. Dr. Faruk Erzengin - Kardiyoloji ve İç Hastalıkları",
+    "url": siteUrl,
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": averageRating.toFixed(1),
+      "reviewCount": totalReviews,
+      "bestRating": "5",
+      "worstRating": "1"
+    }
+  };
+
+  // Individual Reviews Schema (ilk 5 yorum)
+  const individualReviewsSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Prof. Dr. Faruk Erzengin",
+    "review": reviewsData.slice(0, 5).map(review => ({
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": review.name
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": review.rating,
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "reviewBody": review.comment || "Puan verildi, yazılı yorum yapılmadı."
+    }))
+  };
+
   return (
     <div className="reviews-page">
       
@@ -88,6 +130,16 @@ const ReviewsPage = () => {
         title="Hasta Yorumları & Değerlendirmeler" 
         description="Prof. Dr. Faruk Erzengin hakkında gerçek hasta yorumları, Google değerlendirmeleri ve tedavi süreçleri hakkındaki hasta görüşleri." 
       />
+
+      {/* Review Schema */}
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(aggregateRatingSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(individualReviewsSchema)}
+        </script>
+      </Helmet>
 
       {/* 1. HERO BÖLÜMÜ */}
       <header className="reviews-hero-section">

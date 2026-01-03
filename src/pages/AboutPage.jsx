@@ -69,7 +69,7 @@ const AboutPage = () => {
             <div className="bio-slider-container">
               <div className="bio-slider-wrapper" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
                 {sliderImages.map((img, index) => (
-                  <div key={index} className="bio-slide"><img src={img} alt={`Slide ${index}`} /></div>
+                  <div key={index} className="bio-slide"><img src={img} alt={`Prof. Dr. Faruk Erzengin - Hakkında Görsel ${index + 1}`} /></div>
                 ))}
               </div>
               <button className="slider-btn prev" onClick={prevSlide}><FaChevronLeft /></button>
