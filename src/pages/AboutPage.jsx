@@ -7,19 +7,19 @@ import './AboutPage.css';
 import SEO from '../components/SEO';
 import ScrollReveal from '../components/Animations/ScrollReveal';
 
+// --- VERİ IMPORTLARI ---
 import { publicationsData } from '../data/publicationsData';
 import { blogData } from '../data/blogData'; 
-
-import slide1 from '../assets/images/aboutme/hakkimda1.png';
-import slide2 from '../assets/images/aboutme/hakkimda2.png';
-import slide3 from '../assets/images/aboutme/hakkimda3.png';
-import slide4 from '../assets/images/aboutme/hakkimda4.png';
+// ÖNEMLİ: Tüm resimler artık buradan geliyor
+import { mediaData } from '../data/mediaData'; 
 
 const AboutPage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [openPubIndex, setOpenPubIndex] = useState(0); 
 
-  const sliderImages = [ slide1, slide2, slide3, slide4 ];
+  // --- DEĞİŞİKLİK BURADA ---
+  // mediaData içindeki 'gallery' dizisinden SADECE İLK 10 TANESİNİ alıyoruz.
+  const sliderImages = mediaData.gallery.slice(0, 10);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -68,12 +68,17 @@ const AboutPage = () => {
           <ScrollReveal animation="slide-in-left" className="slider-reveal-wrapper">
             <div className="bio-slider-container">
               <div className="bio-slider-wrapper" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-                {sliderImages.map((img, index) => (
-                  <div key={index} className="bio-slide"><img src={img} alt={`Prof. Dr. Faruk Erzengin - Hakkında Görsel ${index + 1}`} /></div>
+                {sliderImages.map((item, index) => (
+                  <div key={item.id || index} className="bio-slide">
+                    {/* Artık resim kaynağı item.src oldu */}
+                    <img src={item.src} alt={`Prof. Dr. Faruk Erzengin - Hakkında Görsel ${index + 1}`} />
+                  </div>
                 ))}
               </div>
               <button className="slider-btn prev" onClick={prevSlide}><FaChevronLeft /></button>
               <button className="slider-btn next" onClick={nextSlide}><FaChevronRight /></button>
+              
+              {/* Noktalar (Dots) */}
               <div className="slider-dots">
                 {sliderImages.map((_, index) => (
                   <span key={index} className={`dot ${currentSlide === index ? 'active' : ''}`} onClick={() => setCurrentSlide(index)}></span>
@@ -106,8 +111,6 @@ const AboutPage = () => {
 
         {/* 2. DETAYLI METİN BLOKLARI */}
         <div className="detailed-bio-wrapper">
-           {/* ... (Bu kısımlar aynı kaldı, özet geçiyorum) ... */}
-           {/* BLOK 1 */}
            <ScrollReveal delay={0.1} animation="fade-up">
              <div className="content-block">
                <div className="block-header">
@@ -123,7 +126,6 @@ const AboutPage = () => {
              </div>
            </ScrollReveal>
 
-           {/* BLOK 2 */}
            <ScrollReveal delay={0.3} animation="fade-up">
              <div className="content-block highlight-border">
                <div className="block-header">
@@ -147,7 +149,6 @@ const AboutPage = () => {
              </div>
            </ScrollReveal>
 
-           {/* BLOK 3 */}
            <ScrollReveal delay={0.5} animation="fade-up">
              <div className="content-block cultural-block">
               <div className="block-header">
@@ -221,7 +222,7 @@ const AboutPage = () => {
                     <h4>{post.title}</h4>
                     <p>{post.excerpt}</p>
                     
-                    {/* DÜZELTİLEN KISIM: Button yerine Link kullanıldı */}
+                    {/* Link kullanımı */}
                     <Link to={`/blog/${post.id}`} className="read-more-btn">
                       Devamını Oku →
                     </Link>

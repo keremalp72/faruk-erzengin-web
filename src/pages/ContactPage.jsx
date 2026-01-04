@@ -36,8 +36,8 @@ const ContactPage = () => {
   const [isSending, setIsSending] = useState(false);
 
   const mapUrls = {
-    europe: "https://maps.google.com/maps?q=Büyükdere%20Cad.%20Kral%20Apt.%20No:75%20Şişli%20İstanbul&t=&z=15&ie=UTF8&iwloc=&output=embed",
-    asia: "https://maps.google.com/maps?q=Bağdat%20Cad.%20No:182%20Kadıköy%20İstanbul&t=&z=15&ie=UTF8&iwloc=&output=embed"
+    europe: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3008.310033271813!2d28.9987561!3d41.0668514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab6ff5a721ba3%3A0x8faba56dc9dc919a!2zTWVjaWRpeWVrw7Z5IE1haGFsbGVzaSwgQsO8ecO8a2RlcmUgQ2QuIE5vOjc1LCAzNDM4MSDFnmnFn2xpL8Swc3RhbmJ1bCwgVMO8cmtpeWU!5e0!3m2!1str!2str!4v1735985371235!5m2!1str!2str",
+    asia: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.357001636192!2d29.0429148!3d40.9858763!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab86614650f79%3A0x25c43bf70320d9f2!2sBa%C4%9Fdat%20Cd.%20No%3A182%2C%2034728%20Kad%C4%B1k%C3%B6y%2F%C4%B0stanbul%2C%20T%C3%BCrkiye!5e0!3m2!1str!2str!4v1735985500000!5m2!1str!2str"
   };
 
   const handleChange = (e) => {

@@ -200,6 +200,10 @@
   
   /* RESPONSIVE */
   @media (max-width: 960px) {
+    .bp-page-wrapper{
+      width: 100%;
+  overflow-x: hidden; /* Çok önemli */
+    }
     .bp-layout { flex-direction: column; }
     .bp-sidebar { width: 100%; margin-top: 40px; }
     .bp-detail-img { height: 250px; }

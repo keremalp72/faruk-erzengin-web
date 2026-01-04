@@ -354,3 +354,213 @@
     .lightbox-overlay { padding: 20px; }
     .lightbox-close-btn { top: 10px; right: 15px; font-size: 28px; }
 }
+/* --- YENİ EKLENEN STİLLER --- */
+
+/* Tümünü Göster Butonu Alanı */
+.fm-gallery-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  
+  .fm-view-all-btn {
+    background-color: transparent;
+    border: 2px solid #1a3c6d;
+    color: #1a3c6d;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .fm-view-all-btn:hover {
+    background-color: #1a3c6d;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(26, 60, 109, 0.2);
+  }
+  
+  /* --- GRID MODAL (Tüm Fotoğraflar) --- */
+  /* --- GRID MODAL (Tüm Fotoğraflar) --- */
+.fm-modal-overlay.gallery-grid-overlay {
+    /* --- EKLENEN KISIMLAR (SABİTLEME) --- */
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* ------------------------------------ */
+    
+    z-index: 9990;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px; /* Mobilde kenarlara yapışmasın diye biraz padding */
+  }
+  
+  .fm-modal-container {
+    background: #fff;
+    width: 100%;
+    max-width: 1100px;
+    height: 85vh; /* Ekranın %85'i kadar olsun */
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.4s ease;
+  }
+  
+  .fm-modal-header {
+    padding: 20px 30px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .fm-modal-header h3 {
+    font-size: 1.5rem;
+    color: #1a3c6d;
+    margin: 0;
+  }
+  
+  .fm-modal-close {
+    background: #f1f1f1;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #333;
+    transition: 0.3s;
+  }
+  
+  .fm-modal-close:hover {
+    background: #ff4d4d;
+    color: #fff;
+  }
+  
+  .fm-modal-body {
+    flex: 1;
+    overflow-y: auto; /* İçerik kaydırılabilir olsun */
+    padding: 30px;
+    background-color: #f9f9f9;
+  }
+  
+  .fm-full-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .fm-grid-item {
+    position: relative;
+    aspect-ratio: 1 / 1; /* Kare format */
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: 0.3s;
+  }
+  
+  .fm-grid-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    z-index: 2;
+  }
+  
+  .fm-grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .grid-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    opacity: 0;
+    transition: 0.3s;
+    font-size: 1.5rem;
+  }
+  
+  .fm-grid-item:hover .grid-overlay {
+    opacity: 1;
+  }
+  
+  /* Mobil Uyum */
+  @media (max-width: 768px) {
+    .fm-full-grid {
+      grid-template-columns: repeat(2, 1fr); /* Mobilde 2 sütun */
+      gap: 10px;
+    }
+    
+    .fm-modal-container {
+      height: 95vh;
+    }
+    
+    .fm-modal-header h3 {
+      font-size: 1.2rem;
+    }
+  }
+  
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+ /* --- SADELEŞTİRİLMİŞ SES OYNATICI --- */
+.simple-audio-wrapper {
+    max-width: 600px; /* Ekranda çok yayılmasın ama dar da olmasın */
+    margin: 50px auto 70px auto; /* Yukarıdan ve aşağıdan boşluk */
+    text-align: center;
+    padding: 0 20px;
+  }
+  
+  .simple-audio-title {
+    font-size: 1.4rem;
+    color: #1a3c6d;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+  }
+  
+  /* Oynatıcıyı Özelleştirme */
+  .simple-player {
+    width: 100%; /* Mobilde ekranı tam kaplasın ki çubuk uzasın */
+    height: 50px; /* Yüksekliği artırıyoruz, parmakla basması kolay olsun */
+    outline: none;
+    
+    /* Hafif gölge ve yuvarlatma ile şık dursun */
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
+    background-color: #f1f3f5; /* Tarayıcı desteklerse arka plan */
+  }
+  
+  /* Mobil için ekstra kontrol */
+  @media (max-width: 768px) {
+    .simple-audio-wrapper {
+      margin: 30px auto 50px auto;
+    }
+    
+    .simple-audio-title {
+      font-size: 1.2rem;
+    }
+  }

@@ -53,15 +53,16 @@ export const reviewsData = [
   // =================================================
   // 2. BÖLÜM: WEB SİTESİ HİKAYELERİ (source: "website")
   // =================================================
+
   {
     id: 6,
     source: "website",
-    name: "Turgut Koçar",
+    name: "Raşit Sarıçam",
     date: "1 Yıl önce",
     rating: 5,
-    treatment: "Damar Sertliği",
+    treatment: "Genel Yorum",
     comment:
-      "Değerli hocam saatli bomba gibisin çok acil ameliyat olman lazım demişlerdi fakat sayenizde 5 yılı aşkın süre geçti o günkünden daha iyi bir durumdayım ve inşallah ameliyat olmadan kurtulacağım cenabı Allah sizlere o bu dünyada ve ahirette en değerli yerlere koysun bayramın mübarek olsun Cenabı hak vücuduna sağlık ömrüne bereket versin Antalya dan saygı ve selamlarımı sunuyorum",
+      "Sağlık bakanı olmadan Ben ölürsem gözüm Açık gider Kendi cevherine sahip çıkamayan Cahil kişilerin elinde cebelleşip duruyor Bu şehir Kemal bayazıt dan sonra Yetişmiş değerlerimizin kıymetini bilememiştir İşte size Liyakat işte size Sağlık bakanı Doğası suyu ormanı pınarı O bin yıllık çınarı sağlık iksiri olan şehir dünyanın en iyi hsstahanelerini inşa eder Başkonuş yavşan ve berit engizek Ahırdağ bu Milcan tepesi gibi yerlere sağlık  sektörünün şifa dağıtacağı harika bir ıklim bu yörenin tomatesi salatası ve Aroması Isı kıvamına göre aynı derecede tuttuğundan hiç bozulmaz lezzet iksiri dır Adananın bulgurunu k.maraşa getir kurtlanmaz K.Maraşın bulgurunu Adana'ya götür kurtlanını k.maraşta yetişen mahsül k.maraşın havası ile eşgüdümlüdür. ",
   },
   {
     id: 7,
@@ -160,7 +161,8 @@ export const reviewsData = [
     date: "Ocak 2025",
     rating: 5,
     treatment: "Genel Yorum",
-    comment: "Başka bir ülkenin vatandaşı olmuş olsaydı şu an da el üstünde tutulurdu. Yabancı dilde yazılmış onlarca kitapların yanında bir dönem Çapa Tıp Fakültesinin Dekanlığını da yapan değerli arkadaşım, Kahramanmaraşlı Hoca kalp hastalıkları konusunda tek geçilecek Gazi Yaşargil gibi bir Tıp adamı. İsteseydi çok büyük imkânlar verilen Amerika veya Avrupa’da yaşayabilirdi. Ülke insanına halen İstanbul’da hizmet ediyor. Uzun ve sağlıklı bir yaşam dilerim hocam.", 
+    comment:
+      "Başka bir ülkenin vatandaşı olmuş olsaydı şu an da el üstünde tutulurdu. Yabancı dilde yazılmış onlarca kitapların yanında bir dönem Çapa Tıp Fakültesinin Dekanlığını da yapan değerli arkadaşım, Kahramanmaraşlı Hoca kalp hastalıkları konusunda tek geçilecek Gazi Yaşargil gibi bir Tıp adamı. İsteseydi çok büyük imkânlar verilen Amerika veya Avrupa’da yaşayabilirdi. Ülke insanına halen İstanbul’da hizmet ediyor. Uzun ve sağlıklı bir yaşam dilerim hocam.",
   },
   {
     id: 17,
@@ -169,7 +171,8 @@ export const reviewsData = [
     date: "Ocak 2025",
     rating: 5,
     treatment: "Genel Yorum",
-    comment: "Hayatın her alanında Edebiyatta Sanatta Tarihte Kültürde Sporda güreşte Tıpta İlimde Kahramanmaraşın Kahramanları var Benim yetkim olsa K.Maraş Meydanına bir Müze yapar bu ünlü Kahramanların Öykülerini duvara asar meydanlara,da Heykellerini dikerdim.",
+    comment:
+      "Hayatın her alanında Edebiyatta Sanatta Tarihte Kültürde Sporda güreşte Tıpta İlimde Kahramanmaraşın Kahramanları var Benim yetkim olsa K.Maraş Meydanına bir Müze yapar bu ünlü Kahramanların Öykülerini duvara asar meydanlara,da Heykellerini dikerdim.",
   },
   {
     id: 18,
@@ -178,7 +181,8 @@ export const reviewsData = [
     date: "Ocak 2025",
     rating: 5,
     treatment: "Genel Yorum",
-    comment: "Siz başka bir ülkenin vatandaşı olmuş olsaydınız şu an o ülkenin başkanı ve parlamentosu tarafından o ülkenin en büyük ödülüne layık görülür ve en yüksek maaşına bağlanırdınız. Yeni buluşlar için her türlü imkan önünüze sunulurdu. Ben ülkem adına sizden çok özür diliyorum."
+    comment:
+      "Siz başka bir ülkenin vatandaşı olmuş olsaydınız şu an o ülkenin başkanı ve parlamentosu tarafından o ülkenin en büyük ödülüne layık görülür ve en yüksek maaşına bağlanırdınız. Yeni buluşlar için her türlü imkan önünüze sunulurdu. Ben ülkem adına sizden çok özür diliyorum.",
   },
   {
     id: 19,
@@ -187,6 +191,17 @@ export const reviewsData = [
     date: "Ocak 2025",
     rating: 5,
     treatment: "Genel Yorum",
-    comment: "Hocam seninle tanışan hasta hiç bir müdahale yapmasan bile %50 iyileşiyor müdahaleden sonra %100 😁"
-  }
+    comment:
+      "Hocam seninle tanışan hasta hiç bir müdahale yapmasan bile %50 iyileşiyor müdahaleden sonra %100 😁",
+  },
+  {
+    id: 20,
+    source: "website",
+    name: "Turgut Koçar",
+    date: "1 Yıl önce",
+    rating: 5,
+    treatment: "Damar Sertliği",
+    comment:
+      "Değerli hocam saatli bomba gibisin çok acil ameliyat olman lazım demişlerdi fakat sayenizde 5 yılı aşkın süre geçti o günkünden daha iyi bir durumdayım ve inşallah ameliyat olmadan kurtulacağım cenabı Allah sizlere o bu dünyada ve ahirette en değerli yerlere koysun bayramın mübarek olsun Cenabı hak vücuduna sağlık ömrüne bereket versin Antalya dan saygı ve selamlarımı sunuyorum",
+  },
 ];

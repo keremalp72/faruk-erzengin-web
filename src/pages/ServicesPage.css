@@ -281,6 +281,11 @@
 
 /* RESPONSIVE */
 @media (max-width: 1024px) {
+  /*kaymayı engellemek için sadece mobile*/
+  .tp-page-wrapper{
+    width: 100%;             /* Ekle */
+  overflow-x: hidden
+  }
   .tp-layout {
     flex-direction: column;
     padding: 0 15px;
