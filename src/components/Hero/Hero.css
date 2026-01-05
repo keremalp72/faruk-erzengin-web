@@ -317,12 +317,13 @@
   }
 
   .scroll-indicator-text {
-    font-size: 13px;
+    font-size: 20px;
     color: rgba(255, 255, 255, 0.9);
     font-weight: 500;
     text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     letter-spacing: 0.5px;
     white-space: nowrap;
+    
   }
 
   .scroll-arrow {
@@ -334,10 +335,10 @@
     background: rgba(197, 160, 89, 0.2);
     backdrop-filter: blur(5px);
     border-radius: 50%;
-    border: 2px solid rgba(197, 160, 89, 0.6);
-    color: #C5A059;
+    border: 2px solid rgba(218, 20, 20, 0.6);
+    color: #c71010;
     font-size: 18px;
-    box-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
+    box-shadow: 0 0 15px rgba(190, 70, 22, 0.3);
     flex-shrink: 0;
   }
 }

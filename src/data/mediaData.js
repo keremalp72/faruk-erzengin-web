@@ -43,6 +43,15 @@ import img39 from '../assets/images/aboutme/pdf-image-048.jpg';
 import img40 from '../assets/images/aboutme/pdf-image-049.jpg';
 import img41 from '../assets/images/aboutme/pdf-image-088.jpg';
 import img42 from '../assets/images/aboutme/pdf-image-089.jpg';
+import img43 from '../assets/images/aboutme/book1.jpeg';
+import img44 from '../assets/images/aboutme/book2.jpeg';
+import img45 from '../assets/images/aboutme/book3.jpeg';
+import img46 from '../assets/images/aboutme/resim1.jpeg';
+import img47 from '../assets/images/aboutme/resim2.jpeg';
+import img48 from '../assets/images/aboutme/resim3.jpeg';
+import img49 from '../assets/images/aboutme/resim4.png';
+
+
 
 // --- SES DOSYASI IMPORTU ---
 import sesKaydi1 from '../assets/audio/seskaydi1.mp3';
@@ -102,6 +111,8 @@ export const mediaData = {
     { id: 29, src: img29 }, { id: 30, src: img30 }, { id: 31, src: img31 }, { id: 32, src: img32 },
     { id: 33, src: img33 }, { id: 34, src: img34 }, { id: 35, src: img35 }, { id: 36, src: img36 },
     { id: 37, src: img37 }, { id: 38, src: img38 }, { id: 39, src: img39 }, { id: 40, src: img40 },
-    { id: 41, src: img41 }, { id: 42, src: img42 }
+    { id: 41, src: img41 }, { id: 42, src: img42 }, { id: 43, src: img43 }, { id: 44, src: img44 },
+    { id: 45, src: img45 }, { id: 46, src: img46 }, { id: 47, src: img47 }, { id: 48, src: img48 },
+    { id: 49, src: img49 }, 
   ]
 };
