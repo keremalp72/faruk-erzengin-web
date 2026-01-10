@@ -204,4 +204,15 @@ export const reviewsData = [
     comment:
       "Değerli hocam saatli bomba gibisin çok acil ameliyat olman lazım demişlerdi fakat sayenizde 5 yılı aşkın süre geçti o günkünden daha iyi bir durumdayım ve inşallah ameliyat olmadan kurtulacağım cenabı Allah sizlere o bu dünyada ve ahirette en değerli yerlere koysun bayramın mübarek olsun Cenabı hak vücuduna sağlık ömrüne bereket versin Antalya dan saygı ve selamlarımı sunuyorum",
   },
+  {
+    id: 21,
+    source: "website",
+    name: "Yılmaz Çalış",
+    date: "1 Yıl önce",
+    rating: 5,
+    treatment: "Genel Yorum",
+    comment:
+      "Faruk bey kardeşim ben bu yaşıma geldim  ömrümde senin gibi  en üst düzeyde bilgi sahibi olan ve bu kadar Alçak gönüllü bir insan görmedim,Tanımadım.Benim dostum dediğim insan bir bulunmaz cevher çıktı.Önce dost ve kardeş olduk yıllar sonrada ödül alma vesilesi ile ilk defa 3.Ay içinde ve bu günde senin paylaştığın videon ile seni gerçekten  tanımış oldum.Her ne olursan ol Sen benim gene yoldaş kafa dengi,Dostum  ve yıllardır ünvanını bilmeden değer verdiğim biricik faruk kardeşimsin.Sen benim için öylede kalacaksın biz seninle hiç bir menfaat beklemeden bu güne kadar dostluğumuzu sürdürdük bizler  bu dünyadan  göç edene kadarda böyle kalsın yüce Yaradandan Temennim budur...",
+  },
+
 ];
