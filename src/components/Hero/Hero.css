@@ -12,30 +12,44 @@
 /* --- ARKA PLAN --- */
 .hero-bg-wrapper {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   z-index: -1;
 }
 
 .hero-bg-img {
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center;
-  animation: slowZoom 20s infinite alternate; 
+  animation: slowZoom 20s infinite alternate;
 }
 
 @keyframes slowZoom {
-  from { transform: scale(1); }
-  to { transform: scale(1.1); }
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
 }
 
 /* MASAÜSTÜ İÇİN KARARTMA (Overlay) */
 .hero-overlay {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   /* Soldan sağa geçiş */
-  background: linear-gradient(90deg, rgba(0, 34, 68, 0.95) 0%, rgba(0, 34, 68, 0.7) 60%, rgba(0, 34, 68, 0.2) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 34, 68, 0.95) 0%,
+    rgba(0, 34, 68, 0.7) 60%,
+    rgba(0, 34, 68, 0.2) 100%
+  );
   z-index: 1;
 }
 
@@ -56,27 +70,29 @@
 }
 
 /* --- ROZET (BADGE) --- */
-.hero-badge-wrapper { margin-bottom: 30px; }
+.hero-badge-wrapper {
+  margin-bottom: 30px;
+}
 
 .hero-badge {
   display: inline-block;
-  color: #C5A059;
+  color: #c5a059;
   border-radius: 50px;
   font-size: 15px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  white-space: pre-wrap; 
+  white-space: pre-wrap;
 }
 
 /* --- BAŞLIK --- */
 .hero-title {
-  font-family: 'Georgia', serif;
-  font-size: 80px; 
+  font-family: "Georgia", serif;
+  font-size: 80px;
   line-height: 1.1;
   margin-bottom: 30px;
   font-weight: 800;
-  text-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .title-prefix {
@@ -85,7 +101,7 @@
   font-weight: 400;
   color: #d0d0d0;
   margin-bottom: 10px;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", sans-serif;
   letter-spacing: 1px;
 }
 
@@ -93,7 +109,7 @@
 .video-link-wrapper {
   margin-top: 20px;
   /* DESKTOP İÇİN DÜZENLEME: Video linki ile buton arası mesafe */
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
 }
 
 .video-link {
@@ -106,13 +122,16 @@
 }
 
 .play-icon-circle {
-  min-width: 70px; min-height: 70px;
+  min-width: 70px;
+  min-height: 70px;
   flex-shrink: 0;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
   border-radius: 50%;
-  display: flex; justify-content: center; align-items: center;
-  border: 2px solid #C5A059;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #c5a059;
   transition: 0.4s;
   position: relative;
   box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
@@ -121,9 +140,12 @@
 }
 
 .play-icon-circle::before {
-  content: '';
+  content: "";
   position: absolute;
-  top: -5px; left: -5px; right: -5px; bottom: -5px;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
   border-radius: 50%;
   border: 2px solid rgba(197, 160, 89, 0.6);
   opacity: 0;
@@ -131,12 +153,18 @@
 }
 
 @keyframes pulse-ring {
-  0% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(1.5); opacity: 0; }
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
 }
 
 .video-link:hover .play-icon-circle {
-  background-color: #C5A059;
+  background-color: #c5a059;
   color: #002244;
   box-shadow: 0 0 40px rgba(197, 160, 89, 0.8);
   transform: scale(1.1);
@@ -146,25 +174,25 @@
   font-size: 20px;
   font-weight: 600;
   letter-spacing: 0.5px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
   transition: 0.3s;
 }
 
 .video-link:hover span {
-  color: #C5A059;
+  color: #c5a059;
 }
 
 /* --- BUTONLAR --- */
 .hero-buttons {
   display: flex;
   gap: 25px;
-  
+
   /* DESKTOP REVİZE: Üstten boşluk ekledik (Video linkine yapışmasın) */
-  margin-top: 60px; 
+  margin-top: 60px;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #C5A059 0%, #a68545 100%);
+  background: linear-gradient(135deg, #c5a059 0%, #a68545 100%);
   color: #ffffff;
   padding: 18px 45px;
   border-radius: 8px;
@@ -173,8 +201,10 @@
   transition: all 0.4s ease;
   font-size: 18px;
   box-shadow: 0 10px 25px rgba(197, 160, 89, 0.4);
-  border: 1px solid rgba(255,255,255,0.2);
-  display: flex; align-items: center; gap: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .btn-primary:hover {
@@ -184,15 +214,15 @@
   color: #fff;
 }
 
-.btn-arrow { font-size: 16px; }
-
+.btn-arrow {
+  font-size: 16px;
+}
 
 /* =======================================================
    MOBİL VE TABLET DÜZENLEMESİ (REVİZE EDİLDİ)
 ======================================================= */
 
 @media (max-width: 1024px) {
-  
   /* 1. Kapsayıcı Ayarı */
   .hero-section {
     align-items: flex-start;
@@ -203,12 +233,15 @@
 
   .hero-bg-wrapper {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 
   .hero-bg-img {
-    width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: top center !important;
     animation: none !important;
@@ -218,22 +251,22 @@
   /* 2. KARARTMA (OVERLAY) - REVİZE EDİLDİ - Doktor daha görünür */
   .hero-overlay {
     background: linear-gradient(
-      to bottom, 
-      rgba(0, 34, 68, 0.75) 0%,   /* EN ÜST: Daha açık -> Yazılar okunsun */
-      rgba(0, 34, 68, 0.4) 30%,   /* Geçiş yumuşatıldı */
-      rgba(0, 34, 68, 0.0) 60%,   /* ORTA: Tamamen şeffaf -> Doktor net görünsün */
-      rgba(0, 34, 68, 0.7) 90%,   /* ALT: Daha açık -> Butonlar okunsun */
-      rgba(0, 34, 68, 0.95) 100%
+      to bottom,
+      rgba(0, 34, 68, 0.75) 0%,
+      /* EN ÜST: Daha açık -> Yazılar okunsun */ rgba(0, 34, 68, 0.4) 30%,
+      /* Geçiş yumuşatıldı */ rgba(0, 34, 68, 0) 60%,
+      /* ORTA: Tamamen şeffaf -> Doktor net görünsün */ rgba(0, 34, 68, 0.7) 90%,
+      /* ALT: Daha açık -> Butonlar okunsun */ rgba(0, 34, 68, 0.95) 100%
     );
   }
 
   /* 3. İçerik Düzeni ve Boşluklar */
   .hero-container {
     /* REVİZE: Üstten daha fazla boşluk (100px -> 130px) */
-    padding-top: 130px; 
+    padding-top: 130px;
     width: 90%;
     height: 100%;
-    
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -255,12 +288,12 @@
     margin-bottom: 15px;
     order: 1;
   }
-  
+
   .hero-badge {
     font-size: 16px;
     line-height: 1.4;
     /* Yazının okunurluğunu artırmak için parlaklık */
-    text-shadow: 0 0 10px rgba(0,0,0,0.8); 
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
   }
 
   .hero-title {
@@ -285,7 +318,7 @@
 
   /* DESKTOP'taki margin-top'ı mobilde sıfırlıyoruz */
   .hero-buttons {
-    margin-top: 0; 
+    margin-top: 0;
     width: 100%;
     order: 4;
   }
@@ -295,7 +328,7 @@
     padding: 18px;
     font-size: 18px;
     justify-content: center;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
   }
 
   /* --- SCROLL INDICATOR (Mobil/Tablet için) - Kompakt versiyon --- */
@@ -320,10 +353,9 @@
     font-size: 20px;
     color: rgba(255, 255, 255, 0.9);
     font-weight: 500;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     letter-spacing: 0.5px;
     white-space: nowrap;
-    
   }
 
   .scroll-arrow {
@@ -343,9 +375,48 @@
   }
 }
 
-/* Desktop'ta scroll indicator gizli */
-@media (min-width: 1025px) {
-  .scroll-indicator {
-    display: none;
-  }
+/* =======================================================
+   SCROLL INDICATOR - TÜM EKRAN BOYUTLARI İÇİN
+======================================================= */
+
+/* Desktop için Scroll Indicator Stilleri */
+.scroll-indicator {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  margin-top: 40px;
+  cursor: pointer;
+  padding: 10px 0;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-indicator:hover {
+  opacity: 0.8;
+}
+
+.scroll-indicator-text {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.scroll-arrow {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(197, 160, 89, 0.2);
+  backdrop-filter: blur(5px);
+  border-radius: 50%;
+  border: 2px solid rgba(197, 160, 89, 0.6);
+  color: #c5a059;
+  font-size: 18px;
+  box-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
+  flex-shrink: 0;
 }
