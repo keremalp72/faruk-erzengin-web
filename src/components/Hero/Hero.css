@@ -226,9 +226,8 @@
   /* 1. Kapsayıcı Ayarı */
   .hero-section {
     align-items: flex-start;
-    height: 85vh;
-    min-height: 500px;
-    max-height: 700px;
+    height: 100vh;
+    min-height: 600px;
     padding: 0;
   }
 
@@ -321,7 +320,7 @@
   .hero-buttons {
     margin-top: 0;
     width: 100%;
-    order: 4;
+    order: 5;
   }
 
   .btn-primary {
@@ -341,7 +340,7 @@
     gap: 12px;
     margin-top: 10px;
     cursor: pointer;
-    order: 5;
+    order: 4;
     padding: 8px 15px;
     transition: opacity 0.3s ease;
   }
