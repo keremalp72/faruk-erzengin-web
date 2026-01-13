@@ -1,52 +1,63 @@
-import React, { useEffect, Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import React, { useEffect, Suspense, lazy } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 
 // 1. Google Analytics Kütüphanesi
 import ReactGA from "react-ga4";
 
 // Sabit Bileşenler (Bunlar hemen yüklenmeli, o yüzden normal import)
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import FloatingScrollButton from "./components/FloatingScrollButton/FloatingScrollButton";
 
-import './App.css';
+import "./App.css";
 
 // --- LAZY LOADING IMPORTLARI ---
 // Sayfaları sadece kullanıcı ihtiyaç duyduğunda yükleyeceğiz
-const Home = lazy(() => import('./pages/Home'));
-const AboutPage = lazy(() => import('./pages/AboutPage'));
-const ServicesPage = lazy(() => import('./pages/ServicesPage'));
-const BlogPage = lazy(() => import('./pages/BlogPage'));
-const BlogPostDetail = lazy(() => import('./pages/BlogPostDetail'));
-const PressPage = lazy(() => import('./pages/PressPage'));
-const ReviewsPage = lazy(() => import('./pages/ReviewsPage'));
-const ContactPage = lazy(() => import('./pages/ContactPage'));
+const Home = lazy(() => import("./pages/Home"));
+const AboutPage = lazy(() => import("./pages/AboutPage"));
+const ServicesPage = lazy(() => import("./pages/ServicesPage"));
+const BlogPage = lazy(() => import("./pages/BlogPage"));
+const BlogPostDetail = lazy(() => import("./pages/BlogPostDetail"));
+const PressPage = lazy(() => import("./pages/PressPage"));
+const ReviewsPage = lazy(() => import("./pages/ReviewsPage"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
 
 // --- GA4 TAKİP KODU ---
-const TRACKING_ID = "G-KLKWN88Q9G"; 
+const TRACKING_ID = "G-KLKWN88Q9G";
 
 // --- YÜKLENİYOR EKRANI (Loading Spinner) ---
 // Sayfa internet hızına bağlı olarak yüklenirken görünecek basit tasarım
 const LoadingSpinner = () => (
-  <div style={{ 
-    display: 'flex', 
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    height: '60vh', 
-    width: '100%',
-    color: '#1a3c6d', // Sitenin lacivert rengi
-    fontSize: '1.2rem',
-    fontWeight: '600',
-    flexDirection: 'column',
-    gap: '15px'
-  }}>
-    <div className="spinner" style={{
-       width: '40px',
-       height: '40px',
-       border: '4px solid #f3f3f3',
-       borderTop: '4px solid #1a3c6d',
-       borderRadius: '50%',
-       animation: 'spin 1s linear infinite'
-    }}></div>
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "60vh",
+      width: "100%",
+      color: "#1a3c6d", // Sitenin lacivert rengi
+      fontSize: "1.2rem",
+      fontWeight: "600",
+      flexDirection: "column",
+      gap: "15px",
+    }}
+  >
+    <div
+      className="spinner"
+      style={{
+        width: "40px",
+        height: "40px",
+        border: "4px solid #f3f3f3",
+        borderTop: "4px solid #1a3c6d",
+        borderRadius: "50%",
+        animation: "spin 1s linear infinite",
+      }}
+    ></div>
     <span>Yükleniyor...</span>
     {/* Dönme animasyonu için style etiketi */}
     <style>{`
@@ -61,7 +72,10 @@ const PageMeta = () => {
 
   useEffect(() => {
     // Sayfa değişince Analytics'e bildir
-    ReactGA.send({ hitType: "pageview", page: location.pathname + location.search });
+    ReactGA.send({
+      hitType: "pageview",
+      page: location.pathname + location.search,
+    });
 
     // Sayfayı en üste kaydır
     window.scrollTo(0, 0);
@@ -71,7 +85,6 @@ const PageMeta = () => {
 };
 
 function App() {
-
   // Uygulama ilk açıldığında Analytics'i başlat
   useEffect(() => {
     ReactGA.initialize(TRACKING_ID);
@@ -79,9 +92,9 @@ function App() {
 
   return (
     <Router>
-      <PageMeta /> 
+      <PageMeta />
       <div className="App">
-        <Header /> 
+        <Header />
         <main>
           {/* SUSPENSE: Sayfa dosyası internetten inene kadar LoadingSpinner gösterir */}
           <Suspense fallback={<LoadingSpinner />}>
@@ -89,7 +102,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/hakkinda" element={<AboutPage />} />
               <Route path="/tedaviler" element={<ServicesPage />} />
-              
+
               <Route path="/blog" element={<BlogPage />} />
               <Route path="/blog/:id" element={<BlogPostDetail />} />
 
@@ -99,7 +112,8 @@ function App() {
             </Routes>
           </Suspense>
         </main>
-        <Footer /> 
+        <FloatingScrollButton />
+        <Footer />
       </div>
     </Router>
   );

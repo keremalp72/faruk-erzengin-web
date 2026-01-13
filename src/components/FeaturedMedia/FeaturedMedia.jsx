@@ -182,7 +182,7 @@ const FeaturedMedia = () => {
             </div>
 
             <div className="fm-gallery-track" ref={galleryRef}>
-              {gallery.slice(0, 10).map((img, index) => (
+              {gallery.map((img, index) => (
                 <div
                   key={img.id}
                   className="fm-gallery-item clickable-gallery-item"
