@@ -386,7 +386,7 @@
   align-items: center;
   justify-content: flex-start;
   gap: 15px;
-  margin-top: 40px;
+  /* margin-top: 40px; */
   cursor: pointer;
   padding: 10px 0;
   transition: opacity 0.3s ease;
@@ -419,4 +419,11 @@
   font-size: 18px;
   box-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
   flex-shrink: 0;
+}
+
+/* Desktop için margin-top */
+@media (min-width: 1025px) {
+  .scroll-indicator {
+    margin-top: 40px;
+  }
 }
