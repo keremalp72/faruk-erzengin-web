@@ -86,7 +86,9 @@
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
   border: 1px solid rgba(0, 0, 0, 0.03);
   display: flex;
   flex-direction: column;
@@ -340,7 +342,9 @@
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   border: 1px solid rgba(0, 0, 0, 0.03);
   cursor: pointer;
   position: relative;
@@ -737,9 +741,16 @@
   }
 }
 /* --- SADELEŞTİRİLMİŞ SES OYNATICI --- */
+.fm-audio-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 50px auto 70px auto;
+}
+
 .simple-audio-wrapper {
   max-width: 600px; /* Ekranda çok yayılmasın ama dar da olmasın */
-  margin: 50px auto 70px auto; /* Yukarıdan ve aşağıdan boşluk */
+  margin: 0 auto; /* Yukarıdan ve aşağıdan boşluk container tarafından yönetiliyor */
   text-align: center;
   padding: 0 20px;
 }

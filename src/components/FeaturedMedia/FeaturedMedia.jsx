@@ -22,7 +22,7 @@ const FeaturedMedia = () => {
   const [showAllGallery, setShowAllGallery] = useState(false);
 
   // Verileri değişkene atayalım ki kullanımı kolay olsun
-  const { videos, audio, gallery } = mediaData;
+  const { videos, audios, gallery } = mediaData;
 
   const scrollLeft = () => {
     if (galleryRef.current)
@@ -124,19 +124,23 @@ const FeaturedMedia = () => {
         </div>
 
         {/* --- SES KAYITLARI (SADE HALİ) --- */}
-        {audio.src && (
+        {audios && audios.length > 0 && (
           <ScrollReveal animation="fade-up" delay={0.3}>
-            <div className="simple-audio-wrapper">
-              <h3 className="simple-audio-title">
-                <FaMicrophone
-                  style={{ marginRight: "10px", color: "#C5A059" }}
-                />
-                {audio.title}
-              </h3>
-              <audio controls className="simple-player">
-                <source src={audio.src} type="audio/mpeg" />
-                Tarayıcınız bu ses dosyasını desteklemiyor.
-              </audio>
+            <div className="fm-audio-container">
+              {audios.map((item) => (
+                <div key={item.id} className="simple-audio-wrapper">
+                  <h3 className="simple-audio-title">
+                    <FaMicrophone
+                      style={{ marginRight: "10px", color: "#C5A059" }}
+                    />
+                    {item.title}
+                  </h3>
+                  <audio controls className="simple-player">
+                    <source src={item.src} type="audio/mpeg" />
+                    Tarayıcınız bu ses dosyasını desteklemiyor.
+                  </audio>
+                </div>
+              ))}
             </div>
           </ScrollReveal>
         )}

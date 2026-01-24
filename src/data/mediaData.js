@@ -53,8 +53,9 @@ import img49 from '../assets/images/aboutme/resim4.png';
 
 
 
-// --- SES DOSYASI IMPORTU ---
+// --- SES DOSYALARI IMPORTU ---
 import sesKaydi1 from '../assets/audio/seskaydi1.mp3';
+import siirSesi from '../assets/audio/siir-sesi.mp3';
 
 export const mediaData = {
   // --- VİDEOLAR ---
@@ -94,10 +95,18 @@ export const mediaData = {
   ],
 
   // --- SES KAYITLARI ---
-  audio: {
-    title: "Prof. Dr. Faruk Erzengin hocamıza selamlar",
-    src: sesKaydi1
-  },
+  audios: [
+    {
+      id: 1,
+      title: "Prof. Dr. Faruk Erzengin - Hocamıza Selamlar",
+      src: sesKaydi1
+    },
+    {
+      id: 2,
+      title: "Prof. Dr. Faruk Erzengin - Şiir Seslendirmesi",
+      src: siirSesi
+    }
+  ],
 
   // --- FOTOĞRAF GALERİSİ ---
   gallery: [
