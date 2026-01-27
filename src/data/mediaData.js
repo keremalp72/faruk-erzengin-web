@@ -80,7 +80,7 @@ export const mediaData = {
       id: 3,
       youtubeId: "PKAJrMgZlfg",
       tag: "Şarkı",
-      title: "Büyük Ozan Hilmi Şahbazlı'nın Prof.  Dr. Faruk Erzengine İthaf Ettiği Türkü",
+      title: "Büyük Ozan Hilmi Şahballı'nın Prof. Dr. Faruk Erzengine İthaf Ettiği Türkü",
       desc: "Şarkı, hocanın hastalara şifa dağıtan, tatlı sözlü, bilgeliğiyle öne çıkan bir hekim olduğunu anlatıyor.",
       isNews: false
     },
@@ -90,6 +90,14 @@ export const mediaData = {
       tag: "Seminer",
       title: "Prof. Dr. Faruk Erzengin Soru-Cevap",
       desc: "Prof. Dr. Faruk Erzengin'in hayatını, meslek yolculuğunu ve tıbba bakışını anlattığı özel röportaj.",
+      isNews: true
+    },
+    {
+      id: 5,
+      youtubeId: "kgnAwPz32Zw",
+      tag: "Seminer",
+      title: "Hocaların Hocası Prof. Dr. Faruk Erzengin COVID-19’un Çarpıcı Etkilerini ve Önlemleri Anlattı.",
+      desc: "Prof. Dr. Faruk Erzengin bu söyleşide COVID-19’un etkilerini, mutasyonlarını ve alınması gereken önlemleri detaylı şekilde anlatıyor. Virüsün kalp ve damar sistemine verdiği zararları, farklı semptomlarını ve uzun vadeli komplikasyonlarını vurguluyor. Ayrıca aşıların önemi, mutasyonlara karşı etkinliği ve toplumun maske, mesafe, hijyen kurallarına uyması gerektiğini sık sık hatırlatıyor. Psikolojik etkilerden de bahsederek bu sürecin bir “görünmeyen savaş” olduğunu söylüyor ve moralin korunmasının önemini dile getiriyor.",
       isNews: true
     }
   ],

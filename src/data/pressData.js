@@ -4,6 +4,7 @@ import kalpkrizi from '../assets/images/press/haber-kalpkrizi.png';
 import nobel from '../assets/images/press/haber-nobel.png';
 import nobelekip from '../assets/images/press/haber-nobel-ekip.png';
 import corona from '../assets/images/press/haber-corona.png';
+import cesuryurek from '../assets/images/press/cesuryurek.png';
 
 
 export const pressData = {
@@ -47,6 +48,14 @@ export const pressData = {
         date: "2015",
         videoUrl: "https://www.youtube.com/embed/qVGggabOSRI?si=P7kAtUCF6iE5zRPX",
         desc: "Prof. Dr. Faruk Erzengin’in kalp damar hastalıklarında kullanılan bypass ve stent yöntemlerinin gelecekte önemini yitirebileceğini, yeni tedavi seçeneklerinin öne çıkacağını anlattığı bir konuşmadır."
+      },
+      {
+        id: 6,
+        title: "Hocaların Hocası Prof. Dr. Faruk Erzengin COVID-19’un Çarpıcı Etkilerini ve Önlemleri Anlattı.",
+        channel: "Funda Akosman",
+        date: "2021",
+        videoUrl: "https://www.youtube.com/embed/kgnAwPz32Zw",
+        desc: "Prof. Dr. Faruk Erzengin bu söyleşide COVID-19’un etkilerini, mutasyonlarını ve alınması gereken önlemleri detaylı şekilde anlatıyor. Virüsün kalp ve damar sistemine verdiği zararları, farklı semptomlarını ve uzun vadeli komplikasyonlarını vurguluyor. Ayrıca aşıların önemi, mutasyonlara karşı etkinliği ve toplumun maske, mesafe, hijyen kurallarına uyması gerektiğini sık sık hatırlatıyor. Psikolojik etkilerden de bahsederek bu sürecin bir “görünmeyen savaş” olduğunu söylüyor ve moralin korunmasının önemini dile getiriyor."
       }
     ],
     news: [
@@ -94,6 +103,15 @@ export const pressData = {
         image: corona,
         link: "https://www.oncevatan.com.tr/degerli-hocamiz-faruk-erzenginden-covid-19a-dair-onemli-bilgiler",
         summary: "Prof. Dr. Erzengin, Covid-19'a dair dikkat edilmesi gereken önemli bilgileri anlattı."
+      },
+      {
+        id: 5,
+        title: "Vatandaş için çalışan Cesur Yürek",
+        source: "Önce Vatan Gazetesi",
+        date: "24 Ağustos 2017",
+        image: cesuryurek,
+        link: "https://www.oncevatan.com.tr/vatandas-icin-calisancesur-yurek",
+        summary: "Hem müthiş bir hekim hem de çok donanımlı bir insandır, O'nu tanımak büyük şanstır, şimdi bazı hastalarının dile getirdiği teşekkürlere aşağıda yer verdik, o kadar çok hastaya şifa oldu ki maşallah hepsine yer versek gazetemizin sayfaları yetmez. Buyurun."
       }
     ]
   };
