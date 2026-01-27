@@ -80,7 +80,7 @@ export const mediaData = {
       id: 3,
       youtubeId: "PKAJrMgZlfg",
       tag: "Şarkı",
-      title: "Prof. Dr. Faruk Erzengin Adına Yapılan Şarkı",
+      title: "Büyük Ozan Hilmi Şahbazlı'nın Prof.  Dr. Faruk Erzengine İthaf Ettiği Türkü",
       desc: "Şarkı, hocanın hastalara şifa dağıtan, tatlı sözlü, bilgeliğiyle öne çıkan bir hekim olduğunu anlatıyor.",
       isNews: false
     },
