@@ -101,7 +101,7 @@ const ContactPage = () => {
         "service_ss629lf",
         "template_0s1f0sr",
         form.current,
-        "8r3vtuP8_9Qrw-Utv"
+        "8r3vtuP8_9Qrw-Utv",
       )
       .then(
         (result) => {
@@ -118,10 +118,10 @@ const ContactPage = () => {
         (error) => {
           console.log("Hata oluştu:", error.text);
           alert(
-            "Mesaj gönderilirken bir hata oluştu, lütfen tekrar deneyiniz."
+            "Mesaj gönderilirken bir hata oluştu, lütfen tekrar deneyiniz.",
           );
           setIsSending(false);
-        }
+        },
       );
   };
 
@@ -181,7 +181,7 @@ const ContactPage = () => {
                 D: 3, Şişli / İstanbul
               </p>
               <p>
-                <strong>Günler:</strong> Pazartesi & Cuma (12:00 - 18:00)
+                <strong>Günler:</strong> Pazartesi & Perşembe (12:00 - 18:00)
               </p>
               <div className="phone-list">
                 <a href="tel:+902123568888">
