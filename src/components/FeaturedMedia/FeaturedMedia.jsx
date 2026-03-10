@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./FeaturedMedia.css";
 import {
   FaCalendarCheck,
@@ -12,17 +12,33 @@ import {
 } from "react-icons/fa";
 import ScrollReveal from "../Animations/ScrollReveal";
 import { Link } from "react-router-dom";
-
-// --- TEK BİR YERDEN VERİLERİ ÇEKİYORUZ ---
-import { mediaData } from "../../data/mediaData";
+import { supabase } from "../../lib/supabaseClient";
 
 const FeaturedMedia = () => {
   const galleryRef = useRef(null);
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
   const [showAllGallery, setShowAllGallery] = useState(false);
+  const [gallery, setGallery] = useState([]);
+  const [videos, setVideos] = useState([]);
+  const [audios, setAudios] = useState([]);
 
-  // Verileri değişkene atayalım ki kullanımı kolay olsun
-  const { videos, audios, gallery } = mediaData;
+  useEffect(() => {
+    fetchMediaData();
+  }, []);
+
+  const fetchMediaData = async () => {
+    // Gallery
+    const { data: gData } = await supabase.from('gallery_images').select('*').order('created_at', { ascending: false });
+    if (gData) setGallery(gData.map(img => ({ id: img.id, src: img.image_url })));
+    
+    // Videos
+    const { data: vData } = await supabase.from('featured_videos').select('*').order('created_at', { ascending: false });
+    if (vData) setVideos(vData);
+
+    // Audios
+    const { data: aData } = await supabase.from('audios').select('*').order('created_at', { ascending: false });
+    if (aData) setAudios(aData);
+  };
 
   const scrollLeft = () => {
     if (galleryRef.current)
@@ -107,7 +123,7 @@ const FeaturedMedia = () => {
                 ></div>
                 <div className="video-frame">
                   <iframe
-                    src={`https://www.youtube.com/embed/${video.youtubeId}`}
+                    src={`https://www.youtube.com/embed/${video.youtube_id}`}
                     title={video.title}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
@@ -116,7 +132,7 @@ const FeaturedMedia = () => {
                 <div className="fm-card-content">
                   <div className="fm-tag">{video.tag}</div>
                   <h3>{video.title}</h3>
-                  <p>{video.desc}</p>
+                  <p>{video.description}</p>
                 </div>
               </div>
             </ScrollReveal>
@@ -136,7 +152,7 @@ const FeaturedMedia = () => {
                     {item.title}
                   </h3>
                   <audio controls className="simple-player">
-                    <source src={item.src} type="audio/mpeg" />
+                    <source src={item.audio_url} type="audio/mpeg" />
                     Tarayıcınız bu ses dosyasını desteklemiyor.
                   </audio>
                 </div>
@@ -195,7 +211,7 @@ const FeaturedMedia = () => {
                   <div className="g-img-box">
                     <img
                       src={img.src}
-                      alt="Prof. Dr. Faruk Erzengin Galeri"
+                      alt="Prof. Dr. Faruk Erzengin Galeri Görseli"
                       loading="lazy"
                     />
                     <div className="g-overlay">
@@ -239,7 +255,7 @@ const FeaturedMedia = () => {
                     className="fm-grid-item"
                     onClick={() => openLightbox(index)}
                   >
-                    <img src={img.src} alt="Galeri" loading="lazy" />
+                    <img src={img.src} alt="Prof. Dr. Faruk Erzengin Galeri Detay Tıbbi Görsel" loading="lazy" />
                     <div className="grid-overlay">
                       <FaPlay />
                     </div>
@@ -268,7 +284,7 @@ const FeaturedMedia = () => {
             className="lightbox-content"
             onClick={(e) => e.stopPropagation()}
           >
-            <img src={gallery[selectedImageIndex].src} alt="Tam Ekran" />
+            <img src={gallery[selectedImageIndex].src} alt="Prof. Dr. Faruk Erzengin Galeri Tam Ekran" />
           </div>
           <button
             className="lightbox-nav-btn lightbox-next"

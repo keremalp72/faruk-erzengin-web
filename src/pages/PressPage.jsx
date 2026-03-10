@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { pressData } from '../data/pressData';
+import { supabase } from '../lib/supabaseClient';
 import { FaYoutube, FaNewspaper, FaExternalLinkAlt, FaPlayCircle, FaCalendarAlt } from 'react-icons/fa';
 import './PressPage.css';
 
@@ -11,10 +11,25 @@ import SEO from '../components/SEO';
 
 const PressPage = () => {
   const [activeTab, setActiveTab] = useState('videos'); // Başlangıçta videolar açık olsun
+  const [videos, setVideos] = useState([]);
+  const [news, setNews] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    fetchPressData();
   }, []);
+
+  const fetchPressData = async () => {
+    setLoading(true);
+    const [videosRes, newsRes] = await Promise.all([
+      supabase.from('press_videos').select('*').order('created_at', { ascending: false }),
+      supabase.from('press_news').select('*').order('created_at', { ascending: false })
+    ]);
+    if (videosRes.data) setVideos(videosRes.data);
+    if (newsRes.data) setNews(newsRes.data);
+    setLoading(false);
+  };
 
   return (
     <div className="press-page">
@@ -58,14 +73,14 @@ const PressPage = () => {
         {/* --- VİDEO İÇERİĞİ --- */}
         {activeTab === 'videos' && (
           <div className="videos-grid">
-            {pressData.videos.map((video, index) => (
+            {loading ? <p style={{textAlign: 'center', width: '100%'}}>Videolar yükleniyor...</p> : videos.map((video, index) => (
               // Videolar sırayla gelsin (index * 0.1)
               <ScrollReveal key={video.id} animation="fade-up" delay={index * 0.1}>
                 <div className="video-card">
                   <div className="video-wrapper">
                     <iframe 
-                      src={video.videoUrl} 
-                      title={video.title} 
+                      src={video.video_url} 
+                      title={`${video.title} - Prof. Dr. Faruk Erzengin TV Röportajı`} 
                       frameBorder="0" 
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                       allowFullScreen
@@ -74,10 +89,10 @@ const PressPage = () => {
                   <div className="video-body">
                     <div className="video-meta">
                       <span className="v-channel"><FaPlayCircle /> {video.channel}</span>
-                      <span className="v-date"><FaCalendarAlt /> {video.date}</span>
+                      <span className="v-date"><FaCalendarAlt /> {video.publication_date}</span>
                     </div>
                     <h3>{video.title}</h3>
-                    <p>{video.desc}</p>
+                    <p>{video.description}</p>
                   </div>
                 </div>
               </ScrollReveal>
@@ -88,21 +103,21 @@ const PressPage = () => {
         {/* --- HABER İÇERİĞİ --- */}
         {activeTab === 'news' && (
           <div className="news-grid">
-            {pressData.news.map((news, index) => (
+            {loading ? <p style={{textAlign: 'center', width: '100%'}}>Haberler yükleniyor...</p> : news.map((newsItem, index) => (
               // Haberler sırayla gelsin (index * 0.1)
-              <ScrollReveal key={news.id} animation="fade-up" delay={index * 0.1}>
+              <ScrollReveal key={newsItem.id} animation="fade-up" delay={index * 0.1}>
                 <div className="news-card">
                   <div className="news-image">
-                    <img src={news.image} alt={news.title} />
-                    <span className="news-source">{news.source}</span>
+                    <img src={newsItem.image_url} alt={`${newsItem.title} - Basında Prof. Dr. Faruk Erzengin`} loading="lazy" />
+                    <span className="news-source">{newsItem.source}</span>
                   </div>
                   <div className="news-body">
-                    <span className="news-date">{news.date}</span>
-                    <h3>{news.title}</h3>
-                    <p>{news.summary}</p>
+                    <span className="news-date">{newsItem.publication_date}</span>
+                    <h3>{newsItem.title}</h3>
+                    <p>{newsItem.summary}</p>
                     
                     <a 
-                      href={news.link} 
+                      href={newsItem.link} 
                       target="_blank" 
                       rel="noopener noreferrer" 
                       className="news-link"

@@ -8,11 +8,13 @@ import {
 
 // 1. Google Analytics Kütüphanesi
 import ReactGA from "react-ga4";
+import { supabase } from "./lib/supabaseClient";
 
 // Sabit Bileşenler (Bunlar hemen yüklenmeli, o yüzden normal import)
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import FloatingScrollButton from "./components/FloatingScrollButton/FloatingScrollButton";
+import Admin from "./pages/Admin";
 
 import "./App.css";
 
@@ -77,6 +79,16 @@ const PageMeta = () => {
       page: location.pathname + location.search,
     });
 
+    // Supabase veritabanına ziyaret istatistiğini yaz (Admin Paneli Raporu İçin)
+    // admin panelinde loglanmasın
+    if (!location.pathname.startsWith('/admin')) {
+      const logPageView = async () => {
+        const { error } = await supabase.rpc('increment_page_view', { page_path: location.pathname });
+        if (error) console.error("Analytics Error:", error);
+      };
+      logPageView();
+    }
+
     // Sayfayı en üste kaydır
     window.scrollTo(0, 0);
   }, [location]);
@@ -109,6 +121,7 @@ function App() {
               <Route path="/basin" element={<PressPage />} />
               <Route path="/yorumlar" element={<ReviewsPage />} />
               <Route path="/iletisim" element={<ContactPage />} />
+              <Route path="/admin" element={<Admin />} />
             </Routes>
           </Suspense>
         </main>

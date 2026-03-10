@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { treatmentsData } from '../data/treatmentsData';
-import { blogData } from '../data/blogData'; 
+import { supabase } from '../lib/supabaseClient';
 // Link bileşenini ekliyoruz
 import { Link } from 'react-router-dom'; 
 import { FaArrowRight, FaTimes, FaStethoscope, FaSyringe, FaNotesMedical, FaUserMd, FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
@@ -14,10 +13,50 @@ import doctorProfileImg from '../assets/images/aboutme/hakkimda1.png';
 
 const ServicesPage = () => {
   const [selectedTreatment, setSelectedTreatment] = useState(null);
+  const [treatmentsData, setTreatments] = useState([]);
+  const [blogData, setBlogData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    fetchData();
   }, []);
+
+  const fetchData = async () => {
+    setLoading(true);
+    const [tRes, bRes] = await Promise.all([
+      supabase.from('treatments').select('*').order('created_at', { ascending: true }),
+      supabase.from('articles').select('*').order('created_at', { ascending: false }).limit(3)
+    ]);
+
+    if (tRes.data) {
+      const formattedTreatments = tRes.data.map(item => ({
+        id: item.id,
+        title: item.title,
+        shortDesc: item.short_desc,
+        image: item.image_url,
+        content: {
+          description: item.content_description,
+          symptoms: item.content_symptoms, // Supabase jsonb auto-parses arrays
+          treatment: item.content_treatment,
+          approach: item.content_approach
+        }
+      }));
+      setTreatments(formattedTreatments);
+    }
+    
+    if (bRes.data) {
+      const formattedBlogs = bRes.data.map(b => ({
+         id: b.id,
+         title: b.title,
+         image: b.image_url,
+         date: new Date(b.created_at).toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' })
+      }));
+      setBlogData(formattedBlogs);
+    }
+
+    setLoading(false);
+  };
 
   useEffect(() => {
     if (selectedTreatment) {
@@ -32,7 +71,8 @@ const ServicesPage = () => {
       
       <SEO 
         title="Tedaviler & Uzmanlık Alanları" 
-        description="Prof. Dr. Faruk Erzengin'in uzmanlık alanları..." 
+        description="Prof. Dr. Faruk Erzengin'in uzmanlık alanları, kalp hastalıkları teşhis ve tedavi yöntemleri hakkında detaylı bilgi." 
+        isTreatment={true}
       />
 
       {/* HEADER */}
@@ -61,11 +101,11 @@ const ServicesPage = () => {
           </ScrollReveal>
 
           <div className="tp-treatments-grid">
-            {treatmentsData.map((item, index) => (
+            {loading ? <p>Tedaviler yükleniyor...</p> : treatmentsData.map((item, index) => (
               <ScrollReveal key={item.id} animation="fade-up" delay={index * 0.1}>
                 <div className="tp-card" onClick={() => setSelectedTreatment(item)}>
                   <div className="tp-card-img-box">
-                    <img src={item.image} alt={item.title} />
+                    <img src={item.image} alt={`${item.title} Tedavisi - Prof. Dr. Faruk Erzengin`} loading="lazy" />
                     <div className="tp-card-overlay">
                       <span>İncele</span>
                     </div>
@@ -90,7 +130,7 @@ const ServicesPage = () => {
           <ScrollReveal animation="slide-in-right" delay={0.2}>
             <div className="tp-widget tp-profile-box">
               <div className="tp-profile-img">
-                <img src={doctorProfileImg} alt="Prof. Dr. Faruk Erzengin" />
+                <img src={doctorProfileImg} alt="Prof. Dr. Faruk Erzengin Kardiyoloji Uzmanı" loading="lazy" />
               </div>
               <h3>Prof. Dr. Faruk Erzengin</h3>
               <span className="tp-profile-role">Kardiyoloji & İç Hastalıkları Uzmanı</span>
@@ -112,7 +152,7 @@ const ServicesPage = () => {
                   <div key={post.id} className="tp-post-item">
                     {/* Resme tıklayınca da gitmesi için Link ile sarmaladık */}
                     <Link to={`/blog/${post.id}`} className="tp-post-thumb">
-                      <img src={post.image} alt={post.title} />
+                      <img src={post.image} alt={post.title} loading="lazy" />
                     </Link>
                     
                     <div className="tp-post-info">
@@ -165,7 +205,7 @@ const ServicesPage = () => {
             <button className="tp-modal-close" onClick={() => setSelectedTreatment(null)}><FaTimes /></button>
             
             <div className="tp-modal-header-img">
-              <img src={selectedTreatment.image} alt={selectedTreatment.title} />
+              <img src={selectedTreatment.image} alt={`${selectedTreatment.title} - Tıbbi Görsel`} loading="lazy" />
               <div className="tp-modal-title-box">
                 <h2>{selectedTreatment.title}</h2>
               </div>
@@ -174,7 +214,7 @@ const ServicesPage = () => {
             <div className="tp-modal-body">
               <div className="tp-info-block">
                 <h3><FaNotesMedical /> Nedir?</h3>
-                <p>{selectedTreatment.content.description}</p>
+                <div dangerouslySetInnerHTML={{ __html: selectedTreatment.content.description }} />
               </div>
 
               <div className="tp-info-grid">
@@ -190,13 +230,13 @@ const ServicesPage = () => {
                 </div>
                 <div className="tp-info-item">
                   <h3><FaSyringe /> Tedavi Yöntemleri</h3>
-                  <p>{selectedTreatment.content.treatment}</p>
+                  <div dangerouslySetInnerHTML={{ __html: selectedTreatment.content.treatment }} />
                 </div>
               </div>
 
               <div className="tp-doctor-note">
                 <h3><FaUserMd /> Prof. Dr. Faruk Erzengin'in Yaklaşımı</h3>
-                <p>"{selectedTreatment.content.approach}"</p>
+                <div dangerouslySetInnerHTML={{ __html: selectedTreatment.content.approach }} style={{ fontStyle: 'italic', marginTop: '10px' }} />
               </div>
 
               <div className="tp-modal-footer">

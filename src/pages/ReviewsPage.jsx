@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { reviewsData } from '../data/reviewsData';
+import { supabase } from '../lib/supabaseClient';
 import { FaStar, FaQuoteRight, FaGoogle, FaCheckCircle, FaChevronDown } from 'react-icons/fa';
 import './ReviewsPage.css';
 import ScrollReveal from '../components/Animations/ScrollReveal';
@@ -11,6 +11,8 @@ const ReviewsPage = () => {
   const [isDown, setIsDown] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [reviewsData, setReviewsData] = useState([]);
   
   // Google yorumlarını başlangıçta 3 tane göster
   const [visibleGoogleCount, setVisibleGoogleCount] = useState(3);
@@ -54,7 +56,19 @@ const ReviewsPage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    fetchReviews();
   }, []);
+
+  const fetchReviews = async () => {
+    setLoading(true);
+    const { data, error } = await supabase.from('reviews').select('*').order('created_at', { ascending: false });
+    if (error) {
+      console.error("Yorumlar yüklenemedi:", error);
+    } else {
+      setReviewsData(data || []);
+    }
+    setLoading(false);
+  };
 
   // --- Slider Mouse Olayları ---
   const handleMouseDown = (e) => {
@@ -84,11 +98,11 @@ const ReviewsPage = () => {
 
   // Review Schema için hesaplamalar
   const totalReviews = reviewsData.length;
-  const averageRating = reviewsData.reduce((sum, review) => sum + review.rating, 0) / totalReviews;
+  const averageRating = totalReviews > 0 ? (reviewsData.reduce((sum, review) => sum + review.rating, 0) / totalReviews) : 5;
   const siteUrl = "https://farukerzengin.com";
 
   // Aggregate Rating Schema
-  const aggregateRatingSchema = {
+  const aggregateRatingSchema = totalReviews > 0 ? {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Prof. Dr. Faruk Erzengin - Kardiyoloji ve İç Hastalıkları",
@@ -100,10 +114,10 @@ const ReviewsPage = () => {
       "bestRating": "5",
       "worstRating": "1"
     }
-  };
+  } : null;
 
   // Individual Reviews Schema (ilk 5 yorum)
-  const individualReviewsSchema = {
+  const individualReviewsSchema = reviewsData.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Prof. Dr. Faruk Erzengin",
@@ -121,7 +135,7 @@ const ReviewsPage = () => {
       },
       "reviewBody": review.comment || "Puan verildi, yazılı yorum yapılmadı."
     }))
-  };
+  } : null;
 
   return (
     <div className="reviews-page">
@@ -133,12 +147,16 @@ const ReviewsPage = () => {
 
       {/* Review Schema */}
       <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify(aggregateRatingSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(individualReviewsSchema)}
-        </script>
+        {aggregateRatingSchema && (
+          <script type="application/ld+json">
+            {JSON.stringify(aggregateRatingSchema)}
+          </script>
+        )}
+        {individualReviewsSchema && (
+          <script type="application/ld+json">
+            {JSON.stringify(individualReviewsSchema)}
+          </script>
+        )}
       </Helmet>
 
       {/* 1. HERO BÖLÜMÜ */}
@@ -165,27 +183,33 @@ const ReviewsPage = () => {
             onMouseMove={handleMouseMove}
           >
             <div className="slider-track-row">
-              {/* BURADA 'websiteReviews' KULLANIYORUZ */}
-              {websiteReviews.map((review) => (
-                <div key={review.id} className="slide-card-wrap">
-                  <div className="review-card-item">
-                    <FaQuoteRight className="card-quote-bg" />
-                    
-                    <div className="card-stars-line">
-                      {renderStars(review.rating)}
-                    </div>
-                    
-                    <p className="card-comment-text">{renderComment(review.comment, review.id)}</p>
-                    
-                    <div className="card-bottom-info">
-                      <div className="patient-details">
-                        <h4>{review.name}</h4>
-                        <span className="treatment-tag"><FaCheckCircle/> {review.treatment}</span>
+              {loading ? (
+                 <p style={{padding:"2rem", textAlign:"center"}}>Yorumlar yükleniyor...</p>
+              ) : (
+                <>
+                  {/* BURADA 'websiteReviews' KULLANIYORUZ */}
+                  {websiteReviews.map((review) => (
+                    <div key={review.id} className="slide-card-wrap">
+                      <div className="review-card-item">
+                        <FaQuoteRight className="card-quote-bg" />
+                        
+                        <div className="card-stars-line">
+                          {renderStars(review.rating)}
+                        </div>
+                        
+                        <p className="card-comment-text">{renderComment(review.comment, review.id)}</p>
+                        
+                        <div className="card-bottom-info">
+                          <div className="patient-details">
+                            <h4>{review.name}</h4>
+                            <span className="treatment-tag"><FaCheckCircle/> {review.treatment}</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              ))}
+                  ))}
+                </>
+              )}
             </div>
           </div>
         </ScrollReveal>
@@ -210,33 +234,39 @@ const ReviewsPage = () => {
             </div>
           </ScrollReveal>
 
-          {/* BURADA 'googleReviews' KULLANIYORUZ */}
-          <div className="google-reviews-grid">
-            {googleReviews.slice(0, visibleGoogleCount).map((item, index) => (
-              <ScrollReveal key={item.id} animation="fade-up" delay={(index % 3) * 0.1}>
-                <div className="google-review-box">
-                  <div className="gr-header">
-                    <div className="gr-avatar">{item.name.charAt(0)}</div>
-                    <div className="gr-meta">
-                      <strong>{item.name}</strong>
-                      <span className="gr-date">{item.date}</span>
+          {loading ? (
+            <p style={{textAlign:'center', marginTop: '2rem'}}>Yorumlar yükleniyor...</p>
+          ) : (
+            <>
+              {/* BURADA 'googleReviews' KULLANIYORUZ */}
+              <div className="google-reviews-grid">
+                {googleReviews.slice(0, visibleGoogleCount).map((item, index) => (
+                  <ScrollReveal key={item.id} animation="fade-up" delay={(index % 3) * 0.1}>
+                    <div className="google-review-box">
+                      <div className="gr-header">
+                        <div className="gr-avatar">{item.name.charAt(0)}</div>
+                        <div className="gr-meta">
+                          <strong>{item.name}</strong>
+                          <span className="gr-date">{item.date}</span>
+                        </div>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Yorumu Logosu" loading="lazy" className="gr-logo-small" />
+                      </div>
+                      <div className="gr-stars">{renderStars(item.rating)}</div>
+                      <p className="gr-comment">{renderComment(item.comment, item.id)}</p>
                     </div>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="G" className="gr-logo-small" />
-                  </div>
-                  <div className="gr-stars">{renderStars(item.rating)}</div>
-                  <p className="gr-comment">{renderComment(item.comment, item.id)}</p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
+                  </ScrollReveal>
+                ))}
+              </div>
 
-          {/* Daha Fazla Yükle Butonu */}
-          {visibleGoogleCount < googleReviews.length && (
-            <div className="load-more-wrapper">
-              <button className="btn-load-more-reviews" onClick={handleLoadMore}>
-                Daha Fazla Yükle <FaChevronDown />
-              </button>
-            </div>
+              {/* Daha Fazla Yükle Butonu */}
+              {visibleGoogleCount < googleReviews.length && (
+                <div className="load-more-wrapper">
+                  <button className="btn-load-more-reviews" onClick={handleLoadMore}>
+                    Daha Fazla Yükle <FaChevronDown />
+                  </button>
+                </div>
+              )}
+            </>
           )}
 
         </div>

@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
-Sitemap: https://farukerzengin.com/sitemap.xml
 
+# Admin panelini indekslemeden (arama sonuçlarından) çıkarıyoruz
+Disallow: /admin
+Disallow: /admin/*
+
+# Site haritası bağlantısı
+Sitemap: https://farukerzengin.com/sitemap.xml

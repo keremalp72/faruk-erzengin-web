@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-const SEO = ({ title, description, image, url, isArticle = false, articleDate, articleAuthor, breadcrumbs }) => {
+const SEO = ({ title, description, image, url, isArticle = false, isTreatment = false, articleDate, articleAuthor, breadcrumbs }) => {
   // Site genel ayarları
   const siteTitle = "Prof. Dr. Faruk Erzengin";
   const siteUrl = "https://farukerzengin.com"; // Canlı site adresin (yayına alınca burası önemli)
@@ -64,8 +64,21 @@ const SEO = ({ title, description, image, url, isArticle = false, articleDate, a
     }
   } : null;
 
-  // MedicalBusiness Schema (Ana sayfa için)
-  const medicalBusinessSchema = !isArticle ? {
+  // MedicalCondition Schema (Tedaviler sayfası için)
+  const medicalConditionSchema = isTreatment ? {
+    "@context": "https://schema.org",
+    "@type": "MedicalCondition",
+    "name": title,
+    "description": description,
+    "possibleTreatment": {
+      "@type": "MedicalSpecialty",
+      "name": "Kardiyoloji"
+    },
+    "url": metaUrl
+  } : null;
+
+  // MedicalClinic / Physician Schema (Ana sayfa için)
+  const medicalBusinessSchema = (!isArticle && !isTreatment) ? {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
     "name": "Prof. Dr. Faruk Erzengin - Kardiyoloji ve İç Hastalıkları",
@@ -138,6 +151,12 @@ const SEO = ({ title, description, image, url, isArticle = false, articleDate, a
       {medicalBusinessSchema && (
         <script type="application/ld+json">
           {JSON.stringify(medicalBusinessSchema)}
+        </script>
+      )}
+
+      {medicalConditionSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(medicalConditionSchema)}
         </script>
       )}
       

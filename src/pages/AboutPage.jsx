@@ -9,27 +9,34 @@ import ScrollReveal from '../components/Animations/ScrollReveal';
 
 // --- VERİ IMPORTLARI ---
 import { publicationsData } from '../data/publicationsData';
-import { blogData } from '../data/blogData'; 
-// ÖNEMLİ: Tüm resimler artık buradan geliyor
-import { mediaData } from '../data/mediaData'; 
+import { supabase } from '../lib/supabaseClient'; 
 
 const AboutPage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [openPubIndex, setOpenPubIndex] = useState(0); 
 
-  // --- DEĞİŞİKLİK BURADA ---
-  // mediaData içindeki 'gallery' dizisinden SADECE İLK 10 TANESİNİ alıyoruz.
-  const sliderImages = mediaData.gallery.slice(0, 10);
+  const [sliderImages, setSliderImages] = useState([]);
 
   useEffect(() => {
+    async function fetchGallery() {
+      const { data, error } = await supabase.from('gallery_images').select('*').order('created_at', { ascending: false }).limit(10);
+      if (data) {
+        setSliderImages(data.map(img => ({ id: img.id, src: img.image_url })));
+      }
+    }
+    fetchGallery();
+  }, []);
+
+  useEffect(() => {
+    if (sliderImages.length === 0) return;
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev === sliderImages.length - 1 ? 0 : prev + 1));
     }, 4000);
     return () => clearInterval(interval);
   }, [sliderImages.length]);
 
-  const nextSlide = () => setCurrentSlide((prev) => (prev === sliderImages.length - 1 ? 0 : prev + 1));
-  const prevSlide = () => setCurrentSlide((prev) => (prev === 0 ? sliderImages.length - 1 : prev - 1));
+  const nextSlide = () => { if(sliderImages.length > 0) setCurrentSlide((prev) => (prev === sliderImages.length - 1 ? 0 : prev + 1)); };
+  const prevSlide = () => { if(sliderImages.length > 0) setCurrentSlide((prev) => (prev === 0 ? sliderImages.length - 1 : prev - 1)); };
 
   const toggleAccordion = (index) => {
     if (openPubIndex === index) {
@@ -39,7 +46,23 @@ const AboutPage = () => {
     }
   };
 
-  useEffect(() => { window.scrollTo(0, 0); }, []);
+  const [latestBlogs, setLatestBlogs] = useState([]);
+  const [loadingBlogs, setLoadingBlogs] = useState(true);
+
+  useEffect(() => { 
+    window.scrollTo(0, 0); 
+    async function fetchBlogs() {
+      const { data, error } = await supabase
+        .from('articles')
+        .select('*')
+        .order('created_at', { ascending: false })
+        .limit(3);
+      
+      if (data) setLatestBlogs(data);
+      setLoadingBlogs(false);
+    }
+    fetchBlogs();
+  }, []);
 
   return (
     <div className="about-page">
@@ -70,8 +93,8 @@ const AboutPage = () => {
               <div className="bio-slider-wrapper" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
                 {sliderImages.map((item, index) => (
                   <div key={item.id || index} className="bio-slide">
-                    {/* Artık resim kaynağı item.src oldu */}
-                    <img src={item.src} alt={`Prof. Dr. Faruk Erzengin - Hakkında Görsel ${index + 1}`} />
+                    {/* Artık resim kaynağı item.src oldu (Slider üstte olduğu için lazy loading yok) */}
+                    <img src={item.src} alt={`Prof. Dr. Faruk Erzengin - İstanbul Kardiyoloji Uzmanı Görsel ${index + 1}`} />
                   </div>
                 ))}
               </div>
@@ -211,16 +234,19 @@ const AboutPage = () => {
           </ScrollReveal>
           
           <div className="blog-grid">
-            {blogData.slice(0, 3).map((post, idx) => (
+            {loadingBlogs ? <p>Makaleler yükleniyor...</p> : latestBlogs.map((post, idx) => {
+              // Create a short text from HTML content
+              let shortText = post.content ? post.content.replace(/<[^>]+>/g, '').substring(0, 100) + '...' : '';
+              return (
               <ScrollReveal key={post.id} delay={idx * 0.2} animation="fade-up">
                 <div className="blog-card">
                   <div className="blog-img-wrapper">
-                    <img src={post.image} alt={post.title} />
-                    <span className="blog-date">{post.date}</span>
+                    <img src={post.image_url} alt={`${post.title} - Prof. Dr. Faruk Erzengin Blog`} loading="lazy" />
+                    <span className="blog-date">{new Date(post.created_at).toLocaleDateString('tr-TR')}</span>
                   </div>
                   <div className="blog-info">
                     <h4>{post.title}</h4>
-                    <p>{post.excerpt}</p>
+                    <p>{shortText}</p>
                     
                     {/* Link kullanımı */}
                     <Link to={`/blog/${post.id}`} className="read-more-btn">
@@ -230,7 +256,7 @@ const AboutPage = () => {
                   </div>
                 </div>
               </ScrollReveal>
-            ))}
+            )})}
           </div>
         </div>
 

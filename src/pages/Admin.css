@@ -1,0 +1,109 @@
+/* Genel Konumlandırma */
+.admin-login-container,
+.admin-panel-wrapper {
+  margin-top: 100px !important;
+  margin-bottom: 50px !important;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Login Kartı */
+.admin-login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
+
+.admin-login-card {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Panel Form Yapısı */
+.admin-panel-wrapper {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 40px;
+  background: #fff;
+  border-radius: 25px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+.admin-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #f4f4f4;
+  padding-bottom: 20px;
+}
+
+.admin-panel-header h2 {
+  color: #002d5b;
+  font-size: 1.8rem;
+}
+
+/* Form Elemanları */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #444;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 12px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #002d5b;
+  box-shadow: 0 0 0 3px rgba(0, 45, 91, 0.1);
+  outline: none;
+}
+
+/* Butonlar */
+.login-btn,
+.submit-btn {
+  background: #002d5b;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.3s;
+}
+
+.login-btn:hover,
+.submit-btn:hover {
+  background: #001a35;
+}
+
+.logout-btn {
+  background: #fff0f0;
+  color: #ff4d4d;
+  border: 1px solid #ff4d4d;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}

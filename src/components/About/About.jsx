@@ -50,8 +50,9 @@ const About = () => {
           <div className="about-img-wrapper">
             <img 
               src={doctorProfileImg} 
-              alt="Prof. Dr. Faruk Erzengin" 
+              alt="Prof. Dr. Faruk Erzengin - İstanbul Kardiyoloji ve İç Hastalıkları Profesörü" 
               className="about-img"
+              loading="lazy"
             />
             
             {/* Tecrübe Rozeti */}
