@@ -10,7 +10,9 @@ export default defineConfig({
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
           animations: ['framer-motion'],
-          icons: ['react-icons']
+          icons: ['react-icons'],
+          supabase: ['@supabase/supabase-js'],
+          ui: ['recharts', 'react-quill-new', 'swiper', 'react-helmet-async']
         }
       }
     },
