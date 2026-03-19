@@ -184,6 +184,9 @@ const ContactPage = () => {
                 <strong>Günler:</strong> Pazartesi & Perşembe (12:00 - 18:00)
               </p>
               <div className="phone-list">
+                <a href="tel:+905324535179" className="highlight-phone">
+                  <FaPhone /> +90 532 453 51 79
+                </a>
                 <a href="tel:+902123568888">
                   <FaPhone /> +90 212 356 88 88
                 </a>
@@ -214,6 +217,9 @@ const ContactPage = () => {
                 <strong>Günler:</strong> Çarşamba (13:00 - 18:00)
               </p>
               <div className="phone-list">
+                <a href="tel:+905324535179" className="highlight-phone">
+                  <FaPhone /> +90 532 453 51 79
+                </a>
                 <a href="tel:+902164550000">
                   <FaPhone /> +90 216 455 00 00
                 </a>

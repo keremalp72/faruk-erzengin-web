@@ -504,7 +504,15 @@
   font-weight: 700;
   font-size: 18px;
   transition: 0.2s;
-  padding: 8px 0;
+  padding: 8px 12px; /* Düzeltme: padding eklendi */
+  border-radius: 6px; /* Düzeltme: border-radius eklendi */
+}
+
+/* Hocanın Numarası İçin Vurgu */
+.phone-list a.highlight-phone {
+  background-color: #fffaf0;
+  border: 1px solid #f0e0c0;
+  color: #C5A059;
 }
 
 .phone-list a:hover {
