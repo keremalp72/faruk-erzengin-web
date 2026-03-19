@@ -18,16 +18,16 @@ const Footer = () => {
           </p>
           
           <div className="social-links">
-            <a href="https://www.facebook.com/faruk.erzengin.2025/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="social-icon">
+            <a href="https://www.facebook.com/faruk.erzengin.2025/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook Sayfamız" className="social-icon">
                 <FaFacebookF />
             </a>
             {/*<a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
             <FaTwitter />
           </a>*/}
-            <a href="https://www.linkedin.com/in/prof-dr-faruk-erzengin-676391130/" target="_blank" rel="noopener noreferrer" aria-label="Linkedin" className="social-icon">
+            <a href="https://www.linkedin.com/in/prof-dr-faruk-erzengin-676391130/" target="_blank" rel="noopener noreferrer" aria-label="Linkedin" title="LinkedIn Profilimiz" className="social-icon">
                 <FaLinkedinIn />
             </a>
-            <a href="https://www.instagram.com/farukerzengin/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="social-icon">
+            <a href="https://www.instagram.com/farukerzengin/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram Sayfamız" className="social-icon">
                 <FaInstagram />
             </a>
           </div>
@@ -37,13 +37,13 @@ const Footer = () => {
         <div className="footer-col">
           <h3 className="footer-title">Hızlı Erişim</h3>
           <ul className="footer-links">
-            <li><Link to="/">Ana Sayfa</Link></li>
-            <li><Link to="/hakkinda">Hakkında</Link></li>
-            <li><Link to="/tedaviler">Tedaviler</Link></li>
-            <li><Link to="/blog">Blog</Link></li>
-            <li><Link to="/basin">Basın</Link></li>
-            <li><Link to="/yorumlar">Yorumlar</Link></li>
-            <li><Link to="/iletisim">İletişim</Link></li>
+            <li><Link to="/" title="Ana Sayfaya Dön">Ana Sayfa</Link></li>
+            <li><Link to="/hakkinda" title="Hakkımızda Daha Fazla Bilgi">Hakkında</Link></li>
+            <li><Link to="/tedaviler" title="Kardiyoloji ve İç Hastalıkları Tedavileri">Tedaviler</Link></li>
+            <li><Link to="/blog" title="Tıbbi Makaleler ve Blog Yazıları">Blog</Link></li>
+            <li><Link to="/basin" title="Basında Biz">Basın</Link></li>
+            <li><Link to="/yorumlar" title="Hasta Yorumları">Yorumlar</Link></li>
+            <li><Link to="/iletisim" title="Bize Ulaşın ve Randevu Alın">İletişim</Link></li>
           </ul>
         </div>
 

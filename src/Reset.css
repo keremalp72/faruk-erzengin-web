@@ -8,16 +8,20 @@
   margin: 0;
 }
 
-/* 3. Enable keyword animations */
+/* 3. Enable keyword animations & set base font size */
 @media (prefers-reduced-motion: no-preference) {
   html {
     interpolate-size: allow-keywords;
   }
 }
+html {
+  font-size: 16px; /* Ensures a readable base size on all devices */
+}
 
 body {
   /* 4. Add accessible line-height */
-  line-height: 1.5;
+  line-height: 1.6;
+  font-size: 1rem;
   /* 5. Improve text rendering */
   -webkit-font-smoothing: antialiased;
 }

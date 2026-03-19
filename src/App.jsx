@@ -28,6 +28,7 @@ const BlogPostDetail = lazy(() => import("./pages/BlogPostDetail"));
 const PressPage = lazy(() => import("./pages/PressPage"));
 const ReviewsPage = lazy(() => import("./pages/ReviewsPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 // --- GA4 TAKİP KODU ---
 const TRACKING_ID = "G-KLKWN88Q9G";
@@ -122,6 +123,7 @@ function App() {
               <Route path="/yorumlar" element={<ReviewsPage />} />
               <Route path="/iletisim" element={<ContactPage />} />
               <Route path="/admin" element={<Admin />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Suspense>
         </main>

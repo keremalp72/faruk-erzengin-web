@@ -120,6 +120,8 @@ const SEO = ({ title, description, image, url, isArticle = false, isTreatment = 
       <title>{title ? `${title} | ${siteTitle}` : siteTitle}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content="kardiyolog, kardiyoloji, iç hastalıkları, hipertansiyon, diyabetik ayak, kalp doktoru, istanbul kardiyolog, Prof. Dr. Faruk Erzengin" />
+      <meta name="author" content={articleAuthor || siteTitle} />
+      <meta name="publisher" content={siteTitle} />
       <link rel="canonical" href={metaUrl} />
 
       {/* --- FACEBOOK / LINKEDIN (Open Graph) --- */}
@@ -133,6 +135,8 @@ const SEO = ({ title, description, image, url, isArticle = false, isTreatment = 
 
       {/* --- TWITTER (X) --- */}
       <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@farukerzengin" />
+      <meta name="twitter:creator" content="@farukerzengin" />
       <meta name="twitter:title" content={title || siteTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={metaImage} />

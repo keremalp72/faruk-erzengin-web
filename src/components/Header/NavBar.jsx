@@ -58,16 +58,16 @@ useEffect(() => {
                </div>
                
                <ul className="nav-links">
-                 <li><NavLink to="/" className="nav-link" onClick={closeNav}>ANA SAYFA</NavLink></li>
-                 <li><NavLink to="/hakkinda" className="nav-link" onClick={closeNav}>HAKKINDA</NavLink></li>
-                 <li><NavLink to="/tedaviler" className="nav-link" onClick={closeNav}>TEDAVİLER</NavLink></li>
-                 <li><NavLink to="/blog" className="nav-link" onClick={closeNav}>BLOG</NavLink></li>
-                 <li><NavLink to="/basin" className="nav-link" onClick={closeNav}>BASIN</NavLink></li>
-                 <li><NavLink to="/yorumlar" className="nav-link" onClick={closeNav}>YORUMLAR</NavLink></li>
+                 <li><NavLink to="/" className="nav-link" onClick={closeNav} title="Ana Sayfa">ANA SAYFA</NavLink></li>
+                 <li><NavLink to="/hakkinda" className="nav-link" onClick={closeNav} title="Hakkımızda">HAKKINDA</NavLink></li>
+                 <li><NavLink to="/tedaviler" className="nav-link" onClick={closeNav} title="Tıbbi Tedavilerimiz">TEDAVİLER</NavLink></li>
+                 <li><NavLink to="/blog" className="nav-link" onClick={closeNav} title="Sağlık Bloğu ve Makaleler">BLOG</NavLink></li>
+                 <li><NavLink to="/basin" className="nav-link" onClick={closeNav} title="Basın Bültenleri">BASIN</NavLink></li>
+                 <li><NavLink to="/yorumlar" className="nav-link" onClick={closeNav} title="Hasta Değerlendirmeleri">YORUMLAR</NavLink></li>
                </ul>
 
                <div className="nav-btn-wrapper">
-                 <Link to="/iletisim" className="appointment-btn" onClick={closeNav}>Randevu Al</Link>
+                 <Link to="/iletisim" className="appointment-btn" onClick={closeNav} title="Randevu İletişim">Randevu Al</Link>
                </div>
             </nav>
          </div>
