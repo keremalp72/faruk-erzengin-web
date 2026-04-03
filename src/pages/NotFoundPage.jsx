@@ -8,6 +8,7 @@ const NotFoundPage = () => {
       <SEO 
         title="Sayfa Bulunamadı" 
         description="Aradığınız sayfa bulunamadı. Lütfen ana sayfaya dönünüz."
+        noIndex={true}
       />
       <div style={{
         minHeight: '60vh',

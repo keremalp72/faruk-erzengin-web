@@ -147,6 +147,7 @@ const FeaturedMedia = () => {
                   <iframe
                     src={`https://www.youtube.com/embed/${video.youtube_id}`}
                     title={video.title}
+                    loading="lazy"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   ></iframe>

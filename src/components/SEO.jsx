@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-const SEO = ({ title, description, image, url, isArticle = false, isTreatment = false, articleDate, articleAuthor, breadcrumbs }) => {
+const SEO = ({ title, description, image, url, isArticle = false, isTreatment = false, noIndex = false, articleDate, articleAuthor, breadcrumbs }) => {
   // Site genel ayarları
   const siteTitle = "Prof. Dr. Faruk Erzengin";
   const siteUrl = "https://farukerzengin.com"; // Canlı site adresin (yayına alınca burası önemli)
@@ -123,7 +123,7 @@ const SEO = ({ title, description, image, url, isArticle = false, isTreatment = 
       <meta name="author" content={articleAuthor || siteTitle} />
       <meta name="publisher" content={siteTitle} />
       <link rel="canonical" href={metaUrl} />
-      <meta name="robots" content="index, follow" />
+      <meta name="robots" content={noIndex ? "noindex, nofollow" : "index, follow"} />
 
       {/* --- FACEBOOK / LINKEDIN (Open Graph) --- */}
       <meta property="og:type" content={isArticle ? "article" : "website"} />
