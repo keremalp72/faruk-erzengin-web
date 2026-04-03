@@ -8,6 +8,7 @@ import ScrollReveal from '../components/Animations/ScrollReveal';
 
 // 2. SEO Bileşenini Ekliyoruz (Çok Önemli)
 import SEO from '../components/SEO';
+import { Helmet } from 'react-helmet-async';
 
 const PressPage = () => {
   const [activeTab, setActiveTab] = useState('videos'); // Başlangıçta videolar açık olsun
@@ -33,6 +34,28 @@ const PressPage = () => {
 
   return (
     <div className="press-page">
+
+      {/* VideoObject Structured Data - Google video dizinleme için */}
+      {videos.length > 0 && (
+        <Helmet>
+          <script type="application/ld+json">
+            {JSON.stringify(videos.map(video => ({
+              "@context": "https://schema.org",
+              "@type": "VideoObject",
+              "name": video.title,
+              "description": video.description || video.title,
+              "thumbnailUrl": video.video_url ? `https://img.youtube.com/vi/${video.video_url.split('/embed/')[1]?.split('?')[0]}/maxresdefault.jpg` : '',
+              "uploadDate": video.created_at || new Date().toISOString(),
+              "contentUrl": video.video_url ? video.video_url.replace('/embed/', '/watch?v=') : '',
+              "embedUrl": video.video_url,
+              "publisher": {
+                "@type": "Person",
+                "name": "Prof. Dr. Faruk Erzengin"
+              }
+            })))}
+          </script>
+        </Helmet>
+      )}
       
       {/* --- SEO AYARLARI --- */}
       <SEO 

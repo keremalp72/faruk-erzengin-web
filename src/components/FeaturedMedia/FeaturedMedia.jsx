@@ -10,6 +10,7 @@ import {
   FaTh,
   FaMicrophone,
 } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 import ScrollReveal from "../Animations/ScrollReveal";
 import { Link } from "react-router-dom";
 import { supabase } from "../../lib/supabaseClient";
@@ -85,6 +86,27 @@ const FeaturedMedia = () => {
 
   return (
     <section className="fm-section">
+      {/* VideoObject Structured Data - Google Search Console video hatası için */}
+      {videos.length > 0 && (
+        <Helmet>
+          <script type="application/ld+json">
+            {JSON.stringify(videos.map(video => ({
+              "@context": "https://schema.org",
+              "@type": "VideoObject",
+              "name": video.title,
+              "description": video.description || video.title,
+              "thumbnailUrl": `https://img.youtube.com/vi/${video.youtube_id}/maxresdefault.jpg`,
+              "uploadDate": video.created_at || new Date().toISOString(),
+              "contentUrl": `https://www.youtube.com/watch?v=${video.youtube_id}`,
+              "embedUrl": `https://www.youtube.com/embed/${video.youtube_id}`,
+              "publisher": {
+                "@type": "Person",
+                "name": "Prof. Dr. Faruk Erzengin"
+              }
+            })))}
+          </script>
+        </Helmet>
+      )}
       <div className="fm-bg-blur blur-1"></div>
       <div className="fm-bg-blur blur-2"></div>
 
