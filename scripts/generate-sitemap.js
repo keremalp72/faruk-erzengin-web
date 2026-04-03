@@ -1,5 +1,5 @@
-// Sitemap oluşturma scripti
-import { readFileSync, writeFileSync } from 'fs';
+// Sitemap oluşturma scripti - Supabase'den dinamik blog verisi çeker
+import { writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
@@ -7,16 +7,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const rootDir = join(__dirname, '..');
 
-// Blog data'yı import etmek için basit bir çözüm
-// Blog ID'lerini manuel olarak ekleyelim (6 blog yazısı var)
-const blogData = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
-  { id: 6 },
-];
+const SUPABASE_URL = 'https://uekcducwvvwzufzhlwhg.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVla2NkdWN3dnZ3enVmemhsd2hnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMxMzQwNDQsImV4cCI6MjA4ODcxMDA0NH0.lj3nMM2miYseaYtsnV6dU1P1Llz7-tjiGoiUi7P8vsE';
 
 const siteUrl = 'https://farukerzengin.com';
 const currentDate = new Date().toISOString().split('T')[0];
@@ -31,30 +23,64 @@ const staticRoutes = [
   { url: '/iletisim', changefreq: 'monthly', priority: 0.7 },
 ];
 
-const blogRoutes = blogData.map(post => ({
-  url: `/blog/${post.id}`,
-  changefreq: 'monthly',
-  priority: 0.8,
-}));
+async function generateSitemap() {
+  let blogRoutes = [];
 
-const allRoutes = [...staticRoutes, ...blogRoutes];
+  try {
+    // Supabase'den blog yazılarını çek (10 sn timeout)
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
 
-const urlEntries = allRoutes.map(route => {
-  const fullUrl = `${siteUrl}${route.url}`;
-  return `  <url>
+    const response = await fetch(
+      `${SUPABASE_URL}/rest/v1/articles?select=id,created_at&order=created_at.desc`,
+      {
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        },
+        signal: controller.signal,
+      }
+    );
+
+    clearTimeout(timeoutId);
+
+    if (response.ok) {
+      const articles = await response.json();
+      blogRoutes = articles.map(article => ({
+        url: `/blog/${article.id}`,
+        changefreq: 'monthly',
+        priority: 0.8,
+        lastmod: article.created_at ? article.created_at.split('T')[0] : currentDate,
+      }));
+      console.log(`✅ ${articles.length} blog yazısı Supabase'den çekildi.`);
+    } else {
+      console.warn('⚠️ Supabase bağlantısı başarısız, blog yazıları sitemap\'e eklenemedi.');
+    }
+  } catch (error) {
+    console.warn('⚠️ Supabase bağlantı hatası:', error.message);
+  }
+
+  const allRoutes = [...staticRoutes, ...blogRoutes];
+
+  const urlEntries = allRoutes.map(route => {
+    const fullUrl = `${siteUrl}${route.url}`;
+    const lastmod = route.lastmod || currentDate;
+    return `  <url>
     <loc>${fullUrl}</loc>
-    <lastmod>${currentDate}</lastmod>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>${route.changefreq}</changefreq>
     <priority>${route.priority}</priority>
   </url>`;
-}).join('\n');
+  }).join('\n');
 
-const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+  const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urlEntries}
 </urlset>`;
 
-const outputPath = join(rootDir, 'public', 'sitemap.xml');
-writeFileSync(outputPath, sitemapContent, 'utf-8');
-console.log('✅ Sitemap.xml oluşturuldu: public/sitemap.xml');
+  const outputPath = join(rootDir, 'public', 'sitemap.xml');
+  writeFileSync(outputPath, sitemapContent, 'utf-8');
+  console.log(`✅ Sitemap.xml oluşturuldu: public/sitemap.xml (${allRoutes.length} URL)`);
+}
 
+generateSitemap();

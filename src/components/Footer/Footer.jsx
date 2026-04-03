@@ -78,7 +78,7 @@ const Footer = () => {
       </div>
 
       <div className="footer-bottom">
-        <p>© 2025 Prof. Dr. Faruk Erzengin. Tüm Hakları Saklıdır.</p>
+        <p>© {new Date().getFullYear()} Prof. Dr. Faruk Erzengin. Tüm Hakları Saklıdır.</p>
       </div>
     </footer>
   );

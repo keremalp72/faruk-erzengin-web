@@ -73,6 +73,11 @@ const ServicesPage = () => {
         title="Tedaviler & Uzmanlık Alanları" 
         description="Prof. Dr. Faruk Erzengin'in uzmanlık alanları, kalp hastalıkları teşhis ve tedavi yöntemleri hakkında detaylı bilgi." 
         isTreatment={true}
+        url="https://farukerzengin.com/tedaviler"
+        breadcrumbs={[
+          { name: "Ana Sayfa", url: "/" },
+          { name: "Tedaviler", url: "/tedaviler" }
+        ]}
       />
 
       {/* HEADER */}

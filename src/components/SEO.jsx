@@ -8,7 +8,7 @@ const SEO = ({ title, description, image, url, isArticle = false, isTreatment = 
   
   // Eğer özel bir resim gelmediyse varsayılan bir logo/resim göster (Opsiyonel)
   // Şimdilik boş bırakabilirsin veya sitenin logosunun linkini koyabilirsin.
-  const defaultImage = `${siteUrl}/logo.png`; 
+  const defaultImage = `${siteUrl}/favicon.png`; 
 
   // Resim yolunu tam adrese çevirme (http ile başlamıyorsa başına site adresini ekle)
   const metaImage = image 
@@ -123,6 +123,7 @@ const SEO = ({ title, description, image, url, isArticle = false, isTreatment = 
       <meta name="author" content={articleAuthor || siteTitle} />
       <meta name="publisher" content={siteTitle} />
       <link rel="canonical" href={metaUrl} />
+      <meta name="robots" content="index, follow" />
 
       {/* --- FACEBOOK / LINKEDIN (Open Graph) --- */}
       <meta property="og:type" content={isArticle ? "article" : "website"} />
@@ -130,6 +131,8 @@ const SEO = ({ title, description, image, url, isArticle = false, isTreatment = 
       <meta property="og:description" content={description} />
       <meta property="og:image" content={metaImage} />
       <meta property="og:url" content={metaUrl} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
       <meta property="og:locale" content="tr_TR" />
       <meta property="og:site_name" content={siteTitle} />
 

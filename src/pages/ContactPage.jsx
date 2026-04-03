@@ -131,6 +131,11 @@ const ContactPage = () => {
       <SEO
         title="İletişim & Randevu"
         description="Prof. Dr. Faruk Erzengin ile iletişime geçin. Mecidiyeköy ve Kadıköy muayenehane adresleri, telefon numaraları ve online randevu formu."
+        url="https://farukerzengin.com/iletisim"
+        breadcrumbs={[
+          { name: "Ana Sayfa", url: "/" },
+          { name: "İletişim", url: "/iletisim" }
+        ]}
       />
 
       {/* BAŞARI MODALI */}

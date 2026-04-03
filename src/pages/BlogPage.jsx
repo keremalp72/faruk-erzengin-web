@@ -10,6 +10,13 @@ import doctorProfileImg from "../assets/images/aboutme/hakkimda1.png";
 // 1. Supabase Bağlantısını İçe Aktar
 import { supabase } from "../lib/supabaseClient";
 
+// HTML etiketlerini temizleyip düz metin döndüren yardımcı fonksiyon
+const stripHtml = (html) => {
+  if (!html) return "";
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  return doc.body.textContent || "";
+};
+
 const BlogPage = () => {
   const location = useLocation();
   const [activeCategory, setActiveCategory] = useState(
@@ -73,6 +80,11 @@ const BlogPage = () => {
       <SEO
         title="Blog & Makaleler"
         description="Kalp sağlığı, hipertansiyon, diyabet ve iç hastalıkları hakkında güncel tıbbi makaleler..."
+        url="https://farukerzengin.com/blog"
+        breadcrumbs={[
+          { name: "Ana Sayfa", url: "/" },
+          { name: "Blog", url: "/blog" }
+        ]}
       />
 
       <div className="bp-page-header">
@@ -140,7 +152,7 @@ const BlogPage = () => {
 
                       {/* İçeriğin sadece bir kısmını gösteriyoruz */}
                       <p className="bp-card-excerpt">
-                        {post.content.substring(0, 150)}...
+                        {stripHtml(post.content).substring(0, 150)}...
                       </p>
 
                       <Link to={`/blog/${post.id}`} className="bp-read-more">
