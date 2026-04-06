@@ -142,9 +142,9 @@ const ServicesPage = () => {
               <span className="tp-profile-role">Kardiyoloji & İç Hastalıkları Uzmanı</span>
               
               <div className="tp-social-row">
-                <a href="https://www.facebook.com/faruk.erzengin.2025/" target="_blank" rel="noopener noreferrer" className="tp-social-btn"><FaFacebookF /></a>
-                <a href="https://www.instagram.com/farukerzengin/" target="_blank" rel="noopener noreferrer" className="tp-social-btn"><FaInstagram /></a>
-                <a href="https://www.linkedin.com/in/prof-dr-faruk-erzengin-676391130/" target="_blank" rel="noopener noreferrer" className="tp-social-btn"><FaLinkedinIn /></a>
+                <a href="https://www.facebook.com/faruk.erzengin.2025/" target="_blank" rel="noopener noreferrer" className="tp-social-btn" aria-label="Facebook Sayfası"><FaFacebookF /></a>
+                <a href="https://www.instagram.com/farukerzengin/" target="_blank" rel="noopener noreferrer" className="tp-social-btn" aria-label="Instagram Sayfası"><FaInstagram /></a>
+                <a href="https://www.linkedin.com/in/prof-dr-faruk-erzengin-676391130/" target="_blank" rel="noopener noreferrer" className="tp-social-btn" aria-label="LinkedIn Profili"><FaLinkedinIn /></a>
               </div>
             </div>
           </ScrollReveal>
