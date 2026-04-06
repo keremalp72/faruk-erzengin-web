@@ -125,13 +125,35 @@
     margin: 0;
   }
   
+  /* Telefon ve E-posta Linkleri */
+  .footer-contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px;
+  }
+
+  .footer-phone-link,
+  .footer-email-link {
+    color: #d0d0d0;
+    text-decoration: none;
+    font-size: 15px;
+    transition: color 0.3s ease;
+    display: inline-block;
+  }
+
+  .footer-phone-link:hover,
+  .footer-email-link:hover {
+    color: #C5A059;
+  }
+
   /* Harita Linki */
   .map-link {
     color: #C5A059;
     font-size: 15px;
     text-decoration: none;
     font-weight: 600;
-    margin-left: 45px; /* İkonun hizasından başlasın */
+    margin-left: 0;
     border: 1px solid #C5A059;
     padding: 8px 15px;
     border-radius: 20px;

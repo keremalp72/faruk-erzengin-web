@@ -71,7 +71,7 @@ const ServicesPage = () => {
           <ScrollReveal>
             <div className="services-header-content">
               <span className="services-subtitle">TIBBİ UZMANLIKLAR</span>
-              <h1 className="services-hero-title">Bilimsel ve Bütüncül Tedaviler</h1>
+              <h2 className="services-hero-title">Bilimsel ve Bütüncül Tedaviler</h2>
               <p className="services-hero-desc">
                 Prof. Dr. Faruk Erzengin'in literatüre giren buluşları ve 45 yıllık tecrübesiyle, 
                 kalp ve damar sağlığınız için en doğru çözümler.

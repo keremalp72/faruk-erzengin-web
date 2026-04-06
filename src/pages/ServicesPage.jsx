@@ -70,10 +70,11 @@ const ServicesPage = () => {
     <div className="tp-page-wrapper">
       
       <SEO 
-        title="Tedaviler & Uzmanlık Alanları" 
-        description="Prof. Dr. Faruk Erzengin'in uzmanlık alanları, kalp hastalıkları teşhis ve tedavi yöntemleri hakkında detaylı bilgi." 
+        title="Tedaviler" 
+        description="Prof. Dr. Faruk Erzengin uzmanlık alanları: kalp hastalıkları, hipertansiyon, diyabetik ayak, aritmi tedavisi. Detaylı bilgi alın." 
         isTreatment={true}
         url="https://farukerzengin.com/tedaviler"
+        keywords="kalp tedavisi, hipertansiyon tedavisi, diyabetik ayak tedavisi, koroner anjiyografi, aritmi, kalp pili, kardiyoloji istanbul"
         breadcrumbs={[
           { name: "Ana Sayfa", url: "/" },
           { name: "Tedaviler", url: "/tedaviler" }

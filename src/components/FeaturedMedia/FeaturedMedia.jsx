@@ -14,6 +14,7 @@ import { Helmet } from "react-helmet-async";
 import ScrollReveal from "../Animations/ScrollReveal";
 import { Link } from "react-router-dom";
 import { supabase } from "../../lib/supabaseClient";
+import YouTubeFacade from "../YouTubeFacade/YouTubeFacade";
 
 const FeaturedMedia = () => {
   const galleryRef = useRef(null);
@@ -143,15 +144,7 @@ const FeaturedMedia = () => {
                     video.isNews ? "gold-border" : ""
                   }`}
                 ></div>
-                <div className="video-frame">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${video.youtube_id}`}
-                    title={video.title}
-                    loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
+                <YouTubeFacade videoId={video.youtube_id} title={video.title} />
                 <div className="fm-card-content">
                   <div className="fm-tag">{video.tag}</div>
                   <h3>{video.title}</h3>

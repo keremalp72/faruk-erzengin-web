@@ -58,6 +58,11 @@ const Footer = () => {
                Şişli / İstanbul
              </p>
           </div>
+          <div className="footer-contact-links">
+            <a href="tel:+902123568888" className="footer-phone-link">📞 0212 356 88 88</a>
+            <a href="tel:+905324535179" className="footer-phone-link">📱 0532 453 51 79</a>
+            <a href="mailto:farukerzengin@gmail.com" className="footer-email-link">✉️ farukerzengin@gmail.com</a>
+          </div>
           
           {/* Gerçek Google Haritalar Arama Linki */}
           <a 

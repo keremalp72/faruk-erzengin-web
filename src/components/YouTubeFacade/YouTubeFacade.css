@@ -1,0 +1,61 @@
+.yt-facade-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+  overflow: hidden;
+  background: #000;
+}
+
+.yt-facade-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.yt-facade-thumbnail {
+  cursor: pointer;
+}
+
+.yt-facade-thumbnail img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.yt-facade-thumbnail:hover img {
+  transform: translate(-50%, -50%) scale(1.05);
+  filter: brightness(0.7);
+}
+
+.yt-facade-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  background: rgba(197, 160, 89, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #fff;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+.yt-facade-thumbnail:hover .yt-facade-play-btn {
+  background: rgba(197, 160, 89, 1);
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 6px 30px rgba(197, 160, 89, 0.6);
+}

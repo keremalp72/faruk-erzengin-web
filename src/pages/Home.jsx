@@ -13,8 +13,9 @@ const Home = () => {
     <>
       {/* 2. Google İçin Kimlik Kartımızı Oluşturuyoruz */}
       <SEO 
-        title="Prof. Dr. Faruk Erzengin | Kardiyoloji ve İç Hastalıkları Uzmanı" 
-        description="İstanbul Üniversitesi Tıp Fakültesi önceki dekanı, Nobel adayı Prof. Dr. Faruk Erzengin. Kalp hastalıkları, hipertansiyon, diyabetik ayak ve iç hastalıkları tedavisi." 
+        title="Kardiyolog İstanbul" 
+        description="Prof. Dr. Faruk Erzengin - Kardiyoloji ve iç hastalıkları uzmanı. Kalp, hipertansiyon, diyabetik ayak tedavisi. Randevu alın."
+        keywords="kardiyolog istanbul, kalp doktoru, iç hastalıkları uzmanı, hipertansiyon tedavisi, diyabetik ayak, Prof. Dr. Faruk Erzengin, nobel adayı doktor"
       />
 
       <Hero />

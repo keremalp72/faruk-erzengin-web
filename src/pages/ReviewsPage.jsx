@@ -141,9 +141,10 @@ const ReviewsPage = () => {
     <div className="reviews-page">
       
       <SEO 
-        title="Hasta Yorumları & Değerlendirmeler" 
-        description="Prof. Dr. Faruk Erzengin hakkında gerçek hasta yorumları, Google değerlendirmeleri ve tedavi süreçleri hakkındaki hasta görüşleri." 
+        title="Hasta Yorumları" 
+        description="Prof. Dr. Faruk Erzengin hakkında gerçek hasta yorumları ve Google değerlendirmeleri. Tedavi deneyimleri ve hasta görüşleri." 
         url="https://farukerzengin.com/yorumlar"
+        keywords="faruk erzengin yorumlar, hasta deneyimleri, kardiyolog değerlendirme, doktor yorumları, tedavi başarı oranı"
         breadcrumbs={[
           { name: "Ana Sayfa", url: "/" },
           { name: "Yorumlar", url: "/yorumlar" }

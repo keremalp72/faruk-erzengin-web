@@ -48,6 +48,8 @@ const Hero = () => {
           src={heroBg}
           alt="Prof. Dr. Faruk Erzengin - İç Hastalıkları ve Kalp Damar Hastalıkları Uzmanı Ana Sayfa Görseli"
           className="hero-bg-img"
+          fetchpriority="high"
+          decoding="async"
         />
         <div className="hero-overlay"></div>
       </div>

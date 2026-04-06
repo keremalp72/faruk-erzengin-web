@@ -1,10 +1,14 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-const SEO = ({ title, description, image, url, isArticle = false, isTreatment = false, noIndex = false, articleDate, articleAuthor, breadcrumbs }) => {
+const SEO = ({ title, description, image, url, isArticle = false, isTreatment = false, noIndex = false, articleDate, articleAuthor, breadcrumbs, keywords }) => {
   // Site genel ayarları
   const siteTitle = "Prof. Dr. Faruk Erzengin";
-  const siteUrl = "https://farukerzengin.com"; // Canlı site adresin (yayına alınca burası önemli)
+  const siteUrl = "https://farukerzengin.com";
+
+  // Varsayılan anahtar kelimeler
+  const defaultKeywords = "kardiyolog, kardiyoloji, iç hastalıkları, hipertansiyon, diyabetik ayak, kalp doktoru, istanbul kardiyolog, Prof. Dr. Faruk Erzengin";
+  const metaKeywords = keywords || defaultKeywords;
   
   // Eğer özel bir resim gelmediyse varsayılan bir logo/resim göster (Opsiyonel)
   // Şimdilik boş bırakabilirsin veya sitenin logosunun linkini koyabilirsin.
@@ -118,8 +122,8 @@ const SEO = ({ title, description, image, url, isArticle = false, isTreatment = 
     <Helmet>
       {/* --- STANDART META ETİKETLERİ --- */}
       <title>{title ? `${title} | ${siteTitle}` : siteTitle}</title>
-      <meta name="description" content={description} />
-      <meta name="keywords" content="kardiyolog, kardiyoloji, iç hastalıkları, hipertansiyon, diyabetik ayak, kalp doktoru, istanbul kardiyolog, Prof. Dr. Faruk Erzengin" />
+      <meta name="description" content={description ? description.substring(0, 155) : ''} />
+      <meta name="keywords" content={metaKeywords} />
       <meta name="author" content={articleAuthor || siteTitle} />
       <meta name="publisher" content={siteTitle} />
       <link rel="canonical" href={metaUrl} />

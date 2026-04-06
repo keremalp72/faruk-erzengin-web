@@ -14,7 +14,6 @@ import { supabase } from "./lib/supabaseClient";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import FloatingScrollButton from "./components/FloatingScrollButton/FloatingScrollButton";
-import Admin from "./pages/Admin";
 
 import "./App.css";
 
@@ -29,6 +28,7 @@ const PressPage = lazy(() => import("./pages/PressPage"));
 const ReviewsPage = lazy(() => import("./pages/ReviewsPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
+const Admin = lazy(() => import("./pages/Admin"));
 
 // --- GA4 TAKİP KODU ---
 const TRACKING_ID = "G-KLKWN88Q9G";

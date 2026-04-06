@@ -69,8 +69,9 @@ const AboutPage = () => {
       
       <SEO 
         title="Hakkında" 
-        description="İstanbul Üniversitesi Tıp Fakültesi önceki dekanı Prof. Dr. Faruk Erzengin'in biyografisi, akademik kariyeri, tıbbi başarıları ve Nobel adaylığı süreci hakkında detaylı bilgiler." 
+        description="Prof. Dr. Faruk Erzengin'in biyografisi, akademik kariyeri ve Nobel adaylığı. Kardiyoloji ve iç hastalıkları alanında 45 yıllık tecrübe." 
         url="https://farukerzengin.com/hakkinda"
+        keywords="Faruk Erzengin biyografi, kardiyoloji profesörü, istanbul tıp fakültesi dekanı, nobel adayı doktor, kalp doktoru istanbul"
         breadcrumbs={[
           { name: "Ana Sayfa", url: "/" },
           { name: "Hakkında", url: "/hakkinda" }
