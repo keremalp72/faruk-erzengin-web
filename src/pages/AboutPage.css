@@ -511,6 +511,170 @@
   letter-spacing: 1px;
 }
 
+/* --- HEKİMLİK ANDI BÖLÜMÜ --- */
+.hekimlik-andi-section {
+  max-width: 700px;
+  margin: 0 auto 80px auto;
+  padding: 0 20px;
+}
+
+.hekimlik-andi-card {
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 34, 68, 0.1);
+  border: 1px solid #e8e8e8;
+  transition: all 0.4s ease;
+}
+
+.hekimlik-andi-card:hover {
+  box-shadow: 0 15px 40px rgba(0, 34, 68, 0.15);
+  transform: translateY(-5px);
+  border-color: #c5a059;
+}
+
+.hekimlik-andi-img-wrapper {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.hekimlik-andi-img-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.hekimlik-andi-img-wrapper:hover img {
+  transform: scale(1.02);
+}
+
+.hekimlik-andi-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 34, 68, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.hekimlik-andi-img-wrapper:hover .hekimlik-andi-overlay {
+  opacity: 1;
+}
+
+.hekimlik-andi-overlay .overlay-icon {
+  font-size: 36px;
+  color: #c5a059;
+}
+
+.hekimlik-andi-overlay span {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.hekimlik-andi-actions {
+  padding: 20px 25px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  background: #fafafa;
+  border-top: 1px solid #eee;
+}
+
+.hekimlik-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #002244 0%, #003366 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.hekimlik-download-btn:hover {
+  background: linear-gradient(135deg, #c5a059 0%, #d4b06a 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
+  color: #fff;
+}
+
+/* --- LIGHTBOX MODAL --- */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: lightboxFadeIn 0.3s ease;
+}
+
+@keyframes lightboxFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 25px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-size: 22px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  z-index: 10001;
+}
+
+.lightbox-close:hover {
+  background: #c5a059;
+  border-color: #c5a059;
+  transform: rotate(90deg);
+}
+
+.lightbox-content {
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+  border-radius: 10px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: lightboxZoomIn 0.3s ease;
+}
+
+@keyframes lightboxZoomIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.lightbox-content img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
 /* RESPONSIVE */
 @media (max-width: 960px) {
   .bio-section {
@@ -539,5 +703,54 @@
 @media (max-width: 960px) {
   .slider-reveal-wrapper {
     max-width: 100%;
+  }
+}
+
+/* --- Hekimlik Andı Responsive --- */
+@media (max-width: 768px) {
+  .hekimlik-andi-section {
+    margin-bottom: 50px;
+    padding: 0 10px;
+  }
+
+  .hekimlik-andi-card {
+    border-radius: 10px;
+  }
+
+  .hekimlik-andi-actions {
+    padding: 15px;
+  }
+
+  .hekimlik-download-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .lightbox-content {
+    max-width: 95vw;
+    max-height: 85vh;
+  }
+
+  .lightbox-close {
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .hekimlik-andi-overlay {
+    /* Mobilde overlay her zaman yarı görünsün */
+    opacity: 0.7;
+  }
+
+  .hekimlik-andi-overlay .overlay-icon {
+    font-size: 28px;
+  }
+
+  .hekimlik-andi-overlay span {
+    font-size: 13px;
   }
 }
