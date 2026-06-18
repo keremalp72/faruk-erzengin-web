@@ -14,6 +14,7 @@ import { supabase } from "./lib/supabaseClient";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import FloatingScrollButton from "./components/FloatingScrollButton/FloatingScrollButton";
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 
 import "./App.css";
 
@@ -109,23 +110,26 @@ function App() {
       <div className="App">
         <Header />
         <main>
-          {/* SUSPENSE: Sayfa dosyası internetten inene kadar LoadingSpinner gösterir */}
-          <Suspense fallback={<LoadingSpinner />}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/hakkinda" element={<AboutPage />} />
-              <Route path="/tedaviler" element={<ServicesPage />} />
+          {/* HATA YAKALAYICI: Beyaz ekran sorununu engeller */}
+          <ErrorBoundary>
+            {/* SUSPENSE: Sayfa dosyası internetten inene kadar LoadingSpinner gösterir */}
+            <Suspense fallback={<LoadingSpinner />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/hakkinda" element={<AboutPage />} />
+                <Route path="/tedaviler" element={<ServicesPage />} />
 
-              <Route path="/blog" element={<BlogPage />} />
-              <Route path="/blog/:id" element={<BlogPostDetail />} />
+                <Route path="/blog" element={<BlogPage />} />
+                <Route path="/blog/:id" element={<BlogPostDetail />} />
 
-              <Route path="/basin" element={<PressPage />} />
-              <Route path="/yorumlar" element={<ReviewsPage />} />
-              <Route path="/iletisim" element={<ContactPage />} />
-              <Route path="/admin" element={<Admin />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </Suspense>
+                <Route path="/basin" element={<PressPage />} />
+                <Route path="/yorumlar" element={<ReviewsPage />} />
+                <Route path="/iletisim" element={<ContactPage />} />
+                <Route path="/admin" element={<Admin />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </Suspense>
+          </ErrorBoundary>
         </main>
         <FloatingScrollButton />
         <Footer />
