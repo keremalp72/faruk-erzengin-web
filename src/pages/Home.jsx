@@ -16,6 +16,7 @@ const Home = () => {
         title="Kardiyolog İstanbul" 
         description="Prof. Dr. Faruk Erzengin - Kardiyoloji ve iç hastalıkları uzmanı. Kalp, hipertansiyon, diyabetik ayak tedavisi. Randevu alın."
         keywords="kardiyolog istanbul, kalp doktoru, iç hastalıkları uzmanı, hipertansiyon tedavisi, diyabetik ayak, Prof. Dr. Faruk Erzengin, nobel adayı doktor"
+        url="https://farukerzengin.com/"
       />
 
       <Hero />

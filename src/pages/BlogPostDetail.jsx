@@ -96,7 +96,7 @@ const BlogPostDetail = () => {
         title={post.title} 
         description={excerpt} 
         image={post.image_url} 
-        url={window.location.href}
+        url={`https://farukerzengin.com/blog/${post.id}`}
         isArticle={true}
         articleDate={post.created_at}
         articleAuthor="Prof. Dr. Faruk Erzengin"

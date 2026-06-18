@@ -19,7 +19,9 @@ const SEO = ({ title, description, image, url, isArticle = false, isTreatment = 
     ? (image.startsWith('http') ? image : `${siteUrl}${image}`) 
     : defaultImage;
     
-  const metaUrl = url || siteUrl;
+  // URL belirtilmemişse mevcut pathname'i kullanarak tam URL oluştur
+  const currentPath = typeof window !== 'undefined' ? window.location.pathname : '';
+  const metaUrl = url || (currentPath && currentPath !== '/' ? `${siteUrl}${currentPath}` : siteUrl);
 
   // Structured Data (JSON-LD) - Person Schema
   const personSchema = {
