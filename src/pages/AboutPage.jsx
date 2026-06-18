@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 // YENİ: Link bileşenini buraya ekledik
 import { Link } from 'react-router-dom'; 
-import { FaUserMd, FaAward, FaMicroscope, FaBookReader, FaQuoteLeft, FaChevronLeft, FaChevronRight, FaChevronDown, FaChevronUp, FaDownload, FaTimes, FaSearchPlus } from 'react-icons/fa';
+import { FaUserMd, FaAward, FaMicroscope, FaBookReader, FaQuoteLeft, FaChevronLeft, FaChevronRight, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import './AboutPage.css';
-
-// Hekimlik Andı Görseli
-import hekimlikAndiImg from '../assets/images/hekimlikbildirgesi.jpeg';
 
 import SEO from '../components/SEO';
 import ScrollReveal from '../components/Animations/ScrollReveal';
+import HekimlikAndi from '../components/HekimlikAndi/HekimlikAndi';
 
 // --- VERİ IMPORTLARI ---
 import { publicationsData } from '../data/publicationsData';
@@ -17,7 +15,6 @@ import { supabase } from '../lib/supabaseClient';
 const AboutPage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [openPubIndex, setOpenPubIndex] = useState(0); 
-  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   const [sliderImages, setSliderImages] = useState([]);
 
@@ -208,51 +205,7 @@ const AboutPage = () => {
         </ScrollReveal>
 
         {/* 3.5 HEKİMLİK ANDI */}
-        <ScrollReveal animation="fade-up" delay={0.2}>
-          <div className="hekimlik-andi-section">
-            <h3 className="section-heading-center">Hekimlik Andı</h3>
-            <p className="section-desc-center">
-              Dünya Tabipler Birliği Cenevre Bildirgesi — Tüm hekimlerin mesleki etik değerlerini temsil eden evrensel and.
-            </p>
-            <div className="hekimlik-andi-card">
-              <div className="hekimlik-andi-img-wrapper" onClick={() => setIsLightboxOpen(true)}>
-                <img 
-                  src={hekimlikAndiImg} 
-                  alt="Dünya Tabipler Birliği Cenevre Bildirgesi - Hekimlik Andı" 
-                  loading="lazy"
-                />
-                <div className="hekimlik-andi-overlay">
-                  <FaSearchPlus className="overlay-icon" />
-                  <span>Büyütmek için tıklayın</span>
-                </div>
-              </div>
-              <div className="hekimlik-andi-actions">
-                <a 
-                  href={hekimlikAndiImg} 
-                  download="Hekimlik-Andi-Cenevre-Bildirgesi.jpeg" 
-                  className="hekimlik-download-btn"
-                >
-                  <FaDownload /> Görseli İndir
-                </a>
-              </div>
-            </div>
-          </div>
-        </ScrollReveal>
-
-        {/* Lightbox Modal */}
-        {isLightboxOpen && (
-          <div className="lightbox-overlay" onClick={() => setIsLightboxOpen(false)}>
-            <button className="lightbox-close" onClick={() => setIsLightboxOpen(false)}>
-              <FaTimes />
-            </button>
-            <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-              <img 
-                src={hekimlikAndiImg} 
-                alt="Dünya Tabipler Birliği Cenevre Bildirgesi - Hekimlik Andı" 
-              />
-            </div>
-          </div>
-        )}
+        <HekimlikAndi />
 
         {/* 4. YAYINLAR */}
         <ScrollReveal animation="fade-up">

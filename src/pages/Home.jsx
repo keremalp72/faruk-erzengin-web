@@ -1,6 +1,7 @@
 import React from 'react';
 import Hero from '../components/Hero/Hero';
 import About from '../components/About/About'; 
+import HekimlikAndi from '../components/HekimlikAndi/HekimlikAndi';
 import Services from '../components/Services/Services';
 import Reviews from '../components/Reviews/Reviews';
 
@@ -22,6 +23,7 @@ const Home = () => {
       <Hero />
       <FeaturedMedia />
       <About /> 
+      <HekimlikAndi />
       <Services />
       <Reviews />
     </>
