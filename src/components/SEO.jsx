@@ -10,7 +10,8 @@ const SEO = ({ title, description, image, url, isArticle = false, isTreatment = 
   const defaultKeywords = "kardiyolog, kardiyoloji, iç hastalıkları, hipertansiyon, diyabetik ayak, kalp doktoru, istanbul kardiyolog, Prof. Dr. Faruk Erzengin";
   const metaKeywords = keywords || defaultKeywords;
   
-  const defaultImage = `${siteUrl}/favicon.png`; 
+  // OG image: favicon yerine gerçek sosyal paylaşım görseli
+  const defaultImage = `${siteUrl}/og-image.png`;
 
   // Resim yolunu tam adrese çevirme
   const metaImage = image 
@@ -161,7 +162,7 @@ const SEO = ({ title, description, image, url, isArticle = false, isTreatment = 
       <title>{fullTitle}</title>
       <meta name="description" content={description ? description.substring(0, 155) : ''} />
 
-      <meta name="keywords" content={metaKeywords} />
+      {/* meta keywords kaldırıldı: Google tarafından kullanılmıyor, gereksiz */}
       <meta name="author" content={articleAuthor || siteTitle} />
       <meta name="publisher" content={siteTitle} />
       <link rel="canonical" href={metaUrl} />
@@ -185,6 +186,7 @@ const SEO = ({ title, description, image, url, isArticle = false, isTreatment = 
       <meta name="twitter:title" content={title || siteTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={metaImage} />
+      <meta name="twitter:image:alt" content={title || siteTitle} />
 
       {/* --- STRUCTURED DATA (JSON-LD) --- */}
       <script type="application/ld+json">

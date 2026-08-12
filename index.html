@@ -1,17 +1,21 @@
 <!doctype html>
 <html lang="tr">
   <head>
+    <!-- Charset: Tek ve modern bildirim -->
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="Content-Language" content="tr" />
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <link rel="icon" type="image/png" href="/favicon.png" sizes="96x96" />
     
-    <!-- Preconnect ve DNS Prefetch - Performans için -->
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="96x96" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    
+    <!-- Preconnect: Google Analytics (ReactGA4 tarafından kullanılıyor) -->
     <link rel="preconnect" href="https://www.google-analytics.com" />
     <link rel="dns-prefetch" href="https://www.google-analytics.com" />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <!-- Preconnect: Supabase (içerik/görseller buradan geliyor) -->
     <link rel="preconnect" href="https://uekcducwvvwzufzhlwhg.supabase.co" crossorigin="anonymous" />
     <link rel="dns-prefetch" href="https://uekcducwvvwzufzhlwhg.supabase.co" />
     
@@ -22,20 +26,27 @@
     <link rel="alternate" hreflang="x-default" href="https://farukerzengin.com/" />
     <link rel="canonical" href="https://farukerzengin.com/" />
     <title>Prof. Dr. Faruk Erzengin | İstanbul Kardiyolog ve İç Hastalıkları Uzmanı</title>
-    <meta name="description" content="Prof. Dr. Faruk Erzengin - İstanbul kardiyoloji ve iç hastalıkları uzmanı. Kalp hastalıkları, hipertansiyon, diyabetik ayak tedavisi. Mecidiyeköy ve Kadıköy muayenehane. Randevu alın.">
-    <meta name="keywords" content="kardiyolog istanbul, kalp doktoru, iç hastalıkları uzmanı, hipertansiyon tedavisi, diyabetik ayak, Prof. Dr. Faruk Erzengin, mecidiyeköy kardiyolog, kadıköy kalp doktoru">
+    <!-- meta keywords: Google tarafından kullanılmadığından kaldırıldı -->
+    <meta name="description" content="İstanbul'da 45 yıllık deneyimiyle hizmet veren Prof. Dr. Faruk Erzengin'den randevu alın. Kalp hastalıkları, hipertansiyon ve diyabetik ayak tedavisi. Mecidiyeköy ve Kadıköy muayenehane.">
     <meta name="author" content="Prof. Dr. Faruk Erzengin" />
 
-    <!-- SEO Araçları ve Botlar İçin Statik Open Graph / Social Etiketleri -->
+    <!-- Open Graph / Social Sharing -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Prof. Dr. Faruk Erzengin | İstanbul Kardiyolog ve İç Hastalıkları Uzmanı" />
-    <meta property="og:description" content="Prof. Dr. Faruk Erzengin - İstanbul kardiyoloji ve iç hastalıkları uzmanı. Kalp, hipertansiyon, diyabetik ayak tedavisi. Randevu alın." />
+    <meta property="og:description" content="İstanbul'da 45 yıllık deneyimiyle hizmet veren Prof. Dr. Faruk Erzengin'den randevu alın. Kalp hastalıkları, hipertansiyon ve diyabetik ayak tedavisi." />
     <meta property="og:url" content="https://farukerzengin.com/" />
     <meta property="og:site_name" content="Prof. Dr. Faruk Erzengin" />
     <meta property="og:locale" content="tr_TR" />
+    <meta property="og:image" content="https://farukerzengin.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Prof. Dr. Faruk Erzengin — İstanbul Kardiyolog ve İç Hastalıkları Uzmanı" />
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Prof. Dr. Faruk Erzengin | İstanbul Kardiyolog" />
-    <meta name="twitter:description" content="Prof. Dr. Faruk Erzengin - İstanbul kardiyoloji ve iç hastalıkları uzmanı. Randevu alın." />
+    <meta name="twitter:description" content="İstanbul'da 45 yıllık deneyimiyle hizmet veren Prof. Dr. Faruk Erzengin. Kalp hastalıkları, hipertansiyon ve diyabetik ayak tedavisi." />
+    <meta name="twitter:image" content="https://farukerzengin.com/og-image.png" />
+    <meta name="twitter:image:alt" content="Prof. Dr. Faruk Erzengin — İstanbul Kardiyolog" />
 
     <!-- =========================================================
          STATİK JSON-LD SCHEMA — Google JS çalıştırmadan okur
@@ -210,22 +221,8 @@
     }
     </script>
 
-    <!-- 4. BreadcrumbList — Ana sayfa navigasyonu -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://farukerzengin.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Hakkında", "item": "https://farukerzengin.com/hakkinda"},
-        {"@type": "ListItem", "position": 3, "name": "Tedaviler", "item": "https://farukerzengin.com/tedaviler"},
-        {"@type": "ListItem", "position": 4, "name": "Blog", "item": "https://farukerzengin.com/blog"},
-        {"@type": "ListItem", "position": 5, "name": "Basın", "item": "https://farukerzengin.com/basin"},
-        {"@type": "ListItem", "position": 6, "name": "Yorumlar", "item": "https://farukerzengin.com/yorumlar"},
-        {"@type": "ListItem", "position": 7, "name": "İletişim", "item": "https://farukerzengin.com/iletisim"}
-      ]
-    }
-    </script>
+    <!-- BreadcrumbList: Ana sayfada görünür breadcrumb navigasyonu olmadığından kaldırıldı.
+         Alt sayfalarda SEO.jsx üzerinden sayfa bazlı breadcrumb schema üretiliyor. -->
   </head>
   <body>
     <!-- =========================================================
@@ -283,8 +280,10 @@
          (display:none Google tarafından cezalandırılır; bunun yerine
          görsel olarak gizlenmiş ama erişilebilir içerik kullanıyoruz)
          ========================================================= -->
+    <!-- Gizli semantik içerik: clip ile gizlendi, display:none değil (Google penaltı vermez) -->
     <div id="seo-fallback-content" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;">
-      <h1>Prof. Dr. Faruk Erzengin — İstanbul Kardiyolog</h1>
+      <!-- H1 kaldırıldı: Sayfada zaten tek H1 (Hero) var, çift H1 SEO hatası oluşturuyordu -->
+      <p><strong>Prof. Dr. Faruk Erzengin — İstanbul Kardiyolog ve İç Hastalıkları Uzmanı</strong></p>
       <nav>
         <a href="/">Ana Sayfa</a>
         <a href="/hakkinda">Prof. Dr. Faruk Erzengin Hakkında — Biyografi ve Akademik Kariyer</a>
