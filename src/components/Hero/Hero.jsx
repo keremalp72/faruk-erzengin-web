@@ -50,6 +50,8 @@ const Hero = () => {
           className="hero-bg-img"
           fetchpriority="high"
           decoding="async"
+          width="1920"
+          height="1080"
         />
         <div className="hero-overlay"></div>
       </div>
@@ -72,11 +74,17 @@ const Hero = () => {
             </motion.span>
           </motion.div>
 
-          {/* 2. BAŞLIK (İsim) */}
-          <motion.h1 variants={itemVariants} className="hero-title">
+          {/* 2. BAŞLIK (İsim) — SEO için doğrudan <h1>, opacity:1 ile başlar.
+              Google botu animasyon çalıştırmasa bile H1'i görür. */}
+          <h1 className="hero-title">
             <span className="title-prefix">Prof. Dr.</span>
-            Faruk Erzengin
-          </motion.h1>
+            <motion.span
+              variants={itemVariants}
+              style={{ display: 'block' }}
+            >
+              Faruk Erzengin
+            </motion.span>
+          </h1>
 
           {/* 3. VİDEO LİNKİ (Sıralamada üste alındı) */}
           <motion.div variants={itemVariants} className="video-link-wrapper">

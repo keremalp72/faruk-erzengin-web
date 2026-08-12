@@ -46,11 +46,13 @@
   width: 100%;
   max-width: 450px; /* Slider genişliği */
   height: 550px; /* Slider yüksekliği */
+  min-height: 350px; /* CLS önleyici: Resimler yüklenmeden önce yer tutar */
+  aspect-ratio: 3 / 4; /* CLS önleyici: Oranı korur */
   position: relative;
   overflow: hidden;
   border-radius: 10px;
-  /* box-shadow: 10px 10px 0px #c5a059; */
   flex-shrink: 0;
+  background-color: #f0f4f8; /* Resim yüklenmeden önce placeholder rengi */
 }
 
 .bio-slider-wrapper {

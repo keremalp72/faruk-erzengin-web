@@ -83,12 +83,13 @@ const ServicesPage = () => {
 
       {/* HEADER */}
       <div className="tp-page-header">
-        <ScrollReveal animation="fade-up">
-          <div className="container">
-            <h1 className="tp-page-title">Tedaviler & Hastalıklar</h1>
+        <div className="container">
+          {/* H1 animasyon dışında — SEO için hemen görünür */}
+          <h1 className="tp-page-title">Tedaviler & Hastalıklar</h1>
+          <ScrollReveal animation="fade-up">
             <p className="tp-breadcrumb">Ana Sayfa / Tedaviler</p>
-          </div>
-        </ScrollReveal>
+          </ScrollReveal>
+        </div>
       </div>
 
       <div className="tp-layout">

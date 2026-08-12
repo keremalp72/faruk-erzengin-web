@@ -52,7 +52,7 @@
   
   .bp-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: #C5A059; }
   
-  .bp-card-img-box { height: 200px; overflow: hidden; position: relative; }
+  .bp-card-img-box { height: 200px; aspect-ratio: 16 / 9; overflow: hidden; position: relative; background-color: #f0f4f8; }
   .bp-card-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
   .bp-card:hover .bp-card-img-box img { transform: scale(1.1); }
   

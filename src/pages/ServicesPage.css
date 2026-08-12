@@ -89,8 +89,10 @@
 
 .tp-card-img-box {
   height: 220px;
+  aspect-ratio: 16 / 9; /* CLS önleyici */
   overflow: hidden;
   position: relative;
+  background-color: #f0f4f8; /* Resim yüklenmeden önceki placeholder */
 }
 
 .tp-card-img-box img {

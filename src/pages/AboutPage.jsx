@@ -81,12 +81,13 @@ const AboutPage = () => {
       
       {/* HEADER */}
       <div className="page-header">
-        <ScrollReveal animation="fade-up">
-          <div className="container">
-            <h1 className="page-title">Hakkında</h1>
+        <div className="container">
+          {/* H1 animasyon dışında — SEO için hemen görünür */}
+          <h1 className="page-title">Prof. Dr. Faruk Erzengin Hakkında</h1>
+          <ScrollReveal animation="fade-up">
             <p className="breadcrumb">Ana Sayfa / Hakkında</p>
-          </div>
-        </ScrollReveal>
+          </ScrollReveal>
+        </div>
       </div>
 
       <div className="container page-content">
@@ -100,8 +101,15 @@ const AboutPage = () => {
               <div className="bio-slider-wrapper" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
                 {sliderImages.map((item, index) => (
                   <div key={item.id || index} className="bio-slide">
-                    {/* Artık resim kaynağı item.src oldu (Slider üstte olduğu için lazy loading yok) */}
-                    <img src={item.src} alt={`Prof. Dr. Faruk Erzengin - İstanbul Kardiyoloji Uzmanı Görsel ${index + 1}`} />
+                    {/* İlk resim LCP için öncelikli yükleniyor */}
+                    <img
+                      src={item.src}
+                      alt={`Prof. Dr. Faruk Erzengin - İstanbul Kardiyoloji Uzmanı Görsel ${index + 1}`}
+                      loading={index === 0 ? "eager" : "lazy"}
+                      fetchpriority={index === 0 ? "high" : "auto"}
+                      width="450"
+                      height="550"
+                    />
                   </div>
                 ))}
               </div>

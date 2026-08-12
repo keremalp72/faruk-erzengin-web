@@ -71,12 +71,13 @@ const PressPage = () => {
 
       {/* HEADER - Fade In */}
       <div className="page-header">
-        <ScrollReveal animation="fade-up">
-          <div className="container">
-            <h1 className="page-title">Basında Biz</h1>
+        <div className="container">
+          {/* H1 animasyon dışında — SEO için hemen görünür */}
+          <h1 className="page-title">Basında Prof. Dr. Faruk Erzengin</h1>
+          <ScrollReveal animation="fade-up">
             <p className="breadcrumb">Ana Sayfa / Basın</p>
-          </div>
-        </ScrollReveal>
+          </ScrollReveal>
+        </div>
       </div>
 
       <div className="container page-content">
@@ -111,9 +112,11 @@ const PressPage = () => {
                       src={video.video_url} 
                       title={`${video.title} - Prof. Dr. Faruk Erzengin TV Röportajı`} 
                       style={{ border: 0 }}
-                      loading="lazy"
+                      loading={index === 0 ? "eager" : "lazy"}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                       allowFullScreen
+                      width="560"
+                      height="315"
                     ></iframe>
                   </div>
                   <div className="video-body">

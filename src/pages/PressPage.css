@@ -93,6 +93,8 @@
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     border: 1px solid #eee;
     transition: transform 0.3s;
+    /* CLS önleyici: Kart boyutunu önceden tanımla */
+    contain: layout;
   }
   
   .video-card:hover {
@@ -106,6 +108,9 @@
     padding-bottom: 56.25%; /* 16:9 Aspect Ratio (YouTube Standardı) */
     height: 0;
     background: #000;
+    /* CLS önleyici: minimum yükseklik */
+    min-height: 200px;
+    overflow: hidden;
   }
   
   .video-wrapper iframe {
@@ -113,6 +118,8 @@
     top: 0; left: 0;
     width: 100%;
     height: 100%;
+    /* LCP için: iframe yüklenmeden önce yer tutsun */
+    border: 0;
   }
   
   .video-body {
@@ -179,8 +186,10 @@
   
   .news-image {
     height: 220px; /* Resim alanı biraz büyüdü */
+    aspect-ratio: 16 / 9; /* CLS önleyici */
     position: relative;
     overflow: hidden;
+    background-color: #f0f4f8; /* Yüklenmeden önceki placeholder rengi */
   }
   
   .news-image img {

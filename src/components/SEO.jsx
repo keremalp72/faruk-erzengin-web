@@ -10,11 +10,9 @@ const SEO = ({ title, description, image, url, isArticle = false, isTreatment = 
   const defaultKeywords = "kardiyolog, kardiyoloji, iç hastalıkları, hipertansiyon, diyabetik ayak, kalp doktoru, istanbul kardiyolog, Prof. Dr. Faruk Erzengin";
   const metaKeywords = keywords || defaultKeywords;
   
-  // Eğer özel bir resim gelmediyse varsayılan bir logo/resim göster (Opsiyonel)
-  // Şimdilik boş bırakabilirsin veya sitenin logosunun linkini koyabilirsin.
   const defaultImage = `${siteUrl}/favicon.png`; 
 
-  // Resim yolunu tam adrese çevirme (http ile başlamıyorsa başına site adresini ekle)
+  // Resim yolunu tam adrese çevirme
   const metaImage = image 
     ? (image.startsWith('http') ? image : `${siteUrl}${image}`) 
     : defaultImage;
@@ -23,24 +21,37 @@ const SEO = ({ title, description, image, url, isArticle = false, isTreatment = 
   const currentPath = typeof window !== 'undefined' ? window.location.pathname : '';
   const metaUrl = url || (currentPath && currentPath !== '/' ? `${siteUrl}${currentPath}` : siteUrl);
 
-  // Structured Data (JSON-LD) - Person Schema
-  const personSchema = {
+  // --- TITLE FORMATI ---
+  // Her sayfa için benzersiz, anlamlı title.
+  // Format: "Sayfa Adı | Prof. Dr. Faruk Erzengin"
+  // Ana sayfa için daha zengin format
+  const fullTitle = title 
+    ? `${title} | ${siteTitle}` 
+    : `${siteTitle} | İstanbul Kardiyolog ve İç Hastalıkları Uzmanı`;
+
+  // Structured Data (JSON-LD) - Person / Physician Schema
+  const physicianSchema = {
     "@context": "https://schema.org",
-    "@type": "Person",
+    "@type": "Physician",
+    "@id": `${siteUrl}/#physician`,
     "name": "Prof. Dr. Faruk Erzengin",
+    "honorificPrefix": "Prof. Dr.",
     "jobTitle": "Kardiyolog ve İç Hastalıkları Uzmanı",
     "url": siteUrl,
-    "description": "İstanbul Üniversitesi Tıp Fakültesi önceki dekanı, Nobel adayı Prof. Dr. Faruk Erzengin. Kalp hastalıkları, hipertansiyon, diyabetik ayak ve iç hastalıkları tedavisi.",
+    "description": "İstanbul Üniversitesi İstanbul Tıp Fakültesi'nin önceki dekanı, Nobel Tıp Ödülü adayı Prof. Dr. Faruk Erzengin. Kardiyoloji, iç hastalıkları, hipertansiyon ve diyabetik ayak tedavisinde 45 yıllık uzmanlık.",
     "knowsAbout": [
       "Kardiyoloji",
       "İç Hastalıkları",
-      "Hipertansiyon",
-      "Diyabetik Ayak",
+      "Hipertansiyon Tedavisi",
+      "Diyabetik Ayak Tedavisi",
       "Kalp Hastalıkları",
-      "Aritmi"
+      "Aritmi",
+      "Koroner Anjiyografi",
+      "Kalp Yetmezliği",
+      "Damar Sertliği"
     ],
+    "medicalSpecialty": ["Cardiology", "Internal Medicine"],
     "sameAs": [
-      // Sosyal medya linkleriniz varsa buraya ekleyin
       "https://www.facebook.com/faruk.erzengin.2025/",
       "https://www.linkedin.com/in/prof-dr-faruk-erzengin-676391130/",
       "https://www.instagram.com/farukerzengin/"
@@ -56,7 +67,8 @@ const SEO = ({ title, description, image, url, isArticle = false, isTreatment = 
     "image": metaImage,
     "author": {
       "@type": "Person",
-      "name": articleAuthor || "Prof. Dr. Faruk Erzengin"
+      "name": articleAuthor || "Prof. Dr. Faruk Erzengin",
+      "@id": `${siteUrl}/#physician`
     },
     "publisher": {
       "@type": "Person",
@@ -67,6 +79,11 @@ const SEO = ({ title, description, image, url, isArticle = false, isTreatment = 
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": metaUrl
+    },
+    "inLanguage": "tr",
+    "about": {
+      "@type": "MedicalCondition",
+      "name": "Kardiyoloji ve İç Hastalıkları"
     }
   } : null;
 
@@ -83,21 +100,19 @@ const SEO = ({ title, description, image, url, isArticle = false, isTreatment = 
     "url": metaUrl
   } : null;
 
-  // MedicalClinic / Physician Schema (Ana sayfa için)
+  // MedicalClinic / Physician Schema (Tüm sayfalar için — daha zengin)
   const medicalBusinessSchema = (!isArticle && !isTreatment) ? {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
+    "@id": `${siteUrl}/#business`,
     "name": "Prof. Dr. Faruk Erzengin - Kardiyoloji ve İç Hastalıkları",
-    "description": description,
+    "description": description || "Prof. Dr. Faruk Erzengin muayenehanesi. Kalp hastalıkları, hipertansiyon, diyabetik ayak ve iç hastalıkları tedavisi.",
     "url": siteUrl,
-    "telephone": "+90 212 356 88 88",
+    "telephone": "+90-212-356-88-88",
     "email": "farukerzengin@gmail.com",
     "image": `${siteUrl}/favicon.png`,
     "priceRange": "$$",
-    "medicalSpecialty": [
-      "Kardiyoloji",
-      "İç Hastalıkları"
-    ],
+    "medicalSpecialty": ["Cardiology", "Internal Medicine"],
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Büyükdere Cad. Kral Apt. No: 75 Kat: 1 D: 2",
@@ -105,7 +120,27 @@ const SEO = ({ title, description, image, url, isArticle = false, isTreatment = 
       "addressRegion": "İstanbul",
       "postalCode": "34394",
       "addressCountry": "TR"
-    }
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "41.0668514",
+      "longitude": "28.9987561"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Thursday"],
+        "opens": "12:00",
+        "closes": "18:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Wednesday",
+        "opens": "13:00",
+        "closes": "18:00"
+      }
+    ],
+    "hasMap": "https://www.google.com/maps/search/?api=1&query=Büyükdere+Cad.+Kral+Apt.+No:+75,+Mecidiyeköy"
   } : null;
 
   // Breadcrumb Schema
@@ -123,8 +158,9 @@ const SEO = ({ title, description, image, url, isArticle = false, isTreatment = 
   return (
     <Helmet>
       {/* --- STANDART META ETİKETLERİ --- */}
-      <title>{title ? `${title} | ${siteTitle}` : siteTitle}</title>
+      <title>{fullTitle}</title>
       <meta name="description" content={description ? description.substring(0, 155) : ''} />
+
       <meta name="keywords" content={metaKeywords} />
       <meta name="author" content={articleAuthor || siteTitle} />
       <meta name="publisher" content={siteTitle} />
@@ -152,7 +188,7 @@ const SEO = ({ title, description, image, url, isArticle = false, isTreatment = 
 
       {/* --- STRUCTURED DATA (JSON-LD) --- */}
       <script type="application/ld+json">
-        {JSON.stringify(personSchema)}
+        {JSON.stringify(physicianSchema)}
       </script>
       
       {articleSchema && (

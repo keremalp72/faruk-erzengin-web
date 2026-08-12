@@ -167,14 +167,15 @@ const ReviewsPage = () => {
 
       {/* 1. HERO BÖLÜMÜ */}
       <header className="reviews-hero-section">
-        <ScrollReveal animation="fade-up">
-          <div className="reviews-hero-content">
-            <h1 className="reviews-hero-title">Gerçek Hikayeler,<br />Mutlu Başlangıçlar</h1>
+        <div className="reviews-hero-content">
+          {/* H1 animasyon dışında — Google botu hemen görür */}
+          <h1 className="reviews-hero-title">Gerçek Hikayeler,<br />Mutlu Başlangıçlar</h1>
+          <ScrollReveal animation="fade-up">
             <p className="reviews-hero-desc">
               Tıbbi tecrübemizi insani değerlerle birleştiriyoruz. İşte hastalarımızın kaleminden dökülenler.
             </p>
-          </div>
-        </ScrollReveal>
+          </ScrollReveal>
+        </div>
       </header>
 
       {/* 2. SLIDER BÖLÜMÜ (Sadece Web Sitesi Hikayeleri) */}

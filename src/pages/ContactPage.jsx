@@ -156,15 +156,16 @@ const ContactPage = () => {
 
       {/* HEADER */}
       <div className="contact-header-section">
-        <ScrollReveal animation="fade-up">
-          <div className="contact-header-content">
-            <h1 className="contact-hero-title">İletişime Geçin</h1>
+        <div className="contact-header-content">
+          {/* H1 animasyon dışında — SEO için hemen görünür */}
+          <h1 className="contact-hero-title">İletişim ve Randevu</h1>
+          <ScrollReveal animation="fade-up">
             <p className="contact-hero-desc">
               Size en yakın ofisimizden randevu alabilir veya sorularınız için
               bize ulaşabilirsiniz.
             </p>
-          </div>
-        </ScrollReveal>
+          </ScrollReveal>
+        </div>
       </div>
 
       <div className="contact-container">

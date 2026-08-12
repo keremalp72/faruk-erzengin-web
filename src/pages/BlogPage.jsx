@@ -89,15 +89,16 @@ const BlogPage = () => {
       />
 
       <div className="bp-page-header">
-        <ScrollReveal animation="fade-up">
-          <div className="container">
-            <h1 className="bp-page-title">Blog & Makaleler</h1>
+        <div className="container">
+          {/* H1 animasyon dışında — SEO için hemen görünür */}
+          <h1 className="bp-page-title">Blog &amp; Makaleler</h1>
+          <ScrollReveal animation="fade-up">
             <p className="bp-breadcrumb">
               Ana Sayfa / Blog{" "}
               {activeCategory !== "Tümü" ? ` / ${activeCategory}` : ""}
             </p>
-          </div>
-        </ScrollReveal>
+          </ScrollReveal>
+        </div>
       </div>
 
       <div className="bp-layout">

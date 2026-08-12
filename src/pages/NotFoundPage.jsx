@@ -19,8 +19,9 @@ const NotFoundPage = () => {
         textAlign: 'center',
         padding: '2rem'
       }}>
-        <h1 style={{ fontSize: '6rem', color: '#1a3c6d', marginBottom: '1rem', fontWeight: 'bold' }}>404</h1>
-        <h2 style={{ fontSize: '2rem', color: '#333', marginBottom: '2rem' }}>Sayfa Bulunamadı</h2>
+        {/* 404 sayısı görsel amaçlı - SEO için anlamlı H1 aşağıda */}
+        <div aria-hidden="true" style={{ fontSize: '6rem', color: '#1a3c6d', marginBottom: '0.5rem', fontWeight: 'bold', lineHeight: 1 }}>404</div>
+        <h1 style={{ fontSize: '2rem', color: '#333', marginBottom: '1rem' }}>Sayfa Bulunamadı</h1>
         <p style={{ fontSize: '1.2rem', color: '#666', marginBottom: '2rem', maxWidth: '600px' }}>
           Aradığınız sayfa silinmiş, adı değiştirilmiş veya geçici olarak kullanım dışı olabilir.
         </p>
