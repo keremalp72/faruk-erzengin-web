@@ -129,8 +129,8 @@ const ContactPage = () => {
     <div className="contact-page">
       {/* --- SEO AYARLARI --- */}
       <SEO
-        title="Randevu Al – Mecidiyeköy ve Kadıköy"
-        description="Prof. Dr. Faruk Erzengin randevu ve iletişim. Mecidiyeköy ve Kadıköy muayenehane adresleri, telefon ve online randevu."
+        title="Randevu Al – Vakıf Merkezi ve Kadıköy"
+        description="Prof. Dr. Faruk Erzengin randevu ve iletişim. Vakıf Merkezi ve Kadıköy muayenehane adresleri, telefon ve online randevu."
         url="https://farukerzengin.com/iletisim"
         keywords="faruk erzengin randevu, kardiyolog iletişim, mecidiyeköy doktor, kadıköy kardiyolog, istanbul kalp doktoru randevu"
         breadcrumbs={[
@@ -171,7 +171,7 @@ const ContactPage = () => {
       <div className="contact-container">
         {/* KARTLAR */}
         <div className="contact-info-grid">
-          {/* 1. AVRUPA YAKASI (Mecidiyeköy) */}
+          {/* 1. AVRUPA YAKASI (Vakıf) */}
           <ScrollReveal
             animation="fade-up"
             delay={0.1}
@@ -180,15 +180,12 @@ const ContactPage = () => {
             <div className="icon-circle">
               <FaBuilding />
             </div>
-            <h3>Avrupa Yakası (Merkez)</h3>
-            <p className="location-subtitle">Mecidiyeköy Ofis</p>
+            <h3 style={{fontSize: "1.1rem", lineHeight: "1.4"}}>Prof. Dr. Faruk Erzengin Eğitim Sağlık Hiz. ve Y. Yardım Vakfı</h3>
+            <p className="location-subtitle">Vakıf Merkezi</p>
             <div className="location-details">
               <p>
                 <strong>Adres:</strong> Büyükdere Cad. Kral Apt. No: 75, Kat: 1,
                 D: 3, Şişli / İstanbul
-              </p>
-              <p>
-                <strong>Günler:</strong> Pazartesi & Perşembe (12:00 - 18:00)
               </p>
               <div className="phone-list">
                 <a href="tel:+905324535179" className="highlight-phone">
@@ -363,7 +360,7 @@ const ContactPage = () => {
                 className={`map-btn ${activeMap === "europe" ? "active" : ""}`}
                 onClick={() => setActiveMap("europe")}
               >
-                <FaBuilding /> Avrupa (Mecidiyeköy)
+                <FaBuilding /> Avrupa Yakası (Vakıf Merkezi)
               </button>
               <button
                 className={`map-btn ${activeMap === "asia" ? "active" : ""}`}

@@ -31,7 +31,7 @@ const ScrollReveal = ({ children, delay = 0, animation = 'fade-up', className = 
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.7, delay: delay, ease: "easeOut" }}
+      transition={{ duration: 0.4, delay: delay, ease: "easeOut" }}
       className={className} // Dışarıdan gelen sınıfı buraya ekledik
       style={style}         // Dışarıdan gelen stili buraya ekledik
     >

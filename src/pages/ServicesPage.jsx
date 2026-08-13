@@ -178,11 +178,11 @@ const ServicesPage = () => {
           {/* İLETİŞİM */}
           <ScrollReveal animation="slide-in-right" delay={0.6}>
             <div className="tp-widget">
-              <h4 className="tp-widget-title">Merkez Ofis (Avrupa)</h4>
+              <h4 className="tp-widget-title">Vakıf Merkezi (Avrupa)</h4>
               <ul className="tp-contact-list">
                 <li>
                   <FaMapMarkerAlt className="tp-c-icon"/>
-                  <span>Büyükdere Cad. Kral Apt. No: 75, Kat: 1, Mecidiyeköy / İstanbul</span>
+                  <span>Prof. Dr. Faruk Erzengin Eğitim Sağlık Hiz. ve Y. Yardım Vakfı - Şişli / İstanbul</span>
                 </li>
                 <li>
                   <FaPhone className="tp-c-icon"/>

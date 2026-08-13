@@ -117,7 +117,7 @@ const SEO = ({ title, description, image, url, isArticle = false, isTreatment = 
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Büyükdere Cad. Kral Apt. No: 75 Kat: 1 D: 2",
-      "addressLocality": "Mecidiyeköy",
+      "addressLocality": "Şişli",
       "addressRegion": "İstanbul",
       "postalCode": "34394",
       "addressCountry": "TR"
@@ -141,7 +141,7 @@ const SEO = ({ title, description, image, url, isArticle = false, isTreatment = 
         "closes": "18:00"
       }
     ],
-    "hasMap": "https://www.google.com/maps/search/?api=1&query=Büyükdere+Cad.+Kral+Apt.+No:+75,+Mecidiyeköy"
+    "hasMap": "https://www.google.com/maps/search/?api=1&query=Büyükdere+Cad.+Kral+Apt.+No:+75,+Şişli"
   } : null;
 
   // Breadcrumb Schema

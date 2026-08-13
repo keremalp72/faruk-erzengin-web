@@ -47,26 +47,26 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* 3. SÜTUN: Adres (Mecidiyeköy - Merkez) */}
+        {/* 3. SÜTUN: Adres (Kadıköy) */}
         <div className="footer-col">
-          <h3 className="footer-title">Merkez Ofis (Avrupa)</h3>
+          <h3 className="footer-title">Anadolu Yakası (HSM)</h3>
           <div className="single-contact-box">
              <FaMapMarkerAlt className="big-icon" />
              <p className="address-text">
-               Büyükdere Cad. Kral Apt. No: 75 <br/>
-               Kat: 1, D: 3, Mecidiyeköy <br/>
-               Şişli / İstanbul
+               Bağdat Cad. No: 182 <br/>
+               Selami Çeşme, Kadıköy <br/>
+               İstanbul
              </p>
           </div>
           <div className="footer-contact-links">
-            <a href="tel:+902123568888" className="footer-phone-link">📞 0212 356 88 88</a>
+            <a href="tel:+902164550000" className="footer-phone-link">📞 0216 455 00 00</a>
             <a href="tel:+905324535179" className="footer-phone-link">📱 0532 453 51 79</a>
             <a href="mailto:farukerzengin@gmail.com" className="footer-email-link">✉️ farukerzengin@gmail.com</a>
           </div>
           
           {/* Gerçek Google Haritalar Arama Linki */}
           <a 
-            href="https://www.google.com/maps/search/?api=1&query=Büyükdere+Cad.+Kral+Apt.+No:+75,+Mecidiyeköy,+Şişli,+İstanbul" 
+            href="https://www.google.com/maps/search/?api=1&query=Bağdat+Cad.+No:+182,+Selami+Çeşme,+Kadıköy,+İstanbul" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="map-link"
@@ -74,9 +74,9 @@ const Footer = () => {
             Haritada Göster →
           </a>
 
-          {/* Anadolu Yakası Bilgilendirmesi */}
+          {/* Avrupa Yakası Bilgilendirmesi */}
           <div style={{marginTop: '15px', fontSize: '13px', color: '#aaa', lineHeight: '1.4'}}>
-            <span style={{color: '#C5A059'}}>*</span> Anadolu Yakası (Kadıköy) ofis bilgileri için <Link to="/iletisim" style={{color: '#fff', textDecoration: 'underline'}}>iletişim sayfasına</Link> bakınız.
+            <span style={{color: '#C5A059'}}>*</span> Vakıf Merkezi ofis bilgileri için <Link to="/iletisim" style={{color: '#fff', textDecoration: 'underline'}}>iletişim sayfasına</Link> bakınız.
           </div>
         </div>
 
