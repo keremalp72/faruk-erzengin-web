@@ -129,7 +129,7 @@ const ContactPage = () => {
     <div className="contact-page">
       {/* --- SEO AYARLARI --- */}
       <SEO
-        title="İletişim & Randevu"
+        title="Randevu Al – Mecidiyeköy ve Kadıköy"
         description="Prof. Dr. Faruk Erzengin randevu ve iletişim. Mecidiyeköy ve Kadıköy muayenehane adresleri, telefon ve online randevu."
         url="https://farukerzengin.com/iletisim"
         keywords="faruk erzengin randevu, kardiyolog iletişim, mecidiyeköy doktor, kadıköy kardiyolog, istanbul kalp doktoru randevu"

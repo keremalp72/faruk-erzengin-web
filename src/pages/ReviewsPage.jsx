@@ -141,7 +141,7 @@ const ReviewsPage = () => {
     <div className="reviews-page">
       
       <SEO 
-        title="Hasta Yorumları" 
+        title="Hasta Deneyimleri ve Yorumlar" 
         description="Prof. Dr. Faruk Erzengin hakkında gerçek hasta yorumları ve Google değerlendirmeleri. Tedavi deneyimleri ve hasta görüşleri." 
         url="https://farukerzengin.com/yorumlar"
         keywords="faruk erzengin yorumlar, hasta deneyimleri, kardiyolog değerlendirme, doktor yorumları, tedavi başarı oranı"

@@ -99,9 +99,14 @@ const PageMeta = () => {
 };
 
 function App() {
-  // Uygulama ilk açıldığında Analytics'i başlat
+  // Uygulama ilk açıldığında Analytics'i başlat (main thread'i bloklamadan)
   useEffect(() => {
-    ReactGA.initialize(TRACKING_ID);
+    const initGA = () => ReactGA.initialize(TRACKING_ID);
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(initGA);
+    } else {
+      setTimeout(initGA, 1);
+    }
   }, []);
 
   return (

@@ -25,6 +25,7 @@
   object-fit: cover;
   object-position: center;
   animation: slowZoom 20s infinite alternate;
+  aspect-ratio: 16 / 9;
 }
 
 @keyframes slowZoom {

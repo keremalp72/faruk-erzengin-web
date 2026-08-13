@@ -70,7 +70,7 @@ const ServicesPage = () => {
     <div className="tp-page-wrapper">
       
       <SEO 
-        title="Tedaviler" 
+        title="Kalp ve Damar Tedavileri" 
         description="Prof. Dr. Faruk Erzengin uzmanlık alanları: kalp hastalıkları, hipertansiyon, diyabetik ayak, aritmi tedavisi. Detaylı bilgi alın." 
         isTreatment={true}
         url="https://farukerzengin.com/tedaviler"

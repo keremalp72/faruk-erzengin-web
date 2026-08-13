@@ -59,7 +59,7 @@ const PressPage = () => {
       
       {/* --- SEO AYARLARI --- */}
       <SEO 
-        title="Basında Biz" 
+        title="TV Röportajları ve Basın" 
         description="Prof. Dr. Faruk Erzengin'in TV röportajları, gazete haberleri ve basında yer alan bilimsel çalışmaları." 
         url="https://farukerzengin.com/basin"
         keywords="faruk erzengin basın, tv röportajları, gazete haberleri, kardiyoloji haberleri, sağlık programları"

@@ -8,17 +8,17 @@ export default defineConfig({
     react(),
     ViteImageOptimizer({
       png: {
-        quality: 75,
+        quality: 70,
       },
       jpeg: {
-        quality: 75,
+        quality: 70,
       },
       jpg: {
-        quality: 75,
+        quality: 70,
       },
       webp: {
         lossless: false,
-        quality: 75,
+        quality: 70,
       },
     }),
   ],
@@ -27,10 +27,12 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
-          animations: ['framer-motion'],
-          icons: ['react-icons'],
           supabase: ['@supabase/supabase-js'],
-          ui: ['recharts', 'react-quill-new', 'swiper', 'react-helmet-async']
+          helmet: ['react-helmet-async'],
+          // framer-motion: animations chunk (lazy loaded pages pull it in)
+          // recharts + react-quill-new: only used in Admin (lazy loaded, auto-chunked)
+          // swiper: only used in Home Reviews component (auto-chunked with Home)
+          // react-icons: tree-shaken per page, no manual chunk needed
         }
       }
     },

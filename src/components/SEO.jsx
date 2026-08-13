@@ -160,7 +160,7 @@ const SEO = ({ title, description, image, url, isArticle = false, isTreatment = 
     <Helmet>
       {/* --- STANDART META ETİKETLERİ --- */}
       <title>{fullTitle}</title>
-      <meta name="description" content={description ? description.substring(0, 155) : ''} />
+      <meta name="description" content={description ? description.substring(0, 160) : ''} />
 
       {/* meta keywords kaldırıldı: Google tarafından kullanılmıyor, gereksiz */}
       <meta name="author" content={articleAuthor || siteTitle} />

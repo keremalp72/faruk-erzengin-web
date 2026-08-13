@@ -14,8 +14,8 @@ const Home = () => {
     <>
       {/* 2. Google İçin Kimlik Kartımızı Oluşturuyoruz */}
       <SEO 
-        title="İstanbul Kardiyolog ve İç Hastalıkları Uzmanı"
-        description="İstanbul'da 45 yıllık deneyimiyle hizmet veren Prof. Dr. Faruk Erzengin'den randevu alın. Kalp hastalıkları, hipertansiyon ve diyabetik ayak tedavisi. Mecidiyeköy ve Kadıköy."
+        title="İstanbul Kardiyolog – Randevu ve Tedavi"
+        description="Prof. Dr. Faruk Erzengin – İstanbul'da kardiyoloji ve iç hastalıkları uzmanı. Kalp, hipertansiyon, diyabetik ayak tedavisi. Mecidiyeköy ve Kadıköy'de randevu alın."
         url="https://farukerzengin.com/"
       />
 

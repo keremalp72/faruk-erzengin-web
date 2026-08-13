@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FaAward, FaFlask, FaUniversity, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import ScrollReveal from '../Animations/ScrollReveal';
 import './About.css';
@@ -9,13 +9,6 @@ import doctorProfileImg from '../../assets/images/homepage/anasayfa-bg.jpeg';
 const About = () => {
   const [activeTab, setActiveTab] = useState('kariyer');
 
-  // Sticky özelliğinin çalışması için sayfa başına scroll düzeltmesi
-  useEffect(() => {
-    // Sayfa içi linklerde bazen sticky hesaplaması şaşabilir, bunu engeller
-    const handleScroll = () => {}; 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const tabContent = {
     kariyer: [

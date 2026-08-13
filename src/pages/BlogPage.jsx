@@ -78,7 +78,7 @@ const BlogPage = () => {
   return (
     <div className="bp-page-wrapper">
       <SEO
-        title="Blog & Makaleler"
+        title="Sağlık Makaleleri ve Blog"
         description="Kalp sağlığı, hipertansiyon, diyabet ve iç hastalıkları hakkında güncel tıbbi makaleler ve sağlık bilgileri."
         url="https://farukerzengin.com/blog"
         keywords="sağlık blog, kalp sağlığı makaleler, hipertansiyon bilgi, diyabet tedavisi, tıbbi makaleler, kardiyoloji blog"

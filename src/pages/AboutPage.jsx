@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// YENİ: Link bileşenini buraya ekledik
 import { Link } from 'react-router-dom'; 
 import { FaUserMd, FaAward, FaMicroscope, FaBookReader, FaQuoteLeft, FaChevronLeft, FaChevronRight, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import './AboutPage.css';
@@ -9,12 +8,13 @@ import ScrollReveal from '../components/Animations/ScrollReveal';
 import HekimlikAndi from '../components/HekimlikAndi/HekimlikAndi';
 
 // --- VERİ IMPORTLARI ---
-import { publicationsData } from '../data/publicationsData';
+// publicationsData: Dynamic import ile yüklenir (108KB tasarruf)
 import { supabase } from '../lib/supabaseClient'; 
 
 const AboutPage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [openPubIndex, setOpenPubIndex] = useState(0); 
+  const [publicationsData, setPublicationsData] = useState([]);
 
   const [sliderImages, setSliderImages] = useState([]);
 
@@ -65,11 +65,18 @@ const AboutPage = () => {
     fetchBlogs();
   }, []);
 
+  // publicationsData'yı lazy load et (108KB tasarruf)
+  useEffect(() => {
+    import('../data/publicationsData').then(module => {
+      setPublicationsData(module.publicationsData || []);
+    });
+  }, []);
+
   return (
     <div className="about-page">
       
       <SEO 
-        title="Hakkında" 
+        title="Biyografi ve Akademik Kariyer" 
         description="Prof. Dr. Faruk Erzengin'in biyografisi, akademik kariyeri ve Nobel adaylığı. Kardiyoloji ve iç hastalıkları alanında 45 yıllık tecrübe." 
         url="https://farukerzengin.com/hakkinda"
         keywords="Faruk Erzengin biyografi, kardiyoloji profesörü, istanbul tıp fakültesi dekanı, nobel adayı doktor, kalp doktoru istanbul"
@@ -131,12 +138,12 @@ const AboutPage = () => {
               <h2 className="section-title">Prof. Dr. <span className="gold-text">Faruk Erzengin</span></h2>
               <h4 className="section-subtitle">Bilim İnsanı, Hekim, Eğitimci ve Etik Öncüsü</h4>
               <p className="intro-paragraph">
-                <strong>İstanbul Üniversitesi İstanbul Tıp Fakültesi’nin önceki dekanı</strong>, iç hastalıkları ve kardiyoloji uzmanı Prof. Dr. Faruk Erzengin, 
+                <strong>İstanbul Üniversitesi İstanbul Tıp Fakültesi'nin önceki dekanı</strong>, iç hastalıkları ve kardiyoloji uzmanı Prof. Dr. Faruk Erzengin, 
                 modern kardiyolojinin gelişiminde öncü rol üstlenen bir tıp duayenidir.
               </p>
               <div className="highlight-box">
                  <FaAward className="highlight-icon"/>
-                 <p>Prof. Dr. Faruk Erzengin ve ekibi, <strong>2025 Nobel Tıp Ödülü’ne aday gösterilmiştir.</strong></p>
+                 <p>Prof. Dr. Faruk Erzengin ve ekibi, <strong>2025 Nobel Tıp Ödülü'ne aday gösterilmiştir.</strong></p>
               </div>
               <div className="bio-stats">
                 <div className="stat-box"><span className="stat-number">30B+</span><span className="stat-label">Hasta</span></div>
@@ -218,7 +225,7 @@ const AboutPage = () => {
         {/* 4. YAYINLAR */}
         <ScrollReveal animation="fade-up">
           <div className="publications-section">
-            <h3 className="section-heading-center">Bilimsel Çalışmalar & Yayınlar</h3>
+            <h3 className="section-heading-center">Bilimsel Çalışmalar &amp; Yayınlar</h3>
             <p className="section-desc-center">Prof. Dr. Faruk Erzengin'in literatüre kazandırdığı yüzlerce eserden seçmeler.</p>
             
             <div className="accordion-wrapper">
