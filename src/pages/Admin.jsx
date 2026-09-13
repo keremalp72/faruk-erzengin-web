@@ -4,6 +4,20 @@ import ReactQuill from 'react-quill-new';
 import 'react-quill-new/dist/quill.snow.css';
 import imageCompression from 'browser-image-compression';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { 
+  FaEye, 
+  FaEyeSlash, 
+  FaArrowLeft, 
+  FaArrowRight, 
+  FaGripVertical, 
+  FaSave, 
+  FaSearch, 
+  FaChartBar, 
+  FaGlobe, 
+  FaEye as FaViews, 
+  FaClock, 
+  FaInfoCircle
+} from "react-icons/fa";
 import styles from "./Admin.module.css";
 
 export default function Admin() {
@@ -13,6 +27,7 @@ export default function Admin() {
   // Login State
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState("");
   const [isLoggingIn, setIsLoggingIn] = useState(false);
 
@@ -86,6 +101,10 @@ export default function Admin() {
   const [gallery, setGallery] = useState([]);
   const [fetchingGallery, setFetchingGallery] = useState(false);
   const [gImage, setGImage] = useState(null);
+  const [galleryHasChanges, setGalleryHasChanges] = useState(false);
+  const [savingGalleryOrder, setSavingGalleryOrder] = useState(false);
+  const [draggedItemIndex, setDraggedItemIndex] = useState(null);
+  const [dragOverItemIndex, setDragOverItemIndex] = useState(null);
 
   // --- FEATURED VIDEOS (MEDYA) STATE ---
   const [featuredVideos, setFeaturedVideos] = useState([]);
@@ -108,6 +127,9 @@ export default function Admin() {
   // --- ANALYTICS STATE ---
   const [pageViews, setPageViews] = useState([]);
   const [fetchingPageViews, setFetchingPageViews] = useState(false);
+  const [analyticsFilter, setAnalyticsFilter] = useState("main"); // 'main' | 'all'
+  const [analyticsSearch, setAnalyticsSearch] = useState("");
+  const [analyticsPage, setAnalyticsPage] = useState(1);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -644,6 +666,68 @@ export default function Admin() {
     }
   };
 
+  const moveGalleryItem = (fromIndex, toIndex) => {
+    if (toIndex < 0 || toIndex >= gallery.length) return;
+    const newGallery = [...gallery];
+    const [movedItem] = newGallery.splice(fromIndex, 1);
+    newGallery.splice(toIndex, 0, movedItem);
+    setGallery(newGallery);
+    setGalleryHasChanges(true);
+  };
+
+  const handleGalleryDragStart = (e, index) => {
+    e.dataTransfer.setData("text/plain", index.toString());
+    setDraggedItemIndex(index);
+  };
+
+  const handleGalleryDragOver = (e, index) => {
+    e.preventDefault();
+    if (dragOverItemIndex !== index) {
+      setDragOverItemIndex(index);
+    }
+  };
+
+  const handleGalleryDragEnd = () => {
+    setDraggedItemIndex(null);
+    setDragOverItemIndex(null);
+  };
+
+  const handleGalleryDrop = (e, targetIndex) => {
+    e.preventDefault();
+    const rawSource = e.dataTransfer.getData("text/plain");
+    const sourceIndex = draggedItemIndex !== null ? draggedItemIndex : parseInt(rawSource, 10);
+    if (isNaN(sourceIndex) || sourceIndex === targetIndex) {
+      setDraggedItemIndex(null);
+      setDragOverItemIndex(null);
+      return;
+    }
+    moveGalleryItem(sourceIndex, targetIndex);
+    setDraggedItemIndex(null);
+    setDragOverItemIndex(null);
+  };
+
+  const saveGalleryOrder = async () => {
+    setSavingGalleryOrder(true);
+    setUploadMsg({ type: "", text: "" });
+    try {
+      const baseTime = Date.now();
+      // En baştaki resim en yeni oluşturulma tarihine sahip olacak şekilde (descending order)
+      const updates = gallery.map((item, idx) => {
+        const newCreatedAt = new Date(baseTime - idx * 60000).toISOString();
+        return supabase.from("gallery_images").update({ created_at: newCreatedAt }).eq("id", item.id);
+      });
+      const results = await Promise.all(updates);
+      const hasError = results.some(r => r.error);
+      if (hasError) throw new Error("Bazı resimlerin sırası güncellenirken hata oluştu.");
+      setGalleryHasChanges(false);
+      setUploadMsg({ type: "success", text: "Fotoğraf sıralaması başarıyla kaydedildi! Sitedeki tüm galeri alanlarında bu sıra geçerli olacaktır." });
+    } catch (err) {
+      setUploadMsg({ type: "error", text: "Sıralama kaydedilemedi: " + err.message });
+    } finally {
+      setSavingGalleryOrder(false);
+    }
+  };
+
   // --- FEATURED VIDEOS HANDLERS ---
   const handleFVideoSubmit = async (e) => {
     e.preventDefault();
@@ -777,13 +861,24 @@ export default function Admin() {
               />
             </div>
             <div className={styles.formGroup}>
-              <input
-                type="password"
-                placeholder="Şifre"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
+              <div className={styles.passwordWrapper}>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Şifre"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className={styles.passwordToggleBtn}
+                  aria-label={showPassword ? "Şifreyi Gizle" : "Şifreyi Göster"}
+                  title={showPassword ? "Şifreyi Gizle" : "Şifreyi Göster"}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
             </div>
             <button type="submit" className={styles.loginBtn} disabled={isLoggingIn}>
               {isLoggingIn ? "Giriş Yapılıyor..." : "Giriş Yap"}
@@ -1267,21 +1362,115 @@ export default function Admin() {
       {/* --- LIST GALLERY --- */}
       {activeTab === 'listGallery' && (
         <div>
-           <div style={{padding:'1rem 2rem', textAlign:'right'}}>
-             <button onClick={() => {setGImage(null); setActiveTab('addGalleryImage');}} className={styles.submitBtn} style={{width:'auto', display:'inline-block'}}>+ Yeni Fotoğraf Ekle</button>
-           </div>
-          {fetchingGallery ? (<p style={{padding: '2rem'}}>Fotoğraflar yükleniyor...</p>) : gallery.length > 0 ? (
-            <div className={styles.articlesTableContainer}>
-              <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(150px, 1fr))', gap:'15px', padding:'20px'}}>
-                {gallery.map((g) => (
-                  <div key={g.id} style={{position:'relative', border:'1px solid #ddd', borderRadius:'8px', overflow:'hidden', boxShadow:'0 2px 4px rgba(0,0,0,0.1)'}}>
-                    <img src={g.image_url} alt="Galeri" style={{width:'100%', height:'150px', objectFit:'cover', display:'block'}} />
-                    <button className={styles.deleteBtn} onClick={() => handleDeleteGalleryResim(g.id, g.image_url)} style={{position:'absolute', top:'5px', right:'5px', padding:'5px 10px'}}>Sil</button>
-                  </div>
-                ))}
+          <div className={styles.galleryInfoBanner}>
+            <FaInfoCircle style={{ fontSize: '1.2rem', flexShrink: 0 }} />
+            <span>
+              <strong>Fotoğraf Sıralaması:</strong> Resimlerin sırasını değiştirmek için kartları tutup sürükleyip bırakabilir (Drag & Drop) ya da kartların altındaki <strong>◀ Öne Al</strong> / <strong>Arkaya Al ▶</strong> butonlarını kullanabilirsiniz. Düzenlemeyi tamamlayınca <strong>Sıralamayı Kaydet</strong> butonuna tıklayarak yeni dizilimi kaydedin.
+            </span>
+          </div>
+
+          <div style={{ padding: '0 20px 15px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
+            <div>
+              <span style={{ fontSize: '0.95rem', color: '#64748b', fontWeight: 600 }}>
+                Toplam <strong>{gallery.length}</strong> fotoğraf listeleniyor
+              </span>
+            </div>
+            <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+              {galleryHasChanges && (
+                <button
+                  type="button"
+                  onClick={saveGalleryOrder}
+                  disabled={savingGalleryOrder}
+                  className={styles.saveOrderBtn}
+                >
+                  <FaSave /> {savingGalleryOrder ? "Kaydediliyor..." : "Sıralamayı Kaydet"}
+                </button>
+              )}
+              <button
+                onClick={() => { setGImage(null); setActiveTab('addGalleryImage'); }}
+                className={styles.submitBtn}
+                style={{ width: 'auto', display: 'inline-block', margin: 0, padding: '10px 20px', fontSize: '0.95rem' }}
+              >
+                + Yeni Fotoğraf Ekle
+              </button>
+            </div>
+          </div>
+
+          {galleryHasChanges && (
+            <div className={styles.saveOrderBar}>
+              <span>⚠️ Fotoğraf sıralamasında kaydedilmemiş değişiklikler var!</span>
+              <button
+                type="button"
+                onClick={saveGalleryOrder}
+                disabled={savingGalleryOrder}
+                className={styles.saveOrderBtn}
+              >
+                <FaSave /> {savingGalleryOrder ? "Kaydediliyor..." : "Sıralamayı Kaydet"}
+              </button>
+            </div>
+          )}
+
+          {fetchingGallery ? (
+            <p style={{ padding: '2rem', textAlign: 'center' }}>Fotoğraflar yükleniyor...</p>
+          ) : gallery.length > 0 ? (
+            <div className={styles.articlesTableContainer} style={{ background: '#fafafa', padding: '10px' }}>
+              <div className={styles.galleryGrid}>
+                {gallery.map((g, index) => {
+                  const isDragging = draggedItemIndex === index;
+                  const isDragOver = dragOverItemIndex === index;
+                  return (
+                    <div
+                      key={g.id}
+                      draggable
+                      onDragStart={(e) => handleGalleryDragStart(e, index)}
+                      onDragOver={(e) => handleGalleryDragOver(e, index)}
+                      onDragEnd={handleGalleryDragEnd}
+                      onDrop={(e) => handleGalleryDrop(e, index)}
+                      className={`${styles.galleryCard} ${isDragging ? styles.galleryCardDragging : ''} ${isDragOver ? styles.galleryCardDragOver : ''}`}
+                    >
+                      <div className={styles.galleryImgWrap}>
+                        <span className={styles.galleryBadge}>#{index + 1}</span>
+                        <img src={g.image_url} alt={`Galeri #${index + 1}`} loading="lazy" />
+                        <span className={styles.galleryDragBadge} title="Sürüklemek için basılı tutun">
+                          <FaGripVertical /> Taşı
+                        </span>
+                        <button
+                          type="button"
+                          className={styles.galleryDeleteBtn}
+                          onClick={() => handleDeleteGalleryResim(g.id, g.image_url)}
+                          title="Bu fotoğrafı sil"
+                        >
+                          Sil
+                        </button>
+                      </div>
+                      <div className={styles.galleryControls}>
+                        <button
+                          type="button"
+                          className={styles.galleryMoveBtn}
+                          onClick={() => moveGalleryItem(index, index - 1)}
+                          disabled={index === 0}
+                          title="Bir sıra öne al"
+                        >
+                          <FaArrowLeft /> Öne
+                        </button>
+                        <button
+                          type="button"
+                          className={styles.galleryMoveBtn}
+                          onClick={() => moveGalleryItem(index, index + 1)}
+                          disabled={index === gallery.length - 1}
+                          title="Bir sıra arkaya al"
+                        >
+                          Arkaya <FaArrowRight />
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
-          ) : (<p style={{padding: '2rem'}}>Galeride henüz fotoğraf bulunmuyor.</p>)}
+          ) : (
+            <p style={{ padding: '2rem', textAlign: 'center' }}>Galeride henüz fotoğraf bulunmuyor.</p>
+          )}
         </div>
       )}
 
@@ -1383,40 +1572,297 @@ export default function Admin() {
       )}
 
       {/* --- ANALYTICS --- */}
-      {activeTab === 'analytics' && (
-        <div style={{ padding: '20px' }}>
-          <h3 style={{ color: '#1a3c6d', marginBottom: '20px', textAlign: 'center' }}>Site İçi Son 30 Sayfa/Hizmet Görüntülemeleri</h3>
-          {fetchingPageViews ? (
-            <p style={{ textAlign: 'center' }}>Veriler yükleniyor...</p>
-          ) : pageViews.length > 0 ? (
-            <div style={{ width: '100%', height: 400, background: 'white', borderRadius: '15px', padding: '20px', boxShadow: '0 5px 15px rgba(0,0,0,0.05)' }}>
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                  data={pageViews.slice(0, 30).map(item => ({...item, path: item.path === '/' ? 'Ana Sayfa' : item.path}))}
-                  margin={{ top: 20, right: 30, left: 20, bottom: 50 }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#eee" />
-                  <XAxis 
-                    dataKey="path" 
-                    tick={{ fill: '#666', fontSize: 12 }} 
-                    angle={-45} 
-                    textAnchor="end" 
-                    interval={0} 
-                  />
-                  <YAxis tick={{ fill: '#666' }} allowDecimals={false} />
-                  <Tooltip 
-                    cursor={{ fill: 'rgba(26, 60, 109, 0.05)' }} 
-                    contentStyle={{ borderRadius: '10px', border: 'none', boxShadow: '0 5px 15px rgba(0,0,0,0.1)' }}
-                  />
-                  <Bar dataKey="views" name="Görüntülenme Sayısı" fill="#d4af37" radius={[5, 5, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
+      {activeTab === 'analytics' && (() => {
+        const getPathLabel = (path) => {
+          if (!path) return "Bilinmeyen Sayfa";
+          if (path === "/" || path === "/home") return "Ana Sayfa";
+          if (path === "/hakkinda" || path === "/hakkinda/") return "Hakkında & Biyografi";
+          if (path === "/tedaviler" || path === "/tedaviler/") return "Tedaviler & Hizmetler";
+          if (path === "/iletisim" || path === "/iletisim/") return "İletişim & Randevu";
+          if (path === "/yorumlar" || path === "/yorumlar/") return "Hasta Yorumları";
+          if (path === "/blog" || path === "/blog/") return "Blog & Makaleler";
+          if (path === "/basin" || path === "/basin/") return "Basın & Medya";
+          if (path === "/biyografi" || path === "/biyografi/") return "Biyografi";
+          if (path === "/yayinlarim" || path === "/yayinlarim/") return "Yayınlar";
+          if (path.startsWith("/blog/")) {
+            return `Blog Yazısı (#${path.replace("/blog/", "")})`;
+          }
+          return path;
+        };
+
+        const isCrawlerOrNoise = (path) => {
+          const p = (path || "").toLowerCase();
+          return (
+            p.includes(".well-known") ||
+            p.includes("apple-app") ||
+            p.includes("feed") ||
+            p.includes(".php") ||
+            p.includes(".html") ||
+            p.includes("xml") ||
+            p.includes("robots") ||
+            p.includes("wp-") ||
+            p.includes("sitemap") ||
+            p.includes(".env")
+          );
+        };
+
+        const formatDate = (dateStr) => {
+          if (!dateStr) return "-";
+          try {
+            const date = new Date(dateStr);
+            return date.toLocaleDateString("tr-TR", {
+              day: "numeric",
+              month: "short",
+              year: "numeric",
+              hour: "2-digit",
+              minute: "2-digit"
+            });
+          } catch {
+            return dateStr;
+          }
+        };
+
+        const totalViews = pageViews.reduce((acc, curr) => acc + (curr.views || 0), 0);
+        const mainPagesList = pageViews.filter(p => !isCrawlerOrNoise(p.path));
+        const mainViews = mainPagesList.reduce((acc, curr) => acc + (curr.views || 0), 0);
+        const topItem = mainPagesList.length > 0 ? mainPagesList[0] : (pageViews[0] || null);
+
+        // Filtered items
+        const filteredList = pageViews.filter(item => {
+          if (analyticsFilter === "main" && isCrawlerOrNoise(item.path)) return false;
+          if (analyticsSearch) {
+            const query = analyticsSearch.toLowerCase();
+            const label = getPathLabel(item.path).toLowerCase();
+            const p = (item.path || "").toLowerCase();
+            if (!label.includes(query) && !p.includes(query)) return false;
+          }
+          return true;
+        });
+
+        // Top 8 pages for chart
+        const chartSource = analyticsFilter === "main" ? mainPagesList : pageViews;
+        const chartData = chartSource.slice(0, 8).map(item => ({
+          name: getPathLabel(item.path),
+          path: item.path,
+          views: item.views || 0
+        }));
+
+        // Pagination
+        const pageSize = 10;
+        const totalPages = Math.max(1, Math.ceil(filteredList.length / pageSize));
+        const currentPage = Math.min(analyticsPage, totalPages);
+        const currentItems = filteredList.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+
+        return (
+          <div className={styles.analyticsContainer}>
+            {/* KPI Cards */}
+            <div className={styles.kpiGrid}>
+              <div className={styles.kpiCard}>
+                <div className={styles.kpiIconBox} style={{ background: '#e0f2fe', color: '#0369a1' }}>
+                  <FaViews />
+                </div>
+                <div className={styles.kpiInfo}>
+                  <div className={styles.kpiValue}>{totalViews.toLocaleString('tr-TR')}</div>
+                  <div className={styles.kpiLabel}>Toplam Görüntülenme</div>
+                </div>
+              </div>
+
+              <div className={styles.kpiCard}>
+                <div className={styles.kpiIconBox} style={{ background: '#fef3c7', color: '#b45309' }}>
+                  <FaGlobe />
+                </div>
+                <div className={styles.kpiInfo}>
+                  <div className={styles.kpiValue}>{mainViews.toLocaleString('tr-TR')}</div>
+                  <div className={styles.kpiLabel}>Site Sayfaları Ziyareti</div>
+                </div>
+              </div>
+
+              <div className={styles.kpiCard}>
+                <div className={styles.kpiIconBox} style={{ background: '#dcfce7', color: '#15803d' }}>
+                  <FaChartBar />
+                </div>
+                <div className={styles.kpiInfo}>
+                  <div className={styles.kpiValue} title={topItem ? getPathLabel(topItem.path) : "-"}>
+                    {topItem ? getPathLabel(topItem.path) : "-"}
+                  </div>
+                  <div className={styles.kpiLabel}>En Çok Ziyaret Edilen ({topItem ? topItem.views : 0})</div>
+                </div>
+              </div>
+
+              <div className={styles.kpiCard}>
+                <div className={styles.kpiIconBox} style={{ background: '#f3e8ff', color: '#7e22ce' }}>
+                  <FaClock />
+                </div>
+                <div className={styles.kpiInfo}>
+                  <div className={styles.kpiValue}>{pageViews.length}</div>
+                  <div className={styles.kpiLabel}>Kayıtlı Sayfa & İstek</div>
+                </div>
+              </div>
             </div>
-          ) : (
-            <p style={{ textAlign: 'center' }}>Henüz yeterli analitik verisi bulunmuyor.</p>
-          )}
-        </div>
-      )}
+
+            {/* Chart Card */}
+            {fetchingPageViews ? (
+              <p style={{ textAlign: 'center', padding: '2rem' }}>Veriler yükleniyor...</p>
+            ) : chartData.length > 0 ? (
+              <div className={styles.chartCard}>
+                <div className={styles.chartTitle}>En Popüler Sayfalar Grafiği</div>
+                <div className={styles.chartSubtitle}>En çok ziyaret edilen ilk {chartData.length} sayfanın görüntülenme istatistiği</div>
+                <div style={{ width: '100%', height: 320 }}>
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart
+                      data={chartData}
+                      margin={{ top: 15, right: 25, left: 10, bottom: 40 }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                      <XAxis 
+                        dataKey="name" 
+                        tick={{ fill: '#475569', fontSize: 12, fontWeight: 500 }} 
+                        angle={-20} 
+                        textAnchor="end" 
+                        interval={0} 
+                      />
+                      <YAxis tick={{ fill: '#64748b', fontSize: 12 }} allowDecimals={false} />
+                      <Tooltip 
+                        cursor={{ fill: 'rgba(26, 60, 109, 0.04)' }} 
+                        content={({ active, payload }) => {
+                          if (active && payload && payload.length) {
+                            const data = payload[0].payload;
+                            return (
+                              <div style={{ background: '#1e293b', color: '#fff', padding: '10px 15px', borderRadius: '10px', boxShadow: '0 8px 20px rgba(0,0,0,0.15)', fontSize: '0.85rem' }}>
+                                <div style={{ fontWeight: 600, color: '#fef08a', marginBottom: '4px' }}>{data.name}</div>
+                                <div style={{ color: '#94a3b8', fontSize: '0.75rem', fontFamily: 'monospace', marginBottom: '6px' }}>{data.path}</div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                  <span>Görüntülenme:</span>
+                                  <strong style={{ color: '#38bdf8' }}>{data.views.toLocaleString('tr-TR')}</strong>
+                                </div>
+                              </div>
+                            );
+                          }
+                          return null;
+                        }}
+                      />
+                      <Bar dataKey="views" name="Görüntülenme" fill="#1a3c6d" radius={[8, 8, 0, 0]} maxBarSize={55} />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+            ) : (
+              <p style={{ textAlign: 'center', padding: '2rem' }}>Henüz yeterli analitik verisi bulunmuyor.</p>
+            )}
+
+            {/* Detailed Table Card */}
+            <div className={styles.analyticsTableCard}>
+              <div className={styles.analyticsToolbar}>
+                <div className={styles.filterTabs}>
+                  <button
+                    type="button"
+                    className={`${styles.filterTabBtn} ${analyticsFilter === 'main' ? styles.filterTabBtnActive : ''}`}
+                    onClick={() => { setAnalyticsFilter('main'); setAnalyticsPage(1); }}
+                  >
+                    Ana Site Sayfaları ({mainPagesList.length})
+                  </button>
+                  <button
+                    type="button"
+                    className={`${styles.filterTabBtn} ${analyticsFilter === 'all' ? styles.filterTabBtnActive : ''}`}
+                    onClick={() => { setAnalyticsFilter('all'); setAnalyticsPage(1); }}
+                  >
+                    Tüm İstekler ({pageViews.length})
+                  </button>
+                </div>
+
+                <div className={styles.searchContainer}>
+                  <FaSearch className={styles.searchIcon} />
+                  <input
+                    type="text"
+                    placeholder="Sayfa adı veya yol ara..."
+                    value={analyticsSearch}
+                    onChange={(e) => { setAnalyticsSearch(e.target.value); setAnalyticsPage(1); }}
+                  />
+                </div>
+              </div>
+
+              <div className={styles.articlesTableContainer}>
+                <table className={styles.articlesTable}>
+                  <thead>
+                    <tr>
+                      <th style={{ width: '60px' }}>#</th>
+                      <th>Sayfa Adı / Yolu</th>
+                      <th style={{ textAlign: 'center', width: '160px' }}>Görüntülenme</th>
+                      <th style={{ textAlign: 'right', width: '180px' }}>Son Ziyaret Tarihi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {currentItems.length > 0 ? (
+                      currentItems.map((item, index) => {
+                        const globalIndex = (currentPage - 1) * pageSize + index + 1;
+                        const isNoise = isCrawlerOrNoise(item.path);
+                        return (
+                          <tr key={item.id || item.path}>
+                            <td style={{ fontWeight: 600, color: '#94a3b8' }}>#{globalIndex}</td>
+                            <td>
+                              <span className={styles.pageTitleText}>
+                                {getPathLabel(item.path)}
+                                {isNoise && <span className={styles.botTag}>Sistem / Bot</span>}
+                              </span>
+                              <span className={styles.pagePathSub}>{item.path}</span>
+                            </td>
+                            <td style={{ textAlign: 'center' }}>
+                              <span className={styles.viewsBadge}>
+                                {item.views ? item.views.toLocaleString('tr-TR') : 0}
+                              </span>
+                            </td>
+                            <td style={{ textAlign: 'right', color: '#64748b', fontSize: '0.85rem' }}>
+                              {formatDate(item.last_viewed_at || item.created_at)}
+                            </td>
+                          </tr>
+                        );
+                      })
+                    ) : (
+                      <tr>
+                        <td colSpan="4" style={{ textAlign: 'center', padding: '2rem', color: '#94a3b8' }}>
+                          Aranan kritere uygun sayfa kaydı bulunamadı.
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Pagination Controls */}
+              {totalPages > 1 && (
+                <div className={styles.paginationContainer}>
+                  <span>
+                    Toplam <strong>{filteredList.length}</strong> sayfa arasından{' '}
+                    <strong>{(currentPage - 1) * pageSize + 1}</strong> -{' '}
+                    <strong>{Math.min(currentPage * pageSize, filteredList.length)}</strong> gösteriliyor
+                  </span>
+                  <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                    <button
+                      type="button"
+                      className={styles.paginationBtn}
+                      onClick={() => setAnalyticsPage(p => Math.max(1, p - 1))}
+                      disabled={currentPage === 1}
+                    >
+                      Önceki
+                    </button>
+                    <span style={{ fontWeight: 600, padding: '0 8px' }}>
+                      {currentPage} / {totalPages}
+                    </span>
+                    <button
+                      type="button"
+                      className={styles.paginationBtn}
+                      onClick={() => setAnalyticsPage(p => Math.min(totalPages, p + 1))}
+                      disabled={currentPage === totalPages}
+                    >
+                      Sonraki
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      })()}
 
     </div>
   );
