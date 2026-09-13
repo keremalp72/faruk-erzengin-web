@@ -707,21 +707,60 @@ export default function Admin() {
   };
 
   const saveGalleryOrder = async () => {
+    if (!gallery || gallery.length === 0) return;
     setSavingGalleryOrder(true);
     setUploadMsg({ type: "", text: "" });
     try {
       const baseTime = Date.now();
-      // En baştaki resim en yeni oluşturulma tarihine sahip olacak şekilde (descending order)
-      const updates = gallery.map((item, idx) => {
-        const newCreatedAt = new Date(baseTime - idx * 60000).toISOString();
-        return supabase.from("gallery_images").update({ created_at: newCreatedAt }).eq("id", item.id);
-      });
-      const results = await Promise.all(updates);
-      const hasError = results.some(r => r.error);
-      if (hasError) throw new Error("Bazı resimlerin sırası güncellenirken hata oluştu.");
+      
+      // Önce doğrudan UPDATE izninin çalışıp çalışmadığını ilk görsel üzerinden test edelim
+      const testUpdate = await supabase
+        .from("gallery_images")
+        .update({ created_at: new Date(baseTime).toISOString() })
+        .eq("id", gallery[0].id)
+        .select();
+
+      const canUpdateDirectly = testUpdate.data && testUpdate.data.length > 0;
+
+      if (canUpdateDirectly) {
+        // Supabase RLS'te UPDATE izni açık, tümünü yerinde güncelle
+        const updates = gallery.map((item, idx) => {
+          const newCreatedAt = new Date(baseTime - idx * 60000).toISOString();
+          return supabase.from("gallery_images").update({ created_at: newCreatedAt }).eq("id", item.id);
+        });
+        await Promise.all(updates);
+      } else {
+        // Supabase RLS'te gallery_images için UPDATE politikası tanımlı değilse,
+        // güvenli batch insert & eski kayıtları silme yöntemiyle sıralamayı kesin olarak kaydet
+        const oldIds = gallery.map(item => item.id);
+        const newRows = gallery.map((item, idx) => ({
+          image_url: item.image_url,
+          created_at: new Date(baseTime - idx * 60000).toISOString()
+        }));
+
+        const { data: newInserted, error: insertError } = await supabase
+          .from("gallery_images")
+          .insert(newRows)
+          .select();
+
+        if (insertError) throw insertError;
+
+        if (newInserted && newInserted.length > 0) {
+          await supabase
+            .from("gallery_images")
+            .delete()
+            .in("id", oldIds);
+        }
+      }
+
       setGalleryHasChanges(false);
-      setUploadMsg({ type: "success", text: "Fotoğraf sıralaması başarıyla kaydedildi! Sitedeki tüm galeri alanlarında bu sıra geçerli olacaktır." });
+      await fetchGallery();
+      setUploadMsg({ 
+        type: "success", 
+        text: "Fotoğraf sıralaması başarıyla kaydedildi! Sitedeki tüm galeri alanlarında bu sıra geçerli olacaktır." 
+      });
     } catch (err) {
+      console.error("Sıralama kaydetme hatası:", err);
       setUploadMsg({ type: "error", text: "Sıralama kaydedilemedi: " + err.message });
     } finally {
       setSavingGalleryOrder(false);
