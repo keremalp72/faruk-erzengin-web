@@ -178,15 +178,15 @@ const ServicesPage = () => {
           {/* İLETİŞİM */}
           <ScrollReveal animation="slide-in-right" delay={0.6}>
             <div className="tp-widget">
-              <h4 className="tp-widget-title">Vakıf Merkezi (Avrupa)</h4>
+              <h4 className="tp-widget-title">Anadolu Yakası (Kadıköy)</h4>
               <ul className="tp-contact-list">
                 <li>
                   <FaMapMarkerAlt className="tp-c-icon"/>
-                  <span>Prof. Dr. Faruk Erzengin Eğitim Sağlık Hiz. ve Y. Yardım Vakfı - Şişli / İstanbul</span>
+                  <span>Bağdat Cad. No: 182, Selami Çeşme, Kadıköy / İstanbul</span>
                 </li>
                 <li>
                   <FaPhone className="tp-c-icon"/>
-                  <span>0212 356 88 88</span>
+                  <span>0216 455 00 00</span>
                 </li>
                 <li>
                   <FaPhone className="tp-c-icon"/>

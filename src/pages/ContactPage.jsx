@@ -9,8 +9,6 @@ import {
   FaInstagram,
   FaLinkedinIn,
   FaCheck,
-  FaBuilding,
-  FaMap,
 } from "react-icons/fa";
 import "./ContactPage.css";
 import ScrollReveal from "../components/Animations/ScrollReveal";
@@ -22,9 +20,6 @@ import emailjs from "@emailjs/browser";
 import SEO from "../components/SEO";
 
 const ContactPage = () => {
-  // Harita Seçimi İçin State
-  const [activeMap, setActiveMap] = useState("europe");
-
   // 3. Form Referansı Oluşturuyoruz
   const form = useRef();
 
@@ -46,11 +41,8 @@ const ContactPage = () => {
   // Gönderim Durumu İçin State
   const [isSending, setIsSending] = useState(false);
 
-  const mapUrls = {
-    europe:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3008.310033271813!2d28.9987561!3d41.0668514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab6ff5a721ba3%3A0x8faba56dc9dc919a!2zTWVjaWRpeWVrw7Z5IE1haGFsbGVzaSwgQsO8ecO8a2RlcmUgQ2QuIE5vOjc1LCAzNDM4MSDFnmnFn2xpL8Swc3RhbmJ1bCwgVMO8cmtpeWU!5e0!3m2!1str!2str!4v1735985371235!5m2!1str!2str",
-    asia: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.357001636192!2d29.0429148!3d40.9858763!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab86614650f79%3A0x25c43bf70320d9f2!2sBa%C4%9Fdat%20Cd.%20No%3A182%2C%2034728%20Kad%C4%B1k%C3%B6y%2F%C4%B0stanbul%2C%20T%C3%BCrkiye!5e0!3m2!1str!2str!4v1735985500000!5m2!1str!2str",
-  };
+  const mapUrl =
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.357001636192!2d29.0429148!3d40.9858763!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab86614650f79%3A0x25c43bf70320d9f2!2sBa%C4%9Fdat%20Cd.%20No%3A182%2C%2034728%20Kad%C4%B1k%C3%B6y%2F%C4%B0stanbul%2C%20T%C3%BCrkiye!5e0!3m2!1str!2str!4v1735985500000!5m2!1str!2str";
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -129,10 +121,10 @@ const ContactPage = () => {
     <div className="contact-page">
       {/* --- SEO AYARLARI --- */}
       <SEO
-        title="Randevu Al – Vakıf Merkezi ve Kadıköy"
-        description="Prof. Dr. Faruk Erzengin randevu ve iletişim. Vakıf Merkezi ve Kadıköy muayenehane adresleri, telefon ve online randevu."
+        title="Randevu Al – Kadıköy"
+        description="Prof. Dr. Faruk Erzengin randevu ve iletişim. Kadıköy muayenehane adresi, telefon ve online randevu."
         url="https://farukerzengin.com/iletisim"
-        keywords="faruk erzengin randevu, kardiyolog iletişim, mecidiyeköy doktor, kadıköy kardiyolog, istanbul kalp doktoru randevu"
+        keywords="faruk erzengin randevu, kardiyolog iletişim, kadıköy doktor, kadıköy kardiyolog, istanbul kalp doktoru randevu"
         breadcrumbs={[
           { name: "Ana Sayfa", url: "/" },
           { name: "İletişim", url: "/iletisim" }
@@ -171,40 +163,10 @@ const ContactPage = () => {
       <div className="contact-container">
         {/* KARTLAR */}
         <div className="contact-info-grid">
-          {/* 1. AVRUPA YAKASI (Vakıf) */}
+          {/* 1. ANADOLU YAKASI (Kadıköy) */}
           <ScrollReveal
             animation="fade-up"
             delay={0.1}
-            className="contact-card location-card"
-          >
-            <div className="icon-circle">
-              <FaBuilding />
-            </div>
-            <h3 style={{fontSize: "1.1rem", lineHeight: "1.4"}}>Prof. Dr. Faruk Erzengin Eğitim Sağlık Hiz. ve Y. Yardım Vakfı</h3>
-            <p className="location-subtitle">Vakıf Merkezi</p>
-            <div className="location-details">
-              <p>
-                <strong>Adres:</strong> Büyükdere Cad. Kral Apt. No: 75, Kat: 1,
-                D: 3, Şişli / İstanbul
-              </p>
-              <div className="phone-list">
-                <a href="tel:+905324535179" className="highlight-phone">
-                  <FaPhone /> +90 532 453 51 79
-                </a>
-                <a href="tel:+902123568888">
-                  <FaPhone /> +90 212 356 88 88
-                </a>
-                <a href="tel:+905322416838">
-                  <FaPhone /> +90 532 241 68 38
-                </a>
-              </div>
-            </div>
-          </ScrollReveal>
-
-          {/* 2. ANADOLU YAKASI (Kadıköy) */}
-          <ScrollReveal
-            animation="fade-up"
-            delay={0.2}
             className="contact-card location-card"
           >
             <div className="icon-circle">
@@ -234,10 +196,10 @@ const ContactPage = () => {
             </div>
           </ScrollReveal>
 
-          {/* 3. GENEL İLETİŞİM */}
+          {/* 2. GENEL İLETİŞİM */}
           <ScrollReveal
             animation="fade-up"
-            delay={0.3}
+            delay={0.2}
             className="contact-card"
           >
             <div className="icon-circle">
@@ -354,26 +316,10 @@ const ContactPage = () => {
             className="contact-map-area"
             delay={0.2}
           >
-            {/* Harita Butonları */}
-            <div className="map-toggle-buttons">
-              <button
-                className={`map-btn ${activeMap === "europe" ? "active" : ""}`}
-                onClick={() => setActiveMap("europe")}
-              >
-                <FaBuilding /> Avrupa Yakası (Vakıf Merkezi)
-              </button>
-              <button
-                className={`map-btn ${activeMap === "asia" ? "active" : ""}`}
-                onClick={() => setActiveMap("asia")}
-              >
-                <FaMap /> Anadolu (Kadıköy)
-              </button>
-            </div>
-
-            {/* Dinamik Harita Frame'i */}
+            {/* Harita Frame'i */}
             <div className="map-frame">
               <iframe
-                src={mapUrls[activeMap]}
+                src={mapUrl}
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

@@ -109,31 +109,25 @@ const SEO = ({ title, description, image, url, isArticle = false, isTreatment = 
     "name": "Prof. Dr. Faruk Erzengin - Kardiyoloji ve İç Hastalıkları",
     "description": description || "Prof. Dr. Faruk Erzengin muayenehanesi. Kalp hastalıkları, hipertansiyon, diyabetik ayak ve iç hastalıkları tedavisi.",
     "url": siteUrl,
-    "telephone": "+90-212-356-88-88",
+    "telephone": "+90-532-453-51-79",
     "email": "farukerzengin@gmail.com",
     "image": `${siteUrl}/favicon.png`,
     "priceRange": "$$",
     "medicalSpecialty": ["Cardiology", "Internal Medicine"],
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Büyükdere Cad. Kral Apt. No: 75 Kat: 1 D: 2",
-      "addressLocality": "Şişli",
+      "streetAddress": "Bağdat Cad. No: 182, Selami Çeşme",
+      "addressLocality": "Kadıköy",
       "addressRegion": "İstanbul",
-      "postalCode": "34394",
+      "postalCode": "34728",
       "addressCountry": "TR"
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": "41.0668514",
-      "longitude": "28.9987561"
+      "latitude": "40.9858763",
+      "longitude": "29.0429148"
     },
     "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Thursday"],
-        "opens": "12:00",
-        "closes": "18:00"
-      },
       {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": "Wednesday",
@@ -141,7 +135,7 @@ const SEO = ({ title, description, image, url, isArticle = false, isTreatment = 
         "closes": "18:00"
       }
     ],
-    "hasMap": "https://www.google.com/maps/search/?api=1&query=Büyükdere+Cad.+Kral+Apt.+No:+75,+Şişli"
+    "hasMap": "https://www.google.com/maps/search/?api=1&query=Bağdat+Cad.+No:+182,+Kadıköy,+İstanbul"
   } : null;
 
   // Breadcrumb Schema

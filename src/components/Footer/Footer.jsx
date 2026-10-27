@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 import { FaMapMarkerAlt, FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import './Footer.css';
 
@@ -74,10 +74,6 @@ const Footer = () => {
             Haritada Göster →
           </a>
 
-          {/* Avrupa Yakası Bilgilendirmesi */}
-          <div style={{marginTop: '15px', fontSize: '13px', color: '#aaa', lineHeight: '1.4'}}>
-            <span style={{color: '#C5A059'}}>*</span> Vakıf Merkezi ofis bilgileri için <Link to="/iletisim" style={{color: '#fff', textDecoration: 'underline'}}>iletişim sayfasına</Link> bakınız.
-          </div>
         </div>
 
       </div>
